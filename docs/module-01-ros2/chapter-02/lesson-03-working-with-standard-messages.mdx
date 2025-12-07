@@ -1,0 +1,725 @@
+---
+title: "Working with Standard Messages"
+description: "Explore ROS 2's standard message types including geometry_msgs, sensor_msgs, and other common message definitions"
+sidebar_position: 3
+---
+
+# Working with Standard Messages
+
+## Learning Objectives
+
+- Understand the most commonly used ROS 2 standard message types
+- Learn how to work with geometry_msgs for spatial data
+- Master sensor_msgs for various sensor data types
+- Explore other essential message packages
+- Create applications using standard messages
+
+## Prerequisites
+
+- Understanding of basic ROS 2 concepts (Chapter 1)
+- Knowledge of publishers and subscribers (Chapter 2)
+- Basic Python programming skills
+
+## Overview of Standard Message Types
+
+ROS 2 provides a rich set of standard message types organized in different packages. These messages are designed to represent common data types in robotics applications.
+
+### Main Message Categories
+
+1. **std_msgs**: Basic data types (String, Int32, Float64, etc.)
+2. **geometry_msgs**: Spatial data (Pose, Twist, Point, Vector3, etc.)
+3. **sensor_msgs**: Sensor data (LaserScan, Image, PointCloud2, etc.)
+4. **nav_msgs**: Navigation data (Odometry, Path, OccupancyGrid, etc.)
+5. **trajectory_msgs**: Trajectory data (JointTrajectory, MultiDOFJointState, etc.)
+
+## Working with std_msgs
+
+The `std_msgs` package contains basic data types that are commonly used in ROS 2 systems.
+
+### Basic Data Types
+
+```python
+#!/usr/bin/env python3
+
+import rclpy
+from rclpy.node import Node
+from std_msgs.msg import String, Int32, Float64, Bool, Header
+from std_msgs.msg import Int32MultiArray, Float64MultiArray
+
+
+class StdMsgsPublisher(Node):
+    """
+    Publisher demonstrating various std_msgs types.
+    """
+
+    def __init__(self):
+        super().__init__('std_msgs_publisher')
+
+        # Publishers for different std_msgs types
+        self.string_pub = self.create_publisher(String, 'string_topic', 10)
+        self.int_pub = self.create_publisher(Int32, 'int_topic', 10)
+        self.float_pub = self.create_publisher(Float64, 'float_topic', 10)
+        self.bool_pub = self.create_publisher(Bool, 'bool_topic', 10)
+        self.multiarray_pub = self.create_publisher(Int32MultiArray, 'multiarray_topic', 10)
+
+        # Timer to publish messages
+        self.timer = self.create_timer(1.0, self.publish_messages)
+        self.counter = 0
+
+    def publish_messages(self):
+        """Publish messages of different std_msgs types."""
+        # String message
+        string_msg = String()
+        string_msg.data = f'Hello from std_msgs publisher {self.counter}'
+        self.string_pub.publish(string_msg)
+
+        # Int32 message
+        int_msg = Int32()
+        int_msg.data = self.counter
+        self.int_pub.publish(int_msg)
+
+        # Float64 message
+        float_msg = Float64()
+        float_msg.data = 3.14159 * self.counter
+        self.float_pub.publish(float_msg)
+
+        # Bool message
+        bool_msg = Bool()
+        bool_msg.data = bool(self.counter % 2)  # Alternates true/false
+        self.bool_pub.publish(bool_msg)
+
+        # MultiArray message
+        multiarray_msg = Int32MultiArray()
+        multiarray_msg.data = [self.counter, self.counter + 1, self.counter + 2]
+        self.multiarray_pub.publish(multiarray_msg)
+
+        self.get_logger().info(f'Published messages: counter={self.counter}')
+        self.counter += 1
+
+
+def main(args=None):
+    rclpy.init(args=args)
+    publisher = StdMsgsPublisher()
+
+    try:
+        rclpy.spin(publisher)
+    except KeyboardInterrupt:
+        pass
+    finally:
+        publisher.destroy_node()
+        rclpy.shutdown()
+
+
+if __name__ == '__main__':
+    main()
+```
+
+## Working with geometry_msgs
+
+The `geometry_msgs` package is essential for spatial data representation in ROS 2.
+
+### Key geometry_msgs Types
+
+- **Point**: 3D point in space (x, y, z)
+- **Vector3**: 3D vector (x, y, z)
+- **Pose**: Position and orientation (position: Point, orientation: Quaternion)
+- **Twist**: Linear and angular velocity (linear: Vector3, angular: Vector3)
+- **Transform**: Position and orientation with timestamp and frame info
+
+### geometry_msgs Example
+
+```python
+#!/usr/bin/env python3
+
+import rclpy
+from rclpy.node import Node
+from geometry_msgs.msg import Point, Vector3, Pose, Twist, Quaternion
+from std_msgs.msg import Header
+
+
+class GeometryMsgsPublisher(Node):
+    """
+    Publisher demonstrating geometry_msgs types.
+    """
+
+    def __init__(self):
+        super().__init__('geometry_msgs_publisher')
+
+        # Publishers for different geometry_msgs types
+        self.point_pub = self.create_publisher(Point, 'point_topic', 10)
+        self.pose_pub = self.create_publisher(Pose, 'pose_topic', 10)
+        self.twist_pub = self.create_publisher(Twist, 'twist_topic', 10)
+
+        # Timer to publish messages
+        self.timer = self.create_timer(0.5, self.publish_geometry_data)
+        self.angle = 0.0
+
+    def publish_geometry_data(self):
+        """Publish geometry_msgs data."""
+        # Point message
+        point_msg = Point()
+        point_msg.x = 1.0 * self.angle
+        point_msg.y = 2.0 * self.angle
+        point_msg.z = 0.0
+        self.point_pub.publish(point_msg)
+
+        # Pose message
+        pose_msg = Pose()
+        pose_msg.position.x = 1.0 * self.angle
+        pose_msg.position.y = 1.0 * self.angle
+        pose_msg.position.z = 0.0
+        # Simple orientation (facing forward)
+        pose_msg.orientation.w = 1.0
+        self.pose_pub.publish(pose_msg)
+
+        # Twist message
+        twist_msg = Twist()
+        twist_msg.linear.x = 1.0  # Move forward at 1 m/s
+        twist_msg.angular.z = 0.5  # Rotate at 0.5 rad/s
+        self.twist_pub.publish(twist_msg)
+
+        self.get_logger().info(f'Published geometry data: angle={self.angle:.2f}')
+        self.angle += 0.1
+
+    def create_quaternion_from_yaw(self, yaw):
+        """Helper function to create quaternion from yaw angle."""
+        from math import sin, cos
+        cy = cos(yaw * 0.5)
+        sy = sin(yaw * 0.5)
+        return Quaternion(x=0.0, y=0.0, z=sy, w=cy)
+
+
+def main(args=None):
+    rclpy.init(args=args)
+    publisher = GeometryMsgsPublisher()
+
+    try:
+        rclpy.spin(publisher)
+    except KeyboardInterrupt:
+        pass
+    finally:
+        publisher.destroy_node()
+        rclpy.shutdown()
+
+
+if __name__ == '__main__':
+    main()
+```
+
+## Working with sensor_msgs
+
+The `sensor_msgs` package contains message types for various sensor data.
+
+### Common sensor_msgs Types
+
+- **LaserScan**: 2D laser range finder data
+- **Image**: Image data from cameras
+- **PointCloud2**: 3D point cloud data
+- **Imu**: Inertial measurement unit data
+- **JointState**: Joint position, velocity, and effort data
+
+### sensor_msgs Example
+
+```python
+#!/usr/bin/env python3
+
+import rclpy
+from rclpy.node import Node
+from sensor_msgs.msg import LaserScan, Imu, JointState, PointCloud2, PointField
+from std_msgs.msg import Header
+import random
+import math
+
+
+class SensorMsgsPublisher(Node):
+    """
+    Publisher demonstrating sensor_msgs types.
+    """
+
+    def __init__(self):
+        super().__init__('sensor_msgs_publisher')
+
+        # Publishers for different sensor_msgs types
+        self.laser_pub = self.create_publisher(LaserScan, 'laser_scan', 10)
+        self.imu_pub = self.create_publisher(Imu, 'imu_data', 10)
+        self.joint_pub = self.create_publisher(JointState, 'joint_states', 10)
+
+        # Timer to publish messages
+        self.timer = self.create_timer(0.1, self.publish_sensor_data)
+
+    def publish_sensor_data(self):
+        """Publish various sensor_msgs data."""
+        # LaserScan message
+        laser_msg = LaserScan()
+        laser_msg.header = Header()
+        laser_msg.header.stamp = self.get_clock().now().to_msg()
+        laser_msg.header.frame_id = 'laser_frame'
+
+        # Set laser scan parameters
+        laser_msg.angle_min = -math.pi / 2  # -90 degrees
+        laser_msg.angle_max = math.pi / 2   # 90 degrees
+        laser_msg.angle_increment = math.pi / 180  # 1 degree
+        laser_msg.time_increment = 0.0
+        laser_msg.scan_time = 0.1
+        laser_msg.range_min = 0.1
+        laser_msg.range_max = 10.0
+
+        # Generate range data
+        num_readings = int((laser_msg.angle_max - laser_msg.angle_min) / laser_msg.angle_increment) + 1
+        laser_msg.ranges = [random.uniform(0.5, 5.0) for _ in range(num_readings)]
+
+        self.laser_pub.publish(laser_msg)
+
+        # IMU message
+        imu_msg = Imu()
+        imu_msg.header = Header()
+        imu_msg.header.stamp = self.get_clock().now().to_msg()
+        imu_msg.header.frame_id = 'imu_frame'
+
+        # Set orientation (simplified)
+        imu_msg.orientation.w = 1.0
+        imu_msg.orientation.x = 0.0
+        imu_msg.orientation.y = 0.0
+        imu_msg.orientation.z = 0.0
+
+        # Set angular velocity
+        imu_msg.angular_velocity.x = random.uniform(-0.1, 0.1)
+        imu_msg.angular_velocity.y = random.uniform(-0.1, 0.1)
+        imu_msg.angular_velocity.z = random.uniform(-0.1, 0.1)
+
+        # Set linear acceleration
+        imu_msg.linear_acceleration.x = random.uniform(-1.0, 1.0)
+        imu_msg.linear_acceleration.y = random.uniform(-1.0, 1.0)
+        imu_msg.linear_acceleration.z = random.uniform(-10.0, -8.0)  # Gravity
+        self.imu_pub.publish(imu_msg)
+
+        # JointState message
+        joint_msg = JointState()
+        joint_msg.header = Header()
+        joint_msg.header.stamp = self.get_clock().now().to_msg()
+        joint_msg.name = ['joint1', 'joint2', 'joint3']
+        joint_msg.position = [random.uniform(-1.0, 1.0) for _ in range(3)]
+        joint_msg.velocity = [random.uniform(-0.5, 0.5) for _ in range(3)]
+        joint_msg.effort = [random.uniform(-10.0, 10.0) for _ in range(3)]
+        self.joint_pub.publish(joint_msg)
+
+        self.get_logger().info('Published sensor data')
+
+
+def main(args=None):
+    rclpy.init(args=args)
+    publisher = SensorMsgsPublisher()
+
+    try:
+        rclpy.spin(publisher)
+    except KeyboardInterrupt:
+        pass
+    finally:
+        publisher.destroy_node()
+        rclpy.shutdown()
+
+
+if __name__ == '__main__':
+    main()
+```
+
+## Working with nav_msgs
+
+The `nav_msgs` package contains messages for navigation-related data.
+
+### Key nav_msgs Types
+
+- **Odometry**: Robot pose and velocity information
+- **Path**: Sequence of poses representing a path
+- **OccupancyGrid**: 2D map with occupancy probabilities
+
+### nav_msgs Example
+
+```python
+#!/usr/bin/env python3
+
+import rclpy
+from rclpy.node import Node
+from nav_msgs.msg import Odometry, Path
+from geometry_msgs.msg import PoseStamped, Point, Pose, Quaternion
+from std_msgs.msg import Header
+
+
+class NavMsgsPublisher(Node):
+    """
+    Publisher demonstrating nav_msgs types.
+    """
+
+    def __init__(self):
+        super().__init__('nav_msgs_publisher')
+
+        # Publishers for navigation messages
+        self.odom_pub = self.create_publisher(Odometry, 'odom', 10)
+        self.path_pub = self.create_publisher(Path, 'path', 10)
+
+        # Timer to publish messages
+        self.timer = self.create_timer(0.1, self.publish_nav_data)
+        self.x_pos = 0.0
+        self.y_pos = 0.0
+        self.path_points = []
+
+    def publish_nav_data(self):
+        """Publish navigation-related messages."""
+        # Odometry message
+        odom_msg = Odometry()
+        odom_msg.header = Header()
+        odom_msg.header.stamp = self.get_clock().now().to_msg()
+        odom_msg.header.frame_id = 'odom'
+        odom_msg.child_frame_id = 'base_link'
+
+        # Set position
+        odom_msg.pose.pose.position.x = self.x_pos
+        odom_msg.pose.pose.position.y = self.y_pos
+        odom_msg.pose.pose.position.z = 0.0
+        odom_msg.pose.pose.orientation.w = 1.0  # No rotation
+
+        # Set velocity
+        odom_msg.twist.twist.linear.x = 0.5  # Moving at 0.5 m/s
+        odom_msg.twist.twist.angular.z = 0.0  # No rotation
+
+        self.odom_pub.publish(odom_msg)
+
+        # Update position for next iteration
+        self.x_pos += 0.05  # Move 5 cm per iteration
+
+        # Add current position to path
+        pose_stamped = PoseStamped()
+        pose_stamped.header = Header()
+        pose_stamped.header.stamp = self.get_clock().now().to_msg()
+        pose_stamped.header.frame_id = 'odom'
+        pose_stamped.pose.position.x = self.x_pos
+        pose_stamped.pose.position.y = self.y_pos
+        pose_stamped.pose.position.z = 0.0
+        pose_stamped.pose.orientation.w = 1.0
+
+        self.path_points.append(pose_stamped)
+
+        # Limit path length to last 100 points
+        if len(self.path_points) > 100:
+            self.path_points.pop(0)
+
+        # Path message
+        path_msg = Path()
+        path_msg.header = Header()
+        path_msg.header.stamp = self.get_clock().now().to_msg()
+        path_msg.header.frame_id = 'odom'
+        path_msg.poses = self.path_points.copy()
+
+        self.path_pub.publish(path_msg)
+
+        self.get_logger().info(f'Published nav data: pos=({self.x_pos:.2f}, {self.y_pos:.2f})')
+
+
+def main(args=None):
+    rclpy.init(args=args)
+    publisher = NavMsgsPublisher()
+
+    try:
+        rclpy.spin(publisher)
+    except KeyboardInterrupt:
+        pass
+    finally:
+        publisher.destroy_node()
+        rclpy.shutdown()
+
+
+if __name__ == '__main__':
+    main()
+```
+
+## Best Practices for Standard Messages
+
+### 1. Frame IDs
+
+Always use proper frame IDs in messages that include spatial information:
+
+```python
+# Good practice
+msg.header.frame_id = 'base_link'
+msg.header.frame_id = 'laser_frame'
+msg.header.frame_id = 'map'
+```
+
+### 2. Timestamps
+
+Include accurate timestamps for all messages:
+
+```python
+# Good practice
+msg.header.stamp = self.get_clock().now().to_msg()
+```
+
+### 3. Units
+
+Use standard units (SI units where applicable):
+
+- Distance: meters
+- Angles: radians
+- Time: seconds
+- Mass: kilograms
+
+### 4. Message Validation
+
+Validate message contents before publishing:
+
+```python
+def validate_laser_scan(self, scan_msg):
+    """Validate laser scan message before publishing."""
+    if len(scan_msg.ranges) == 0:
+        self.get_logger().error('Laser scan has no range data')
+        return False
+
+    if scan_msg.angle_increment == 0:
+        self.get_logger().error('Invalid angle increment')
+        return False
+
+    return True
+```
+
+## Working with Multiple Message Types
+
+Often you'll need to combine multiple message types in a single application:
+
+```python
+#!/usr/bin/env python3
+
+import rclpy
+from rclpy.node import Node
+from geometry_msgs.msg import Twist
+from sensor_msgs.msg import LaserScan
+from nav_msgs.msg import Odometry
+
+
+class MultiMessageTypeNode(Node):
+    """
+    Node demonstrating use of multiple message types.
+    """
+
+    def __init__(self):
+        super().__init__('multi_message_node')
+
+        # Publishers
+        self.cmd_vel_pub = self.create_publisher(Twist, 'cmd_vel', 10)
+
+        # Subscribers
+        self.laser_sub = self.create_subscription(
+            LaserScan, 'scan', self.laser_callback, 10)
+        self.odom_sub = self.create_subscription(
+            Odometry, 'odom', self.odom_callback, 10)
+
+        # Robot state
+        self.current_x = 0.0
+        self.current_y = 0.0
+        self.current_yaw = 0.0
+
+    def laser_callback(self, msg):
+        """Handle laser scan data."""
+        # Simple obstacle detection
+        if min(msg.ranges) < 1.0:  # Obstacle within 1 meter
+            self.avoid_obstacle()
+
+    def odom_callback(self, msg):
+        """Handle odometry data."""
+        self.current_x = msg.pose.pose.position.x
+        self.current_y = msg.pose.pose.position.y
+
+    def avoid_obstacle(self):
+        """Simple obstacle avoidance."""
+        cmd_msg = Twist()
+        cmd_msg.linear.x = 0.0  # Stop forward motion
+        cmd_msg.angular.z = 0.5  # Turn right
+        self.cmd_vel_pub.publish(cmd_msg)
+
+
+def main(args=None):
+    rclpy.init(args=args)
+    node = MultiMessageTypeNode()
+
+    try:
+        rclpy.spin(node)
+    except KeyboardInterrupt:
+        pass
+    finally:
+        node.destroy_node()
+        rclpy.shutdown()
+
+
+if __name__ == '__main__':
+    main()
+```
+
+## Additional Message Type Examples
+
+Let's add more examples for std_msgs and geometry_msgs with practical usage:
+
+### More std_msgs Examples
+
+```python
+#!/usr/bin/env python3
+
+import rclpy
+from rclpy.node import Node
+from std_msgs.msg import ColorRGBA, Header
+from std_msgs.msg import UInt8, UInt16, UInt32, UInt64
+from std_msgs.msg import Int8, Int16, Int32, Int64
+from std_msgs.msg import Float32, Float64
+
+
+class ExtendedStdMsgsPublisher(Node):
+    """
+    Publisher demonstrating extended std_msgs types.
+    """
+
+    def __init__(self):
+        super().__init__('extended_std_msgs_publisher')
+
+        # Publishers for extended std_msgs types
+        self.color_pub = self.create_publisher(ColorRGBA, 'color_topic', 10)
+        self.uint_pub = self.create_publisher(UInt32, 'uint_topic', 10)
+        self.float_pub = self.create_publisher(Float64, 'float_topic', 10)
+
+        # Timer to publish messages
+        self.timer = self.create_timer(1.0, self.publish_extended_messages)
+        self.counter = 0
+
+    def publish_extended_messages(self):
+        """Publish extended std_msgs types."""
+        # ColorRGBA message
+        color_msg = ColorRGBA()
+        color_msg.r = float((self.counter % 255) / 255.0)
+        color_msg.g = float(((self.counter * 2) % 255) / 255.0)
+        color_msg.b = float(((self.counter * 3) % 255) / 255.0)
+        color_msg.a = 1.0
+        self.color_pub.publish(color_msg)
+
+        # UInt32 message
+        uint_msg = UInt32()
+        uint_msg.data = self.counter
+        self.uint_pub.publish(uint_msg)
+
+        # Float64 message
+        float_msg = Float64()
+        float_msg.data = 3.14159 * self.counter
+        self.float_pub.publish(float_msg)
+
+        self.get_logger().info(f'Published extended std_msgs: counter={self.counter}')
+        self.counter += 1
+
+
+def main(args=None):
+    rclpy.init(args=args)
+    publisher = ExtendedStdMsgsPublisher()
+
+    try:
+        rclpy.spin(publisher)
+    except KeyboardInterrupt:
+        pass
+    finally:
+        publisher.destroy_node()
+        rclpy.shutdown()
+
+
+if __name__ == '__main__':
+    main()
+```
+
+### More geometry_msgs Examples
+
+```python
+#!/usr/bin/env python3
+
+import rclpy
+from rclpy.node import Node
+from geometry_msgs.msg import PoseStamped, PointStamped, Vector3Stamped
+from geometry_msgs.msg import TransformStamped
+from std_msgs.msg import Header
+
+
+class ExtendedGeometryMsgsPublisher(Node):
+    """
+    Publisher demonstrating extended geometry_msgs types.
+    """
+
+    def __init__(self):
+        super().__init__('extended_geometry_msgs_publisher')
+
+        # Publishers for extended geometry_msgs types
+        self.pose_stamped_pub = self.create_publisher(PoseStamped, 'pose_stamped_topic', 10)
+        self.point_stamped_pub = self.create_publisher(PointStamped, 'point_stamped_topic', 10)
+        self.vector_stamped_pub = self.create_publisher(Vector3Stamped, 'vector_stamped_topic', 10)
+
+        # Timer to publish messages
+        self.timer = self.create_timer(0.5, self.publish_extended_geometry)
+        self.angle = 0.0
+
+    def publish_extended_geometry(self):
+        """Publish extended geometry_msgs data."""
+        # PoseStamped message
+        pose_stamped_msg = PoseStamped()
+        pose_stamped_msg.header = Header()
+        pose_stamped_msg.header.stamp = self.get_clock().now().to_msg()
+        pose_stamped_msg.header.frame_id = 'map'
+        pose_stamped_msg.pose.position.x = 1.0 * self.angle
+        pose_stamped_msg.pose.position.y = 1.0 * self.angle
+        pose_stamped_msg.pose.position.z = 0.0
+        pose_stamped_msg.pose.orientation.w = 1.0
+        self.pose_stamped_pub.publish(pose_stamped_msg)
+
+        # PointStamped message
+        point_stamped_msg = PointStamped()
+        point_stamped_msg.header = Header()
+        point_stamped_msg.header.stamp = self.get_clock().now().to_msg()
+        point_stamped_msg.header.frame_id = 'base_link'
+        point_stamped_msg.point.x = 0.5 * self.angle
+        point_stamped_msg.point.y = 0.5 * self.angle
+        point_stamped_msg.point.z = 0.0
+        self.point_stamped_pub.publish(point_stamped_msg)
+
+        # Vector3Stamped message
+        vector_stamped_msg = Vector3Stamped()
+        vector_stamped_msg.header = Header()
+        vector_stamped_msg.header.stamp = self.get_clock().now().to_msg()
+        vector_stamped_msg.header.frame_id = 'base_link'
+        vector_stamped_msg.vector.x = 1.0
+        vector_stamped_msg.vector.y = 0.0
+        vector_stamped_msg.vector.z = 0.0
+        self.vector_stamped_pub.publish(vector_stamped_msg)
+
+        self.get_logger().info(f'Published extended geometry data: angle={self.angle:.2f}')
+        self.angle += 0.1
+
+
+def main(args=None):
+    rclpy.init(args=args)
+    publisher = ExtendedGeometryMsgsPublisher()
+
+    try:
+        rclpy.spin(publisher)
+    except KeyboardInterrupt:
+        pass
+    finally:
+        publisher.destroy_node()
+        rclpy.shutdown()
+
+
+if __name__ == '__main__':
+    main()
+```
+
+## Key Takeaways
+
+- Standard message types provide a common language for ROS 2 communication
+- Different message types serve specific purposes (std_msgs, geometry_msgs, sensor_msgs, etc.)
+- Proper use of frame IDs and timestamps is crucial for spatial data
+- Understanding standard messages is essential for interoperability
+- Validation and error handling improve robustness
+- Extended message types provide additional functionality for specific use cases
+
+## Next Steps
+
+Now that you understand how to work with standard message types, the next chapter will introduce services and actions for request-response communication patterns.

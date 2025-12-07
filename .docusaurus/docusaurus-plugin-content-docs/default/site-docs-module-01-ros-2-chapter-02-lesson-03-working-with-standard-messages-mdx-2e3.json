@@ -1,0 +1,29 @@
+{
+  "id": "module-01-ros2/chapter-02/lesson-03-working-with-standard-messages",
+  "title": "Working with Standard Messages",
+  "description": "Explore ROS 2's standard message types including geometry_msgs, sensor_msgs, and other common message definitions",
+  "source": "@site/docs/module-01-ros2/chapter-02/lesson-03-working-with-standard-messages.mdx",
+  "sourceDirName": "module-01-ros2/chapter-02",
+  "slug": "/module-01-ros2/chapter-02/lesson-03-working-with-standard-messages",
+  "permalink": "/docs/module-01-ros2/chapter-02/lesson-03-working-with-standard-messages",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/module-01-ros2/chapter-02/lesson-03-working-with-standard-messages.mdx",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 3,
+  "frontMatter": {
+    "title": "Working with Standard Messages",
+    "description": "Explore ROS 2's standard message types including geometry_msgs, sensor_msgs, and other common message definitions",
+    "sidebar_position": 3
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Publishers and Subscribers Deep Dive",
+    "permalink": "/docs/module-01-ros2/chapter-02/lesson-02-publishers-and-subscribers-deep-dive"
+  },
+  "next": {
+    "title": "Services - Request/Response Communication",
+    "permalink": "/docs/module-01-ros2/chapter-03/lesson-01-services-request-response-communication"
+  }
+}

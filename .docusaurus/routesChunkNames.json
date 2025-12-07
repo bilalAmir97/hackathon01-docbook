@@ -1,0 +1,114 @@
+{
+  "/__docusaurus/debug-ebe": {
+    "__comp": "__comp---theme-debug-config-23-a-2ff",
+    "__context": {
+      "plugin": "plugin---docusaurus-debug-9-d-5-200"
+    }
+  },
+  "/__docusaurus/debug/config-6fd": {
+    "__comp": "__comp---theme-debug-config-23-a-2ff",
+    "__context": {
+      "plugin": "plugin---docusaurus-debug-9-d-5-200"
+    }
+  },
+  "/__docusaurus/debug/content-188": {
+    "__comp": "__comp---theme-debug-contentba-8-ce7",
+    "__context": {
+      "plugin": "plugin---docusaurus-debug-9-d-5-200"
+    },
+    "allContent": "allContent---docusaurus-debug-content-246-9aa"
+  },
+  "/__docusaurus/debug/globalData-a09": {
+    "__comp": "__comp---theme-debug-global-dataede-0fa",
+    "__context": {
+      "plugin": "plugin---docusaurus-debug-9-d-5-200"
+    }
+  },
+  "/__docusaurus/debug/metadata-020": {
+    "__comp": "__comp---theme-debug-site-metadata-68-e-3d4",
+    "__context": {
+      "plugin": "plugin---docusaurus-debug-9-d-5-200"
+    }
+  },
+  "/__docusaurus/debug/registry-e94": {
+    "__comp": "__comp---theme-debug-registry-679-501",
+    "__context": {
+      "plugin": "plugin---docusaurus-debug-9-d-5-200"
+    }
+  },
+  "/__docusaurus/debug/routes-b25": {
+    "__comp": "__comp---theme-debug-routes-946-699",
+    "__context": {
+      "plugin": "plugin---docusaurus-debug-9-d-5-200"
+    }
+  },
+  "/docs-3b9": {
+    "__comp": "__comp---theme-docs-root-5-e-9-0b6",
+    "__context": {
+      "plugin": "plugin---docsd-9-d-112"
+    }
+  },
+  "/docs-d8e": {
+    "__comp": "__comp---theme-doc-version-roota-7-b-5de",
+    "version": "version---docs-935-398"
+  },
+  "/docs-470": {
+    "__comp": "__comp---theme-doc-roota-94-67a"
+  },
+  "/docs/-a8c": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-c-37-4d0"
+  },
+  "/docs/module-01-ros2/chapter-01/lesson-01-introduction-to-ros2-concepts-ffa": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-module-01-ros-2-chapter-01-lesson-01-introduction-to-ros-2-concepts-761-cf1"
+  },
+  "/docs/module-01-ros2/chapter-01/lesson-02-setting-up-ros2-environment-6bd": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-module-01-ros-2-chapter-01-lesson-02-setting-up-ros-2-environment-84-a-dbb"
+  },
+  "/docs/module-01-ros2/chapter-01/lesson-03-basic-command-line-tools-564": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-module-01-ros-2-chapter-01-lesson-03-basic-command-line-toolscce-2f4"
+  },
+  "/docs/module-01-ros2/chapter-02/lesson-01-understanding-nodes-and-lifecycle-ace": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-module-01-ros-2-chapter-02-lesson-01-understanding-nodes-and-lifecycle-074-938"
+  },
+  "/docs/module-01-ros2/chapter-02/lesson-02-publishers-and-subscribers-deep-dive-861": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-module-01-ros-2-chapter-02-lesson-02-publishers-and-subscribers-deep-diveaf-1-ac9"
+  },
+  "/docs/module-01-ros2/chapter-02/lesson-03-working-with-standard-messages-871": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-module-01-ros-2-chapter-02-lesson-03-working-with-standard-messages-2-e-3-5d8"
+  },
+  "/docs/module-01-ros2/chapter-03/lesson-01-services-request-response-communication-779": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-module-01-ros-2-chapter-03-lesson-01-services-request-response-communicationbed-7d1"
+  },
+  "/docs/module-01-ros2/chapter-03/lesson-02-actions-goal-based-communication-8ea": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-module-01-ros-2-chapter-03-lesson-02-actions-goal-based-communicationa-70-f61"
+  },
+  "/docs/module-01-ros2/chapter-03/lesson-03-parameters-and-configuration-management-66c": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-module-01-ros-2-chapter-03-lesson-03-parameters-and-configuration-management-5-cd-e97"
+  },
+  "/docs/module-01-ros2/chapter-04/lesson-01-launch-files-and-composable-nodes-d6e": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-module-01-ros-2-chapter-04-lesson-01-launch-files-and-composable-nodes-2-e-4-d68"
+  },
+  "/docs/module-01-ros2/chapter-04/lesson-02-building-production-ready-ros2-systems-79b": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-module-01-ros-2-chapter-04-lesson-02-building-production-ready-ros-2-systemsc-2-d-5e0"
+  },
+  "/docs/module-01-ros2/chapter-04/lesson-03-simulation-to-reality-bridging-the-gap-b56": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-module-01-ros-2-chapter-04-lesson-03-simulation-to-reality-bridging-the-gapad-6-703"
+  },
+  "/docs/module-01-ros2/frontmatter-template-36e": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-module-01-ros-2-frontmatter-template-652-409"
+  }
+}

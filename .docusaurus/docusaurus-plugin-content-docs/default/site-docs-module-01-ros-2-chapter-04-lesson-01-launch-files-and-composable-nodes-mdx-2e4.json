@@ -1,0 +1,29 @@
+{
+  "id": "module-01-ros2/chapter-04/lesson-01-launch-files-and-composable-nodes",
+  "title": "Launch Files and Composable Nodes",
+  "description": "Learn how to create and use launch files to manage complex ROS 2 systems with multiple nodes and composable components.",
+  "source": "@site/docs/module-01-ros2/chapter-04/lesson-01-launch-files-and-composable-nodes.mdx",
+  "sourceDirName": "module-01-ros2/chapter-04",
+  "slug": "/module-01-ros2/chapter-04/lesson-01-launch-files-and-composable-nodes",
+  "permalink": "/docs/module-01-ros2/chapter-04/lesson-01-launch-files-and-composable-nodes",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/module-01-ros2/chapter-04/lesson-01-launch-files-and-composable-nodes.mdx",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "title": "Launch Files and Composable Nodes",
+    "description": "Learn how to create and use launch files to manage complex ROS 2 systems with multiple nodes and composable components.",
+    "sidebar_position": 1
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Parameters and Configuration Management",
+    "permalink": "/docs/module-01-ros2/chapter-03/lesson-03-parameters-and-configuration-management"
+  },
+  "next": {
+    "title": "Building Production-Ready ROS 2 Systems",
+    "permalink": "/docs/module-01-ros2/chapter-04/lesson-02-building-production-ready-ros2-systems"
+  }
+}

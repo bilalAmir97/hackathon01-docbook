@@ -1,0 +1,29 @@
+{
+  "id": "module-01-ros2/chapter-03/lesson-03-parameters-and-configuration-management",
+  "title": "Parameters and Configuration Management",
+  "description": "Master ROS 2 parameters for dynamic configuration of nodes and runtime system adjustments.",
+  "source": "@site/docs/module-01-ros2/chapter-03/lesson-03-parameters-and-configuration-management.mdx",
+  "sourceDirName": "module-01-ros2/chapter-03",
+  "slug": "/module-01-ros2/chapter-03/lesson-03-parameters-and-configuration-management",
+  "permalink": "/docs/module-01-ros2/chapter-03/lesson-03-parameters-and-configuration-management",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/module-01-ros2/chapter-03/lesson-03-parameters-and-configuration-management.mdx",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 3,
+  "frontMatter": {
+    "title": "Parameters and Configuration Management",
+    "description": "Master ROS 2 parameters for dynamic configuration of nodes and runtime system adjustments.",
+    "sidebar_position": 3
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Actions - Goal-Based Communication",
+    "permalink": "/docs/module-01-ros2/chapter-03/lesson-02-actions-goal-based-communication"
+  },
+  "next": {
+    "title": "Launch Files and Composable Nodes",
+    "permalink": "/docs/module-01-ros2/chapter-04/lesson-01-launch-files-and-composable-nodes"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "id": "index",
+  "title": "ROS 2 Robotics Education",
+  "description": "Welcome to the ROS 2 Robotics Education module! This comprehensive guide will help you master ROS 2 fundamentals and apply them to control humanoid robots.",
+  "source": "@site/docs/index.md",
+  "sourceDirName": ".",
+  "slug": "/",
+  "permalink": "/docs/",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/index.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "slug": "/"
+  },
+  "sidebar": "tutorialSidebar",
+  "next": {
+    "title": "Introduction to ROS 2 Concepts",
+    "permalink": "/docs/module-01-ros2/chapter-01/lesson-01-introduction-to-ros2-concepts"
+  }
+}

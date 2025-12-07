@@ -1,0 +1,29 @@
+{
+  "id": "module-01-ros2/chapter-04/lesson-02-building-production-ready-ros2-systems",
+  "title": "Building Production-Ready ROS 2 Systems",
+  "description": "Explore best practices and patterns for creating robust, maintainable ROS 2 systems suitable for real-world deployment.",
+  "source": "@site/docs/module-01-ros2/chapter-04/lesson-02-building-production-ready-ros2-systems.mdx",
+  "sourceDirName": "module-01-ros2/chapter-04",
+  "slug": "/module-01-ros2/chapter-04/lesson-02-building-production-ready-ros2-systems",
+  "permalink": "/docs/module-01-ros2/chapter-04/lesson-02-building-production-ready-ros2-systems",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/module-01-ros2/chapter-04/lesson-02-building-production-ready-ros2-systems.mdx",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "title": "Building Production-Ready ROS 2 Systems",
+    "description": "Explore best practices and patterns for creating robust, maintainable ROS 2 systems suitable for real-world deployment.",
+    "sidebar_position": 2
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Launch Files and Composable Nodes",
+    "permalink": "/docs/module-01-ros2/chapter-04/lesson-01-launch-files-and-composable-nodes"
+  },
+  "next": {
+    "title": "Simulation to Reality - Bridging the Gap",
+    "permalink": "/docs/module-01-ros2/chapter-04/lesson-03-simulation-to-reality-bridging-the-gap"
+  }
+}

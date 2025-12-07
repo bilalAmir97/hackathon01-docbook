@@ -1,0 +1,118 @@
+# Docusaurus
+.node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnp/
+.pnp.js
+coverage/
+dist/
+build/
+.nyc_output/
+.next/
+out/
+.nuxt/
+public/
+.cache/
+tmp/
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv/
+env.bak/
+venv.bak/
+.python-version
+.pytest_cache/
+.coverage
+htmlcov/
+.pyup.yml
+.isort.cfg
+.tox/
+.ropeproject/
+*.tmp
+*.log
+
+# ROS 2
+*.log
+*.log.*
+.deps/
+*.cache
+*.swp
+*.swo
+build/
+install/
+log/
+*.rviz
+*.yaml
+*.yml
+
+# Environment
+.env*
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.settings/
+.metadata/
+.DS_Store
+Thumbs.db
+
+# OS
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Icon?
+desktop.ini
+
+# Documentation
+docs/build/
+docs/_build/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+lib-cov/
+
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# TypeScript
+*.tsbuildinfo
+*.jspm_packages/
+typings/
+
+# System
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db

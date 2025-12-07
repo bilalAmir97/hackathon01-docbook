@@ -1,0 +1,29 @@
+{
+  "id": "module-01-ros2/chapter-01/lesson-03-basic-command-line-tools",
+  "title": "Basic Command Line Tools",
+  "description": "Master the essential ROS 2 command-line tools for node management, topic communication, and system inspection",
+  "source": "@site/docs/module-01-ros2/chapter-01/lesson-03-basic-command-line-tools.mdx",
+  "sourceDirName": "module-01-ros2/chapter-01",
+  "slug": "/module-01-ros2/chapter-01/lesson-03-basic-command-line-tools",
+  "permalink": "/docs/module-01-ros2/chapter-01/lesson-03-basic-command-line-tools",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/module-01-ros2/chapter-01/lesson-03-basic-command-line-tools.mdx",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 3,
+  "frontMatter": {
+    "title": "Basic Command Line Tools",
+    "description": "Master the essential ROS 2 command-line tools for node management, topic communication, and system inspection",
+    "sidebar_position": 3
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Setting Up Your ROS 2 Environment",
+    "permalink": "/docs/module-01-ros2/chapter-01/lesson-02-setting-up-ros2-environment"
+  },
+  "next": {
+    "title": "Understanding Nodes and Their Lifecycle",
+    "permalink": "/docs/module-01-ros2/chapter-02/lesson-01-understanding-nodes-and-lifecycle"
+  }
+}

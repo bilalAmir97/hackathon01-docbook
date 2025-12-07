@@ -1,0 +1,498 @@
+---
+title: Launch Files and Composable Nodes
+description: "Learn how to create and use launch files to manage complex ROS 2 systems with multiple nodes and composable components."
+sidebar_position: 1
+---
+
+# Launch Files and Composable Nodes
+
+## Introduction to ROS 2 Launch Systems
+
+Launch files in ROS 2 provide a powerful mechanism for starting multiple nodes simultaneously with specific configurations. Unlike ROS 1, ROS 2 uses Python-based launch files that offer greater flexibility and programmability. This approach allows you to define complex system configurations, manage dependencies, and orchestrate multi-node robotic systems from a single file.
+
+## Launch File Fundamentals
+
+ROS 2 launch files are Python scripts that define how to start your robotic system. They can launch multiple nodes, set parameters, manage remappings, and handle system-level operations like lifecycle management.
+
+## Creating Basic Launch Files
+
+Let's start with a simple launch file that starts a few nodes:
+
+```python
+# launch/simple_launch.py
+from launch import LaunchDescription
+from launch_ros.actions import Node
+from launch.actions import DeclareLaunchArgument
+from launch.substitutions import LaunchConfiguration
+from ament_index_python.packages import get_package_share_directory
+
+
+def generate_launch_description():
+    # Declare launch arguments
+    use_sim_time = LaunchConfiguration('use_sim_time', default='false')
+
+    # Define nodes
+    talker_node = Node(
+        package='demo_nodes_cpp',
+        executable='talker',
+        name='talker_node',
+        parameters=[
+            {'use_sim_time': use_sim_time}
+        ],
+        remappings=[
+            ('chatter', 'custom_chatter')
+        ]
+    )
+
+    listener_node = Node(
+        package='demo_nodes_cpp',
+        executable='listener',
+        name='listener_node',
+        parameters=[
+            {'use_sim_time': use_sim_time}
+        ],
+        remappings=[
+            ('chatter', 'custom_chatter')
+        ]
+    )
+
+    return LaunchDescription([
+        # Declare launch arguments
+        DeclareLaunchArgument(
+            'use_sim_time',
+            default_value='false',
+            description='Use simulation (Gazebo) clock if true'
+        ),
+
+        # Add nodes to launch
+        talker_node,
+        listener_node
+    ])
+```
+
+## Advanced Launch File Features
+
+Launch files support many advanced features for complex system management:
+
+```python
+# launch/advanced_launch.py
+from launch import LaunchDescription
+from launch_ros.actions import Node, ComposableNodeContainer
+from launch_ros.descriptions import ComposableNode
+from launch.actions import (
+    DeclareLaunchArgument,
+    GroupAction,
+    LogInfo,
+    RegisterEventHandler
+)
+from launch.conditions import IfCondition
+from launch.substitutions import LaunchConfiguration, PythonExpression
+from launch.event_handlers import OnProcessExit
+from ament_index_python.packages import get_package_share_directory
+import os
+
+
+def generate_launch_description():
+    # Launch configuration variables
+    use_sim_time = LaunchConfiguration('use_sim_time')
+    namespace = LaunchConfiguration('namespace', default='robot1')
+
+    # Get package share directory
+    pkg_share = get_package_share_directory('your_robot_package')
+
+    # Conditional nodes based on launch arguments
+    rviz_node = Node(
+        package='rviz2',
+        executable='rviz2',
+        name='rviz2',
+        arguments=['-d', os.path.join(pkg_share, 'rviz', 'default.rviz')],
+        condition=IfCondition(
+            PythonExpression(['"', LaunchConfiguration('launch_rviz', default='true'), '" == "true"'])
+        )
+    )
+
+    # Group of nodes that can be conditionally launched
+    robot_nodes = GroupAction(
+        condition=IfCondition(
+            PythonExpression(['"', LaunchConfiguration('start_robot', default='true'), '" == "true"'])
+        ),
+        actions=[
+            Node(
+                package='your_robot_package',
+                executable='robot_driver',
+                name='robot_driver',
+                namespace=namespace,
+                parameters=[
+                    {'use_sim_time': use_sim_time},
+                    os.path.join(pkg_share, 'config', 'robot_params.yaml')
+                ]
+            ),
+            Node(
+                package='your_robot_package',
+                executable='sensor_processor',
+                name='sensor_processor',
+                namespace=namespace,
+                parameters=[
+                    {'use_sim_time': use_sim_time}
+                ]
+            )
+        ]
+    )
+
+    return LaunchDescription([
+        # Declare launch arguments
+        DeclareLaunchArgument(
+            'use_sim_time',
+            default_value='false',
+            description='Use simulation (Gazebo) clock if true'
+        ),
+        DeclareLaunchArgument(
+            'namespace',
+            default_value='robot1',
+            description='Robot namespace for multi-robot systems'
+        ),
+        DeclareLaunchArgument(
+            'launch_rviz',
+            default_value='true',
+            description='Launch RViz for visualization'
+        ),
+        DeclareLaunchArgument(
+            'start_robot',
+            default_value='true',
+            description='Start robot-specific nodes'
+        ),
+
+        # Add nodes and groups
+        robot_nodes,
+        rviz_node,
+
+        # Log information
+        LogInfo(msg=['Launching robot system in namespace: ', namespace])
+    ])
+```
+
+## Composable Nodes and Containers
+
+Composable nodes allow multiple nodes to run within a single process, reducing overhead and improving performance. This is especially useful for embedded systems or when you need tight integration between nodes.
+
+```python
+# launch/composable_launch.py
+from launch import LaunchDescription
+from launch_ros.actions import ComposableNodeContainer
+from launch_ros.descriptions import ComposableNode
+
+
+def generate_launch_description():
+    """Launch file demonstrating composable nodes."""
+
+    # Create a container for composable nodes
+    container = ComposableNodeContainer(
+        name=' perception_container',
+        namespace='',
+        package='rclcpp_components',
+        executable='component_container',
+        composable_node_descriptions=[
+            ComposableNode(
+                package='image_proc',
+                plugin='image_proc::RectifyNode',
+                name='rectify_node',
+                remappings=[
+                    ('image', '/camera/image_raw'),
+                    ('camera_info', '/camera/camera_info'),
+                    ('image_rect', '/camera/image_rect')
+                ]
+            ),
+            ComposableNode(
+                package='image_view',
+                plugin='image_view::ImageViewNode',
+                name='image_view_node',
+                parameters=[
+                    {'autosize': True}
+                ],
+                remappings=[
+                    ('image', '/camera/image_rect')
+                ]
+            ),
+            ComposableNode(
+                package='your_perception_package',
+                plugin='your_perception_package::ObjectDetectionNode',
+                name='object_detection_node',
+                remappings=[
+                    ('input_image', '/camera/image_rect'),
+                    ('detections', '/object_detections')
+                ]
+            )
+        ],
+        output='screen',
+    )
+
+    return LaunchDescription([container])
+```
+
+## Launch File Best Practices
+
+1. **Modular Design**: Break complex systems into smaller, reusable launch files that can be combined.
+
+2. **Parameter Management**: Use launch arguments to make your launch files configurable.
+
+3. **Conditional Launching**: Use conditions to selectively launch nodes based on arguments.
+
+4. **Error Handling**: Implement proper error handling and logging in your launch files.
+
+5. **Documentation**: Document your launch arguments and their purposes.
+
+## Launch File Composition
+
+You can compose multiple launch files to build complex systems:
+
+```python
+# launch/robot_system.launch.py
+from launch import LaunchDescription
+from launch.actions import IncludeLaunchDescription
+from launch.launch_description_sources import PythonLaunchDescriptionSource
+from launch.substitutions import PathJoinSubstitution
+from launch_ros.substitutions import FindPackageShare
+
+
+def generate_launch_description():
+    """Launch the complete robot system."""
+
+    # Include other launch files
+    navigation_launch = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource([
+            PathJoinSubstitution([
+                FindPackageShare('nav2_bringup'),
+                'launch',
+                'navigation_launch.py'
+            ])
+        ]),
+        launch_arguments={
+            'use_sim_time': 'true',
+            'params_file': PathJoinSubstitution([
+                FindPackageShare('your_robot_package'),
+                'config',
+                'nav2_params.yaml'
+            ])
+        }.items()
+    )
+
+    # Include your robot-specific launch file
+    robot_bringup_launch = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource([
+            PathJoinSubstitution([
+                FindPackageShare('your_robot_package'),
+                'launch',
+                'robot_bringup.launch.py'
+            ])
+        ])
+    )
+
+    return LaunchDescription([
+        navigation_launch,
+        robot_bringup_launch
+    ])
+```
+
+## Running Launch Files
+
+To run a launch file:
+
+```bash
+# Basic launch
+ros2 launch your_package your_launch_file.py
+
+# Launch with arguments
+ros2 launch your_package your_launch_file.py use_sim_time:=true namespace:=robot2
+
+# List available launch arguments
+ros2 launch your_package your_launch_file.py --show-args
+```
+
+## Practical Launch File Examples
+
+In the examples/ros2_launch directory, you'll find several practical launch file examples:
+
+1. **demo_launch.py** - A basic launch file that starts talker and listener nodes
+2. **composable_nodes.py** - Demonstrates using composable nodes in a container
+3. **integrated_system.launch.py** - A complete system launch with multiple components
+
+Here's an example of the integrated system launch file:
+
+```python
+# examples/ros2_launch/integrated_system.launch.py
+from launch import LaunchDescription
+from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, GroupAction
+from launch.conditions import IfCondition
+from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
+from launch.launch_description_sources import PythonLaunchDescriptionSource
+from launch_ros.actions import Node, ComposableNodeContainer
+from launch_ros.descriptions import ComposableNode
+from ament_index_python.packages import get_package_share_directory
+
+
+def generate_launch_description():
+    """Launch a complete integrated system."""
+
+    # Declare launch arguments
+    use_sim_time = LaunchConfiguration('use_sim_time', default='false')
+    launch_rviz = LaunchConfiguration('launch_rviz', default='true')
+    robot_namespace = LaunchConfiguration('robot_namespace', default='robot1')
+
+    # Robot control nodes
+    robot_driver = Node(
+        package='your_robot_driver',
+        executable='robot_driver',
+        name='robot_driver',
+        namespace=robot_namespace,
+        parameters=[
+            {'use_sim_time': use_sim_time}
+        ],
+        remappings=[
+            ('cmd_vel', 'navigation/cmd_vel'),
+            ('odom', 'localization/odom')
+        ]
+    )
+
+    # Perception nodes in a container
+    perception_container = ComposableNodeContainer(
+        name='perception_container',
+        namespace=robot_namespace,
+        package='rclcpp_components',
+        executable='component_container',
+        parameters=[{'use_sim_time': use_sim_time}],
+        output='screen'
+    )
+
+    # Add composable perception nodes
+    perception_container.add_composable_node(
+        ComposableNode(
+            package='your_perception_package',
+            plugin='your_perception_package::LidarProcessor',
+            name='lidar_processor',
+            parameters=[{'use_sim_time': use_sim_time}],
+            remappings=[
+                ('input_scan', 'sensor/lidar_scan'),
+                ('processed_cloud', 'perception/lidar_cloud')
+            ]
+        )
+    )
+
+    perception_container.add_composable_node(
+        ComposableNode(
+            package='your_perception_package',
+            plugin='your_perception_package::ImageProcessor',
+            name='image_processor',
+            parameters=[{'use_sim_time': use_sim_time}],
+            remappings=[
+                ('input_image', 'sensor/camera_image'),
+                ('processed_features', 'perception/image_features')
+            ]
+        )
+    )
+
+    # Navigation node
+    navigation = Node(
+        package='your_navigation_package',
+        executable='navigation_node',
+        name='navigation_node',
+        namespace=robot_namespace,
+        parameters=[
+            {'use_sim_time': use_sim_time}
+        ],
+        remappings=[
+            ('cmd_vel', 'navigation/cmd_vel'),
+            ('map', 'map_server/map'),
+            ('goal_pose', 'navigation/goal_pose')
+        ]
+    )
+
+    # Localization node
+    localization = Node(
+        package='your_localization_package',
+        executable='localization_node',
+        name='localization_node',
+        namespace=robot_namespace,
+        parameters=[
+            {'use_sim_time': use_sim_time}
+        ],
+        remappings=[
+            ('odom', 'localization/odom'),
+            ('imu', 'sensor/imu'),
+            ('map', 'map_server/map')
+        ]
+    )
+
+    # RViz2 for visualization (conditional)
+    rviz_config_file = PathJoinSubstitution([
+        get_package_share_directory('your_robot_viz'),
+        'rviz',
+        'robot_config.rviz'
+    ])
+
+    rviz = Node(
+        package='rviz2',
+        executable='rviz2',
+        name='rviz2',
+        arguments=['-d', rviz_config_file],
+        parameters=[{'use_sim_time': use_sim_time}],
+        condition=IfCondition(launch_rviz)
+    )
+
+    # Create launch description
+    ld = LaunchDescription()
+
+    # Add launch arguments
+    ld.add_action(DeclareLaunchArgument(
+        'use_sim_time',
+        default_value='false',
+        description='Use simulation (Gazebo) clock if true'
+    ))
+
+    ld.add_action(DeclareLaunchArgument(
+        'launch_rviz',
+        default_value='true',
+        description='Launch RViz for visualization'
+    ))
+
+    ld.add_action(DeclareLaunchArgument(
+        'robot_namespace',
+        default_value='robot1',
+        description='Robot namespace for multi-robot systems'
+    ))
+
+    # Add nodes to launch
+    ld.add_action(robot_driver)
+    ld.add_action(perception_container)
+    ld.add_action(navigation)
+    ld.add_action(localization)
+    ld.add_action(rviz)
+
+    return ld
+```
+
+## Launch File Best Practices
+
+1. **Modular Design**: Break complex systems into smaller, reusable launch files that can be combined.
+
+2. **Parameter Management**: Use launch arguments to make your launch files configurable.
+
+3. **Conditional Launching**: Use conditions to selectively launch nodes based on arguments.
+
+4. **Error Handling**: Implement proper error handling and logging in your launch files.
+
+5. **Documentation**: Document your launch arguments and their purposes.
+
+6. **Testing**: Test your launch files in isolation before integrating them into larger systems.
+
+## Summary
+
+Launch files provide a powerful way to orchestrate complex ROS 2 systems. By mastering launch files and composable nodes, you can create professional-grade robotic systems that are easy to configure, deploy, and maintain. The Python-based approach offers flexibility that was not available in ROS 1, allowing for dynamic system configuration and complex launch logic. The examples in the `examples/ros2_launch/` directory provide practical templates that you can adapt for your specific robotic systems.
+
+## References and Further Reading
+
+For more detailed information about launch files and composable nodes, refer to the official ROS 2 documentation:
+
+- [ROS 2 Launch System](https://docs.ros.org/en/humble/How-To-Guides/Launch-system.html) - Complete guide to the ROS 2 launch system
+- [Composable Nodes](https://docs.ros.org/en/humble/Tutorials/Composition.html) - Detailed tutorial on composable nodes
+- [Launch Files Best Practices](https://docs.ros.org/en/humble/How-To-Guides/Creating-Launch-Files.html) - Best practices for creating launch files
+- [ROS 2 Parameters and Launch](https://docs.ros.org/en/humble/Tutorials/Parameters/Understanding-ROS2-Parameters.html) - Using parameters with launch files

@@ -1,0 +1,97 @@
+{
+  "docusaurus-plugin-content-docs": {
+    "default": {
+      "path": "/docs",
+      "versions": [
+        {
+          "name": "current",
+          "label": "Next",
+          "isLast": true,
+          "path": "/docs",
+          "mainDocId": "index",
+          "docs": [
+            {
+              "id": "index",
+              "path": "/docs/",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "module-01-ros2/chapter-01/lesson-01-introduction-to-ros2-concepts",
+              "path": "/docs/module-01-ros2/chapter-01/lesson-01-introduction-to-ros2-concepts",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "module-01-ros2/chapter-01/lesson-02-setting-up-ros2-environment",
+              "path": "/docs/module-01-ros2/chapter-01/lesson-02-setting-up-ros2-environment",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "module-01-ros2/chapter-01/lesson-03-basic-command-line-tools",
+              "path": "/docs/module-01-ros2/chapter-01/lesson-03-basic-command-line-tools",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "module-01-ros2/chapter-02/lesson-01-understanding-nodes-and-lifecycle",
+              "path": "/docs/module-01-ros2/chapter-02/lesson-01-understanding-nodes-and-lifecycle",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "module-01-ros2/chapter-02/lesson-02-publishers-and-subscribers-deep-dive",
+              "path": "/docs/module-01-ros2/chapter-02/lesson-02-publishers-and-subscribers-deep-dive",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "module-01-ros2/chapter-02/lesson-03-working-with-standard-messages",
+              "path": "/docs/module-01-ros2/chapter-02/lesson-03-working-with-standard-messages",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "module-01-ros2/chapter-03/lesson-01-services-request-response-communication",
+              "path": "/docs/module-01-ros2/chapter-03/lesson-01-services-request-response-communication",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "module-01-ros2/chapter-03/lesson-02-actions-goal-based-communication",
+              "path": "/docs/module-01-ros2/chapter-03/lesson-02-actions-goal-based-communication",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "module-01-ros2/chapter-03/lesson-03-parameters-and-configuration-management",
+              "path": "/docs/module-01-ros2/chapter-03/lesson-03-parameters-and-configuration-management",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "module-01-ros2/chapter-04/lesson-01-launch-files-and-composable-nodes",
+              "path": "/docs/module-01-ros2/chapter-04/lesson-01-launch-files-and-composable-nodes",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "module-01-ros2/chapter-04/lesson-02-building-production-ready-ros2-systems",
+              "path": "/docs/module-01-ros2/chapter-04/lesson-02-building-production-ready-ros2-systems",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "module-01-ros2/chapter-04/lesson-03-simulation-to-reality-bridging-the-gap",
+              "path": "/docs/module-01-ros2/chapter-04/lesson-03-simulation-to-reality-bridging-the-gap",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "module-01-ros2/frontmatter-template",
+              "path": "/docs/module-01-ros2/frontmatter-template"
+            }
+          ],
+          "draftIds": [],
+          "sidebars": {
+            "tutorialSidebar": {
+              "link": {
+                "path": "/docs/",
+                "label": "index"
+              }
+            }
+          }
+        }
+      ],
+      "breadcrumbs": true
+    }
+  }
+}

@@ -1,55 +1,59 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+# Textbook for Teaching Physical AI & Humanoid Robotics Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Embodied Intelligence
+All concepts must link software logic (brain) to physical action (body). The textbook emphasizes the connection between digital intelligence and physical embodiment, ensuring students understand how algorithms translate to real-world robotic behavior.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### II. Simulation-First Approach
+Prioritize "Sim-to-Real" workflows using Gazebo and Isaac Sim before hardware implementation. Content must guide students through simulation environments as the primary learning and testing platform before any hardware deployment.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### III. Technical Rigor
+Ensure all code (Python/rclpy, URDF, C++) is syntactically correct and reproducible. All code examples must be tested and verified to work with the specified technology stack (ROS 2 Humble, NVIDIA Isaac, Gazebo).
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### IV. Clarity & Structure
+Content must be modular, student-friendly, and optimized for digital reading (Docusaurus). Each section should be self-contained and clearly structured with appropriate headings and formatting.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### V. Accessibility & Readability
+Maintain Flesch-Kincaid Grade 10-12 readability level for all content. Ensure all diagrams, code examples, and explanations are accessible to students with diverse backgrounds.
 
-### [PRINCIPLE_6_NAME]
+### VI. Verification & Citation
 
+All technical claims must be verified against official documentation (ROS 2 Humble, NVIDIA Isaac, Gazebo). Use APA style for theoretical concepts and provide direct links to official documentation for technical claims.
 
-[PRINCIPLE__DESCRIPTION]
+## Content Standards
+- **Platform**: Docusaurus (Markdown/MDX) 
+- **Content Structure**:
+  - Each Module's chapter, and lesson must use H1 (Title), H2 (Major Sections), and H3 (Subsections) hierarchy
+  - Every chapter must include a concise "Meta Description" (< 160 chars) for SEO
+  - Code blocks must include language tags (e.g., ```python, ```xml, ```bash)
+- **Module Structure**: 4 Core Modules (The Robotic Nervous System, The Digital Twin, The AI-Robot Brain, Vision-Language-Action)
+- **Length Requirements**: Approximately 1,200-1,500 words per module (Total ~5,000-7,000 words)
+- **Section Focus**: Each individual chapter/lesson should be concise (~500 words) to maintain focus
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+## Technology Stack Requirements
+- **Primary Framework**: ROS 2 (Humble Hawksbill)
+- **Simulation Environment**: Gazebo and NVIDIA Isaac Sim
+- **AI Integration**: OpenAI Whisper for voice-to-action examples
+- **Documentation Platform**: Docusaurus with MDX support
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+## Quality Assurance Standards
+- Complete coverage of all 4 modules with verified "Voice-to-Action" code examples
+- Zero broken links or hallucinations in technical commands
+- Passes automated build and linting checks
+- All code examples must be tested in the target environment
+- Technical accuracy verified against current documentation versions
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
-
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+## Development Workflow
+- All content must be written in Markdown/MDX format following Docusaurus standards
+- Regular builds and previews must be conducted to ensure content quality
+- Cross-platform compatibility for all code examples and simulation environments
+- Automated linting and build checks must pass before any content is merged
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
+This constitution governs all development and content creation for the Physical AI & Humanoid Robotics textbook. All contributors must adhere to these principles and standards. Any deviations must be documented and approved through the project's governance process. 
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+Related ADRs:
+- ADR 0001: Project Constitution Structure - Defines the rationale and decision-making framework for this constitution
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 1.0.0 | **Ratified**: 2025-12-07 | **Last Amended**: 2025-12-07

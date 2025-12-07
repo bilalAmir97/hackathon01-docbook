@@ -1,0 +1,349 @@
+---
+title: Parameters and Configuration Management
+description: "Master ROS 2 parameters for dynamic configuration of nodes and runtime system adjustments."
+sidebar_position: 3
+---
+
+# Parameters and Configuration Management
+
+## Introduction to ROS 2 Parameters
+
+ROS 2 parameters provide a way to configure nodes at runtime without recompilation. Parameters allow you to:
+- Adjust node behavior without rebuilding code
+- Tune values during operation
+- Share configuration across nodes
+- Enable dynamic reconfiguration
+
+Parameters are key-value pairs where the key is a string and the value can be one of several types: integer, double, string, boolean, or lists of these types.
+
+## Parameter Basics
+
+Parameters in ROS 2 have several important characteristics:
+- They can be declared with types, descriptions, and constraints
+- They can be set at launch time, runtime, or through parameter files
+- They can be dynamically reconfigured during node execution
+- They support parameter callbacks for validation and response to changes
+
+## Declaring and Using Parameters
+
+Let's create a node that demonstrates parameter declaration and usage:
+
+```python
+#!/usr/bin/env python3
+import rclpy
+from rclpy.node import Node
+from rclpy.parameter import Parameter
+from rclpy.qos import qos_profile_system_default
+
+
+class ParameterExampleNode(Node):
+    def __init__(self):
+        super().__init__('parameter_example_node')
+
+        # Declare parameters with default values and descriptions
+        self.declare_parameter(
+            'robot_name',
+            'turtlebot4',
+            ParameterDescriptor(
+                description='Name of the robot for identification'
+            )
+        )
+
+        self.declare_parameter(
+            'max_velocity',
+            0.5,
+            ParameterDescriptor(
+                description='Maximum linear velocity in m/s',
+                type=ParameterType.PARAMETER_DOUBLE,
+                additional_constraints='Must be positive and less than 5.0'
+            )
+        )
+
+        self.declare_parameter(
+            'enable_logging',
+            True,
+            ParameterDescriptor(
+                description='Enable or disable detailed logging'
+            )
+        )
+
+        self.declare_parameter(
+            'sensors_enabled',
+            [True, True, False, True],  # Example: [lidar, camera, imu, gps]
+            ParameterDescriptor(
+                description='Array indicating which sensors are enabled'
+            )
+        )
+
+        # Retrieve parameter values
+        self.robot_name = self.get_parameter('robot_name').value
+        self.max_velocity = self.get_parameter('max_velocity').value
+        self.enable_logging = self.get_parameter('enable_logging').value
+        self.sensors_enabled = self.get_parameter('sensors_enabled').value
+
+        self.get_logger().info(f'Node initialized with robot: {self.robot_name}')
+        self.get_logger().info(f'Max velocity: {self.max_velocity} m/s')
+        self.get_logger().info(f'Logging enabled: {self.enable_logging}')
+
+        # Create a timer to periodically check for parameter changes
+        self.timer = self.create_timer(1.0, self.timer_callback)
+
+    def timer_callback(self):
+        """Periodically check for parameter changes"""
+        # Get current parameter values (in case they changed)
+        current_velocity = self.get_parameter('max_velocity').value
+        current_logging = self.get_parameter('enable_logging').value
+
+        if self.enable_logging:
+            self.get_logger().info(
+                f'Current max velocity: {current_velocity}, '
+                f'Logging: {current_logging}'
+            )
+
+        # Update internal values
+        self.max_velocity = current_velocity
+        self.enable_logging = current_logging
+
+
+def main(args=None):
+    rclpy.init(args=args)
+    node = ParameterExampleNode()
+
+    try:
+        rclpy.spin(node)
+    except KeyboardInterrupt:
+        pass
+    finally:
+        node.destroy_node()
+        rclpy.shutdown()
+
+
+if __name__ == '__main__':
+    main()
+```
+
+## Parameter Descriptors
+
+Parameter descriptors allow you to add metadata to parameters, including descriptions, constraints, and validation rules:
+
+```python
+from rclpy.parameter import ParameterDescriptor
+from rclpy.node import ParameterType
+
+
+class ParameterDescriptorExample(Node):
+    def __init__(self):
+        super().__init__('parameter_descriptor_example')
+
+        # Declare parameter with comprehensive descriptor
+        self.declare_parameter(
+            'control_frequency',
+            50,  # Default value: 50 Hz
+            ParameterDescriptor(
+                name='control_frequency',
+                type=ParameterType.PARAMETER_INTEGER,
+                description='Frequency of the control loop in Hz',
+                additional_constraints='Must be between 10 and 500 Hz',
+                read_only=False,
+                floating_point_range=[ParameterRange(
+                    from_value=10.0,
+                    to_value=500.0,
+                    step=1.0
+                )] if False else [],  # Only for floating point
+                integer_range=[ParameterRange(
+                    from_value=10,
+                    to_value=500,
+                    step=1
+                )]  # For integer values
+            )
+        )
+```
+
+## Parameter Callbacks
+
+You can set up callbacks to respond to parameter changes:
+
+```python
+from rclpy.node import SetParametersCallbackType
+
+
+class ParameterCallbackExample(Node):
+    def __init__(self):
+        super().__init__('parameter_callback_example')
+
+        # Declare parameters
+        self.declare_parameter('safety_mode', False)
+        self.declare_parameter('max_speed', 1.0)
+
+        # Set up parameter callback
+        self.add_on_set_parameters_callback(self.parameter_callback)
+
+        self.safety_mode = False
+        self.max_speed = 1.0
+
+    def parameter_callback(self, params):
+        """Callback function for parameter changes"""
+        for param in params:
+            if param.name == 'safety_mode' and param.type_ == Parameter.Type.BOOL:
+                if param.value and not self.safety_mode:
+                    # Safety mode was enabled
+                    self.get_logger().warn('SAFETY MODE ENABLED - Reducing speed limits')
+                    self.safety_mode = True
+                elif not param.value and self.safety_mode:
+                    # Safety mode was disabled
+                    self.get_logger().info('SAFETY MODE DISABLED')
+                    self.safety_mode = False
+            elif param.name == 'max_speed' and param.type_ == Parameter.Type.DOUBLE:
+                if self.safety_mode and param.value > 0.5:
+                    # Reject parameter change if in safety mode
+                    self.get_logger().warn(
+                        f'Rejecting max_speed change to {param.value} in safety mode'
+                    )
+                    return SetParametersResult(successful=False, reason='Safety limit exceeded')
+                else:
+                    self.max_speed = param.value
+                    self.get_logger().info(f'Max speed updated to: {param.value}')
+
+        return SetParametersResult(successful=True)
+```
+
+## Working with Parameter Files
+
+Parameters can be loaded from YAML files at launch time. Here's an example parameter file:
+
+```yaml
+# robot_params.yaml
+parameter_example_node:
+  ros__parameters:
+    robot_name: "turtlebot4_simulation"
+    max_velocity: 0.75
+    enable_logging: true
+    sensors_enabled: [true, true, false, true]
+    control_frequency: 100
+    safety_thresholds:
+      proximity_alert: 0.5
+      max_temperature: 65.0
+      battery_low: 20.0
+```
+
+And how to load it in a launch file:
+
+```python
+from launch import LaunchDescription
+from launch_ros.actions import Node
+from ament_index_python.packages import get_package_share_directory
+import os
+
+
+def generate_launch_description():
+    # Get the parameter file path
+    param_file_path = os.path.join(
+        get_package_share_directory('your_package_name'),
+        'config',
+        'robot_params.yaml'
+    )
+
+    return LaunchDescription([
+        Node(
+            package='your_package_name',
+            executable='parameter_example_node',
+            name='parameter_example_node',
+            parameters=[param_file_path],
+            output='screen'
+        )
+    ])
+```
+
+## Command Line Parameter Management
+
+You can also set parameters from the command line:
+
+```bash
+# Set a parameter on a running node
+ros2 param set /parameter_example_node max_velocity 1.0
+
+# Get parameter value
+ros2 param get /parameter_example_node robot_name
+
+# List all parameters for a node
+ros2 param list /parameter_example_node
+
+# Get detailed parameter information
+ros2 param describe /parameter_example_node max_velocity
+
+# Load parameters from a file
+ros2 param load /parameter_example_node path/to/params.yaml
+
+# Save current parameters to a file
+ros2 param dump /parameter_example_node --output current_params.yaml
+```
+
+## Parameter Best Practices
+
+1. **Use meaningful names**: Parameter names should clearly indicate their purpose and scope.
+
+2. **Provide good defaults**: Always provide sensible default values for parameters.
+
+3. **Validate parameter changes**: Use parameter callbacks to validate changes and prevent invalid configurations.
+
+4. **Group related parameters**: Use namespaces or prefixes to group related parameters logically.
+
+5. **Document parameters well**: Use parameter descriptors to provide clear descriptions and constraints.
+
+6. **Consider parameter types**: Use the appropriate parameter type for validation and clarity.
+
+## Advanced Parameter Techniques
+
+### Parameter Synchronization
+
+For coordinating parameters across multiple nodes:
+
+```python
+class ParameterSyncNode(Node):
+    def __init__(self):
+        super().__init__('parameter_sync_node')
+
+        # Create a parameter client to monitor other nodes
+        self.param_client = self.create_client(
+            SetParameters,
+            '/other_node/set_parameters'
+        )
+
+        # Synchronize related parameters
+        self.declare_parameter('global_speed_limit', 1.0)
+        self.add_on_set_parameters_callback(self.sync_parameters)
+
+    def sync_parameters(self, params):
+        """Synchronize parameters across nodes"""
+        for param in params:
+            if param.name == 'global_speed_limit':
+                # Propagate to other nodes
+                self.sync_to_other_nodes(param)
+        return SetParametersResult(successful=True)
+```
+
+### Parameter Validation with Constraints
+
+```python
+def validate_parameters(self, params):
+    """Validate parameters against constraints"""
+    for param in params:
+        if param.name == 'max_velocity':
+            if param.value <= 0 or param.value > 5.0:
+                return SetParametersResult(
+                    successful=False,
+                    reason=f'Max velocity must be between 0 and 5.0, got {param.value}'
+                )
+        elif param.name == 'robot_name':
+            if not param.value or len(param.value) < 2:
+                return SetParametersResult(
+                    successful=False,
+                    reason='Robot name must be at least 2 characters'
+                )
+
+    return SetParametersResult(successful=True)
+```
+
+## Summary
+
+Parameters provide a powerful mechanism for configuring ROS 2 nodes at runtime. By using parameters effectively, you can create flexible, configurable robotic systems that can be tuned and adapted without code changes. Proper parameter design and management are essential for building professional-grade ROS 2 applications that can operate in various environments and scenarios.

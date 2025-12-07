@@ -1,0 +1,20 @@
+{
+  "id": "module-01-ros2/frontmatter-template",
+  "title": "Lesson Title",
+  "description": "Brief description of what this lesson covers (under 160 characters)",
+  "source": "@site/docs/module-01-ros2/frontmatter-template.md",
+  "sourceDirName": "module-01-ros2",
+  "slug": "/module-01-ros2/frontmatter-template",
+  "permalink": "/docs/module-01-ros2/frontmatter-template",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/module-01-ros2/frontmatter-template.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "title": "Lesson Title",
+    "description": "Brief description of what this lesson covers (under 160 characters)",
+    "sidebar_position": 1
+  }
+}

@@ -1,0 +1,226 @@
+---
+title: Services - Request/Response Communication
+description: "Learn how ROS 2 services enable request-response communication patterns for synchronous robotic operations."
+sidebar_position: 1
+---
+
+# Services - Request/Response Communication
+
+## Introduction to ROS 2 Services
+
+ROS 2 services provide a request-response communication pattern that is fundamentally different from the asynchronous publish-subscribe model. Services are ideal for operations that require immediate responses, such as requesting sensor data, triggering specific robot behaviors, or configuring parameters.
+
+Unlike topics which use a publish-subscribe model where publishers and subscribers are decoupled in time, services establish a direct, synchronous communication channel between a client and a server. When a client sends a request, it waits for the server to process the request and return a response.
+
+## Service Architecture
+
+In ROS 2, services follow a client-server architecture:
+
+- **Service Server**: Provides a specific functionality and waits for incoming requests
+- **Service Client**: Sends requests to a service server and waits for responses
+- **Service Interface**: Defines the structure of requests and responses using `.srv` files
+
+The service interface consists of two parts separated by three dashes (`---`):
+- Request fields (above the dashes)
+- Response fields (below the dashes)
+
+## Creating a Service Server
+
+Let's create a more realistic service server that calculates the distance between two 3D points. First, you'll need to create a custom service definition file. In a real ROS 2 package, you would create a file called `CalculateDistance.srv` in the `srv` directory:
+
+```
+# Request: coordinates of two points
+float64 x1
+float64 y1
+float64 z1
+float64 x2
+float64 y2
+float64 z2
+---
+# Response: calculated distance
+float64 distance
+bool success
+string message
+```
+
+For this example, we'll use the built-in `AddTwoInts` service from `example_interfaces` to demonstrate the concepts:
+
+```python
+#!/usr/bin/env python3
+import rclpy
+from rclpy.node import Node
+from example_interfaces.srv import AddTwoInts  # Built-in service example
+
+
+class SimpleMathService(Node):
+    def __init__(self):
+        super().__init__('simple_math_service')
+        # Create a service that uses the AddTwoInts interface
+        # The service name is 'add_two_ints'
+        self.srv = self.create_service(
+            AddTwoInts,
+            'add_two_ints',
+            self.add_two_ints_callback
+        )
+        self.get_logger().info('Simple math service is ready')
+
+    def add_two_ints_callback(self, request, response):
+        # Perform the requested operation
+        response.sum = request.a + request.b
+        self.get_logger().info(f'Request received: {request.a} + {request.b} = {response.sum}')
+        return response
+
+
+def main(args=None):
+    rclpy.init(args=args)
+    node = SimpleMathService()
+
+    try:
+        rclpy.spin(node)
+    except KeyboardInterrupt:
+        pass
+    finally:
+        node.destroy_node()
+        rclpy.shutdown()
+
+
+if __name__ == '__main__':
+    main()
+```
+
+## Creating a Service Client
+
+Now, let's create a client that calls our service:
+
+```python
+#!/usr/bin/env python3
+import rclpy
+from rclpy.node import Node
+from example_interfaces.srv import AddTwoInts
+
+
+class MathClientAsync(Node):
+    def __init__(self):
+        super().__init__('math_client_async')
+        self.client = self.create_client(AddTwoInts, 'add_two_ints')
+
+        while not self.client.wait_for_service(timeout_sec=1.0):
+            self.get_logger().info('Service not available, waiting again...')
+
+        self.request = AddTwoInts.Request()
+
+    def send_request(self, a, b):
+        self.request.a = a
+        self.request.b = b
+        self.future = self.client.call_async(self.request)
+        return self.future
+
+
+def main(args=None):
+    rclpy.init(args=args)
+    client = MathClientAsync()
+
+    # Send a request
+    future = client.send_request(42, 24)
+
+    try:
+        rclpy.spin_until_future_complete(client, future)
+        if future.result() is not None:
+            response = future.result()
+            client.get_logger().info(f'Result: {response.sum}')
+        else:
+            client.get_logger().info('Service call failed')
+    except KeyboardInterrupt:
+        client.get_logger().info('Interrupted during service call')
+
+    client.destroy_node()
+    rclpy.shutdown()
+
+
+if __name__ == '__main__':
+    main()
+```
+
+## Creating Custom Service Definitions
+
+For more complex operations, you'll want to define custom service interfaces. Here's how to define a custom service for calculating distance between two 3D points:
+
+First, create a service definition file (typically in a `srv` directory in your package):
+
+```
+# Request: coordinates of two points
+float64 x1
+float64 y1
+float64 z1
+float64 x2
+float64 y2
+float64 z2
+---
+# Response: calculated distance
+float64 distance
+bool success
+string message
+```
+
+## Service Best Practices
+
+1. **Use services for synchronous operations**: Services are ideal when you need an immediate response before continuing.
+
+2. **Handle timeouts**: Always implement timeout handling in service clients to prevent indefinite blocking:
+
+```python
+def send_request_with_timeout(self):
+    self.future = self.client.call_async(self.request)
+
+    # Wait for response with a timeout
+    rclpy.spin_until_future_complete(self, self.future, timeout_sec=5.0)
+
+    if self.future.done():
+        return self.future.result()
+    else:
+        self.get_logger().warn('Service call timed out')
+        return None
+```
+
+3. **Error handling**: Implement proper error handling in both clients and servers:
+
+```python
+def calculate_distance_callback(self, request, response):
+    try:
+        # Your service logic here
+        response.success = True
+        response.message = 'Operation completed successfully'
+    except Exception as e:
+        response.success = False
+        response.message = f'Error occurred: {str(e)}'
+
+    return response
+```
+
+4. **Service naming conventions**: Use descriptive names that clearly indicate the service's purpose, such as `calculate_distance`, `set_robot_pose`, or `trigger_camera_capture`.
+
+## When to Use Services vs. Topics
+
+Choose services over topics when:
+- You need synchronous communication
+- The client requires a response before proceeding
+- The operation is request-specific and not ongoing
+- You need guaranteed delivery and response
+
+Choose topics over services when:
+- You need asynchronous, continuous data flow
+- Multiple subscribers need the same information
+- Real-time performance is critical
+- The communication is one-way (no response needed)
+
+## Summary
+
+Services in ROS 2 provide a powerful synchronous communication mechanism that complements the asynchronous publish-subscribe model. By understanding when and how to use services, you can build more robust and responsive robotic systems that require immediate feedback and confirmation of operations.
+
+## Related Topics
+
+For more information about related concepts, see:
+- [Publishers and Subscribers Deep Dive](../chapter-02/lesson-02-publishers-and-subscribers-deep-dive) - Asynchronous communication patterns
+- [Actions - Goal-Based Communication](./lesson-02-actions-goal-based-communication) - Long-running operations with feedback
+- [Parameters and Configuration Management](./lesson-03-parameters-and-configuration-management) - Dynamic configuration of nodes
+- [Launch Files and Composable Nodes](../chapter-04/lesson-01-launch-files-and-composable-nodes) - Managing services in complex systems

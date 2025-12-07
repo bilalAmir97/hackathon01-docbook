@@ -1,0 +1,29 @@
+{
+  "id": "module-01-ros2/chapter-02/lesson-01-understanding-nodes-and-lifecycle",
+  "title": "Understanding Nodes and Their Lifecycle",
+  "description": "Deep dive into ROS 2 nodes, their structure, lifecycle management, and best practices for node development",
+  "source": "@site/docs/module-01-ros2/chapter-02/lesson-01-understanding-nodes-and-lifecycle.mdx",
+  "sourceDirName": "module-01-ros2/chapter-02",
+  "slug": "/module-01-ros2/chapter-02/lesson-01-understanding-nodes-and-lifecycle",
+  "permalink": "/docs/module-01-ros2/chapter-02/lesson-01-understanding-nodes-and-lifecycle",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/module-01-ros2/chapter-02/lesson-01-understanding-nodes-and-lifecycle.mdx",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "title": "Understanding Nodes and Their Lifecycle",
+    "description": "Deep dive into ROS 2 nodes, their structure, lifecycle management, and best practices for node development",
+    "sidebar_position": 1
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Basic Command Line Tools",
+    "permalink": "/docs/module-01-ros2/chapter-01/lesson-03-basic-command-line-tools"
+  },
+  "next": {
+    "title": "Publishers and Subscribers Deep Dive",
+    "permalink": "/docs/module-01-ros2/chapter-02/lesson-02-publishers-and-subscribers-deep-dive"
+  }
+}

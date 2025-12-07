@@ -1,0 +1,29 @@
+{
+  "id": "module-01-ros2/chapter-02/lesson-02-publishers-and-subscribers-deep-dive",
+  "title": "Publishers and Subscribers Deep Dive",
+  "description": "Advanced concepts of ROS 2 publishers and subscribers including QoS policies, message types, and performance optimization",
+  "source": "@site/docs/module-01-ros2/chapter-02/lesson-02-publishers-and-subscribers-deep-dive.mdx",
+  "sourceDirName": "module-01-ros2/chapter-02",
+  "slug": "/module-01-ros2/chapter-02/lesson-02-publishers-and-subscribers-deep-dive",
+  "permalink": "/docs/module-01-ros2/chapter-02/lesson-02-publishers-and-subscribers-deep-dive",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/module-01-ros2/chapter-02/lesson-02-publishers-and-subscribers-deep-dive.mdx",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "title": "Publishers and Subscribers Deep Dive",
+    "description": "Advanced concepts of ROS 2 publishers and subscribers including QoS policies, message types, and performance optimization",
+    "sidebar_position": 2
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Understanding Nodes and Their Lifecycle",
+    "permalink": "/docs/module-01-ros2/chapter-02/lesson-01-understanding-nodes-and-lifecycle"
+  },
+  "next": {
+    "title": "Working with Standard Messages",
+    "permalink": "/docs/module-01-ros2/chapter-02/lesson-03-working-with-standard-messages"
+  }
+}

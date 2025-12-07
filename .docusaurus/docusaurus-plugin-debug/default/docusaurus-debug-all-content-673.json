@@ -1,0 +1,517 @@
+{
+  "docusaurus-plugin-content-docs": {
+    "default": {
+      "loadedVersions": [
+        {
+          "versionName": "current",
+          "label": "Next",
+          "banner": null,
+          "badge": false,
+          "noIndex": false,
+          "className": "docs-version-current",
+          "path": "/docs",
+          "tagsPath": "/docs/tags",
+          "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs",
+          "editUrlLocalized": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/i18n/en/docusaurus-plugin-content-docs/current",
+          "isLast": true,
+          "routePriority": -1,
+          "sidebarFilePath": "D:\\Bilal\\Bilal\\Bilal Data\\Hackathon\\hackathon-01\\sidebars.js",
+          "contentPath": "D:\\Bilal\\Bilal\\Bilal Data\\Hackathon\\hackathon-01\\docs",
+          "contentPathLocalized": "D:\\Bilal\\Bilal\\Bilal Data\\Hackathon\\hackathon-01\\i18n\\en\\docusaurus-plugin-content-docs\\current",
+          "docs": [
+            {
+              "id": "index",
+              "title": "ROS 2 Robotics Education",
+              "description": "Welcome to the ROS 2 Robotics Education module! This comprehensive guide will help you master ROS 2 fundamentals and apply them to control humanoid robots.",
+              "source": "@site/docs/index.md",
+              "sourceDirName": ".",
+              "slug": "/",
+              "permalink": "/docs/",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/index.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "slug": "/"
+              },
+              "sidebar": "tutorialSidebar",
+              "next": {
+                "title": "Introduction to ROS 2 Concepts",
+                "permalink": "/docs/module-01-ros2/chapter-01/lesson-01-introduction-to-ros2-concepts"
+              }
+            },
+            {
+              "id": "module-01-ros2/chapter-01/lesson-01-introduction-to-ros2-concepts",
+              "title": "Introduction to ROS 2 Concepts",
+              "description": "Learn the fundamental concepts of ROS 2 including nodes, topics, services, and actions",
+              "source": "@site/docs/module-01-ros2/chapter-01/lesson-01-introduction-to-ros2-concepts.mdx",
+              "sourceDirName": "module-01-ros2/chapter-01",
+              "slug": "/module-01-ros2/chapter-01/lesson-01-introduction-to-ros2-concepts",
+              "permalink": "/docs/module-01-ros2/chapter-01/lesson-01-introduction-to-ros2-concepts",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/module-01-ros2/chapter-01/lesson-01-introduction-to-ros2-concepts.mdx",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 1,
+              "frontMatter": {
+                "title": "Introduction to ROS 2 Concepts",
+                "description": "Learn the fundamental concepts of ROS 2 including nodes, topics, services, and actions",
+                "sidebar_position": 1
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "ROS 2 Robotics Education",
+                "permalink": "/docs/"
+              },
+              "next": {
+                "title": "Setting Up Your ROS 2 Environment",
+                "permalink": "/docs/module-01-ros2/chapter-01/lesson-02-setting-up-ros2-environment"
+              }
+            },
+            {
+              "id": "module-01-ros2/chapter-01/lesson-02-setting-up-ros2-environment",
+              "title": "Setting Up Your ROS 2 Environment",
+              "description": "Step-by-step guide to installing and configuring ROS 2 Humble Hawksbill on your system",
+              "source": "@site/docs/module-01-ros2/chapter-01/lesson-02-setting-up-ros2-environment.mdx",
+              "sourceDirName": "module-01-ros2/chapter-01",
+              "slug": "/module-01-ros2/chapter-01/lesson-02-setting-up-ros2-environment",
+              "permalink": "/docs/module-01-ros2/chapter-01/lesson-02-setting-up-ros2-environment",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/module-01-ros2/chapter-01/lesson-02-setting-up-ros2-environment.mdx",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 2,
+              "frontMatter": {
+                "title": "Setting Up Your ROS 2 Environment",
+                "description": "Step-by-step guide to installing and configuring ROS 2 Humble Hawksbill on your system",
+                "sidebar_position": 2
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Introduction to ROS 2 Concepts",
+                "permalink": "/docs/module-01-ros2/chapter-01/lesson-01-introduction-to-ros2-concepts"
+              },
+              "next": {
+                "title": "Basic Command Line Tools",
+                "permalink": "/docs/module-01-ros2/chapter-01/lesson-03-basic-command-line-tools"
+              }
+            },
+            {
+              "id": "module-01-ros2/chapter-01/lesson-03-basic-command-line-tools",
+              "title": "Basic Command Line Tools",
+              "description": "Master the essential ROS 2 command-line tools for node management, topic communication, and system inspection",
+              "source": "@site/docs/module-01-ros2/chapter-01/lesson-03-basic-command-line-tools.mdx",
+              "sourceDirName": "module-01-ros2/chapter-01",
+              "slug": "/module-01-ros2/chapter-01/lesson-03-basic-command-line-tools",
+              "permalink": "/docs/module-01-ros2/chapter-01/lesson-03-basic-command-line-tools",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/module-01-ros2/chapter-01/lesson-03-basic-command-line-tools.mdx",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 3,
+              "frontMatter": {
+                "title": "Basic Command Line Tools",
+                "description": "Master the essential ROS 2 command-line tools for node management, topic communication, and system inspection",
+                "sidebar_position": 3
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Setting Up Your ROS 2 Environment",
+                "permalink": "/docs/module-01-ros2/chapter-01/lesson-02-setting-up-ros2-environment"
+              },
+              "next": {
+                "title": "Understanding Nodes and Their Lifecycle",
+                "permalink": "/docs/module-01-ros2/chapter-02/lesson-01-understanding-nodes-and-lifecycle"
+              }
+            },
+            {
+              "id": "module-01-ros2/chapter-02/lesson-01-understanding-nodes-and-lifecycle",
+              "title": "Understanding Nodes and Their Lifecycle",
+              "description": "Deep dive into ROS 2 nodes, their structure, lifecycle management, and best practices for node development",
+              "source": "@site/docs/module-01-ros2/chapter-02/lesson-01-understanding-nodes-and-lifecycle.mdx",
+              "sourceDirName": "module-01-ros2/chapter-02",
+              "slug": "/module-01-ros2/chapter-02/lesson-01-understanding-nodes-and-lifecycle",
+              "permalink": "/docs/module-01-ros2/chapter-02/lesson-01-understanding-nodes-and-lifecycle",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/module-01-ros2/chapter-02/lesson-01-understanding-nodes-and-lifecycle.mdx",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 1,
+              "frontMatter": {
+                "title": "Understanding Nodes and Their Lifecycle",
+                "description": "Deep dive into ROS 2 nodes, their structure, lifecycle management, and best practices for node development",
+                "sidebar_position": 1
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Basic Command Line Tools",
+                "permalink": "/docs/module-01-ros2/chapter-01/lesson-03-basic-command-line-tools"
+              },
+              "next": {
+                "title": "Publishers and Subscribers Deep Dive",
+                "permalink": "/docs/module-01-ros2/chapter-02/lesson-02-publishers-and-subscribers-deep-dive"
+              }
+            },
+            {
+              "id": "module-01-ros2/chapter-02/lesson-02-publishers-and-subscribers-deep-dive",
+              "title": "Publishers and Subscribers Deep Dive",
+              "description": "Advanced concepts of ROS 2 publishers and subscribers including QoS policies, message types, and performance optimization",
+              "source": "@site/docs/module-01-ros2/chapter-02/lesson-02-publishers-and-subscribers-deep-dive.mdx",
+              "sourceDirName": "module-01-ros2/chapter-02",
+              "slug": "/module-01-ros2/chapter-02/lesson-02-publishers-and-subscribers-deep-dive",
+              "permalink": "/docs/module-01-ros2/chapter-02/lesson-02-publishers-and-subscribers-deep-dive",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/module-01-ros2/chapter-02/lesson-02-publishers-and-subscribers-deep-dive.mdx",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 2,
+              "frontMatter": {
+                "title": "Publishers and Subscribers Deep Dive",
+                "description": "Advanced concepts of ROS 2 publishers and subscribers including QoS policies, message types, and performance optimization",
+                "sidebar_position": 2
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Understanding Nodes and Their Lifecycle",
+                "permalink": "/docs/module-01-ros2/chapter-02/lesson-01-understanding-nodes-and-lifecycle"
+              },
+              "next": {
+                "title": "Working with Standard Messages",
+                "permalink": "/docs/module-01-ros2/chapter-02/lesson-03-working-with-standard-messages"
+              }
+            },
+            {
+              "id": "module-01-ros2/chapter-02/lesson-03-working-with-standard-messages",
+              "title": "Working with Standard Messages",
+              "description": "Explore ROS 2's standard message types including geometry_msgs, sensor_msgs, and other common message definitions",
+              "source": "@site/docs/module-01-ros2/chapter-02/lesson-03-working-with-standard-messages.mdx",
+              "sourceDirName": "module-01-ros2/chapter-02",
+              "slug": "/module-01-ros2/chapter-02/lesson-03-working-with-standard-messages",
+              "permalink": "/docs/module-01-ros2/chapter-02/lesson-03-working-with-standard-messages",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/module-01-ros2/chapter-02/lesson-03-working-with-standard-messages.mdx",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 3,
+              "frontMatter": {
+                "title": "Working with Standard Messages",
+                "description": "Explore ROS 2's standard message types including geometry_msgs, sensor_msgs, and other common message definitions",
+                "sidebar_position": 3
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Publishers and Subscribers Deep Dive",
+                "permalink": "/docs/module-01-ros2/chapter-02/lesson-02-publishers-and-subscribers-deep-dive"
+              },
+              "next": {
+                "title": "Services - Request/Response Communication",
+                "permalink": "/docs/module-01-ros2/chapter-03/lesson-01-services-request-response-communication"
+              }
+            },
+            {
+              "id": "module-01-ros2/chapter-03/lesson-01-services-request-response-communication",
+              "title": "Services - Request/Response Communication",
+              "description": "Learn how ROS 2 services enable request-response communication patterns for synchronous robotic operations.",
+              "source": "@site/docs/module-01-ros2/chapter-03/lesson-01-services-request-response-communication.mdx",
+              "sourceDirName": "module-01-ros2/chapter-03",
+              "slug": "/module-01-ros2/chapter-03/lesson-01-services-request-response-communication",
+              "permalink": "/docs/module-01-ros2/chapter-03/lesson-01-services-request-response-communication",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/module-01-ros2/chapter-03/lesson-01-services-request-response-communication.mdx",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 1,
+              "frontMatter": {
+                "title": "Services - Request/Response Communication",
+                "description": "Learn how ROS 2 services enable request-response communication patterns for synchronous robotic operations.",
+                "sidebar_position": 1
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Working with Standard Messages",
+                "permalink": "/docs/module-01-ros2/chapter-02/lesson-03-working-with-standard-messages"
+              },
+              "next": {
+                "title": "Actions - Goal-Based Communication",
+                "permalink": "/docs/module-01-ros2/chapter-03/lesson-02-actions-goal-based-communication"
+              }
+            },
+            {
+              "id": "module-01-ros2/chapter-03/lesson-02-actions-goal-based-communication",
+              "title": "Actions - Goal-Based Communication",
+              "description": "Explore ROS 2 actions for long-running operations with feedback and status updates in robotic systems.",
+              "source": "@site/docs/module-01-ros2/chapter-03/lesson-02-actions-goal-based-communication.mdx",
+              "sourceDirName": "module-01-ros2/chapter-03",
+              "slug": "/module-01-ros2/chapter-03/lesson-02-actions-goal-based-communication",
+              "permalink": "/docs/module-01-ros2/chapter-03/lesson-02-actions-goal-based-communication",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/module-01-ros2/chapter-03/lesson-02-actions-goal-based-communication.mdx",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 2,
+              "frontMatter": {
+                "title": "Actions - Goal-Based Communication",
+                "description": "Explore ROS 2 actions for long-running operations with feedback and status updates in robotic systems.",
+                "sidebar_position": 2
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Services - Request/Response Communication",
+                "permalink": "/docs/module-01-ros2/chapter-03/lesson-01-services-request-response-communication"
+              },
+              "next": {
+                "title": "Parameters and Configuration Management",
+                "permalink": "/docs/module-01-ros2/chapter-03/lesson-03-parameters-and-configuration-management"
+              }
+            },
+            {
+              "id": "module-01-ros2/chapter-03/lesson-03-parameters-and-configuration-management",
+              "title": "Parameters and Configuration Management",
+              "description": "Master ROS 2 parameters for dynamic configuration of nodes and runtime system adjustments.",
+              "source": "@site/docs/module-01-ros2/chapter-03/lesson-03-parameters-and-configuration-management.mdx",
+              "sourceDirName": "module-01-ros2/chapter-03",
+              "slug": "/module-01-ros2/chapter-03/lesson-03-parameters-and-configuration-management",
+              "permalink": "/docs/module-01-ros2/chapter-03/lesson-03-parameters-and-configuration-management",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/module-01-ros2/chapter-03/lesson-03-parameters-and-configuration-management.mdx",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 3,
+              "frontMatter": {
+                "title": "Parameters and Configuration Management",
+                "description": "Master ROS 2 parameters for dynamic configuration of nodes and runtime system adjustments.",
+                "sidebar_position": 3
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Actions - Goal-Based Communication",
+                "permalink": "/docs/module-01-ros2/chapter-03/lesson-02-actions-goal-based-communication"
+              },
+              "next": {
+                "title": "Launch Files and Composable Nodes",
+                "permalink": "/docs/module-01-ros2/chapter-04/lesson-01-launch-files-and-composable-nodes"
+              }
+            },
+            {
+              "id": "module-01-ros2/chapter-04/lesson-01-launch-files-and-composable-nodes",
+              "title": "Launch Files and Composable Nodes",
+              "description": "Learn how to create and use launch files to manage complex ROS 2 systems with multiple nodes and composable components.",
+              "source": "@site/docs/module-01-ros2/chapter-04/lesson-01-launch-files-and-composable-nodes.mdx",
+              "sourceDirName": "module-01-ros2/chapter-04",
+              "slug": "/module-01-ros2/chapter-04/lesson-01-launch-files-and-composable-nodes",
+              "permalink": "/docs/module-01-ros2/chapter-04/lesson-01-launch-files-and-composable-nodes",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/module-01-ros2/chapter-04/lesson-01-launch-files-and-composable-nodes.mdx",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 1,
+              "frontMatter": {
+                "title": "Launch Files and Composable Nodes",
+                "description": "Learn how to create and use launch files to manage complex ROS 2 systems with multiple nodes and composable components.",
+                "sidebar_position": 1
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Parameters and Configuration Management",
+                "permalink": "/docs/module-01-ros2/chapter-03/lesson-03-parameters-and-configuration-management"
+              },
+              "next": {
+                "title": "Building Production-Ready ROS 2 Systems",
+                "permalink": "/docs/module-01-ros2/chapter-04/lesson-02-building-production-ready-ros2-systems"
+              }
+            },
+            {
+              "id": "module-01-ros2/chapter-04/lesson-02-building-production-ready-ros2-systems",
+              "title": "Building Production-Ready ROS 2 Systems",
+              "description": "Explore best practices and patterns for creating robust, maintainable ROS 2 systems suitable for real-world deployment.",
+              "source": "@site/docs/module-01-ros2/chapter-04/lesson-02-building-production-ready-ros2-systems.mdx",
+              "sourceDirName": "module-01-ros2/chapter-04",
+              "slug": "/module-01-ros2/chapter-04/lesson-02-building-production-ready-ros2-systems",
+              "permalink": "/docs/module-01-ros2/chapter-04/lesson-02-building-production-ready-ros2-systems",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/module-01-ros2/chapter-04/lesson-02-building-production-ready-ros2-systems.mdx",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 2,
+              "frontMatter": {
+                "title": "Building Production-Ready ROS 2 Systems",
+                "description": "Explore best practices and patterns for creating robust, maintainable ROS 2 systems suitable for real-world deployment.",
+                "sidebar_position": 2
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Launch Files and Composable Nodes",
+                "permalink": "/docs/module-01-ros2/chapter-04/lesson-01-launch-files-and-composable-nodes"
+              },
+              "next": {
+                "title": "Simulation to Reality - Bridging the Gap",
+                "permalink": "/docs/module-01-ros2/chapter-04/lesson-03-simulation-to-reality-bridging-the-gap"
+              }
+            },
+            {
+              "id": "module-01-ros2/chapter-04/lesson-03-simulation-to-reality-bridging-the-gap",
+              "title": "Simulation to Reality - Bridging the Gap",
+              "description": "Learn how to transition from simulation to real hardware, including hardware abstraction, sensor integration, and system validation techniques.",
+              "source": "@site/docs/module-01-ros2/chapter-04/lesson-03-simulation-to-reality-bridging-the-gap.mdx",
+              "sourceDirName": "module-01-ros2/chapter-04",
+              "slug": "/module-01-ros2/chapter-04/lesson-03-simulation-to-reality-bridging-the-gap",
+              "permalink": "/docs/module-01-ros2/chapter-04/lesson-03-simulation-to-reality-bridging-the-gap",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/module-01-ros2/chapter-04/lesson-03-simulation-to-reality-bridging-the-gap.mdx",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 3,
+              "frontMatter": {
+                "title": "Simulation to Reality - Bridging the Gap",
+                "description": "Learn how to transition from simulation to real hardware, including hardware abstraction, sensor integration, and system validation techniques.",
+                "sidebar_position": 3
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Building Production-Ready ROS 2 Systems",
+                "permalink": "/docs/module-01-ros2/chapter-04/lesson-02-building-production-ready-ros2-systems"
+              }
+            },
+            {
+              "id": "module-01-ros2/frontmatter-template",
+              "title": "Lesson Title",
+              "description": "Brief description of what this lesson covers (under 160 characters)",
+              "source": "@site/docs/module-01-ros2/frontmatter-template.md",
+              "sourceDirName": "module-01-ros2",
+              "slug": "/module-01-ros2/frontmatter-template",
+              "permalink": "/docs/module-01-ros2/frontmatter-template",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/module-01-ros2/frontmatter-template.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 1,
+              "frontMatter": {
+                "title": "Lesson Title",
+                "description": "Brief description of what this lesson covers (under 160 characters)",
+                "sidebar_position": 1
+              }
+            }
+          ],
+          "drafts": [],
+          "sidebars": {
+            "tutorialSidebar": [
+              {
+                "type": "doc",
+                "id": "index"
+              },
+              {
+                "type": "category",
+                "label": "Module 1: The Robotic Nervous System",
+                "items": [
+                  {
+                    "type": "category",
+                    "label": "Chapter 1: ROS 2 Fundamentals and Architecture",
+                    "items": [
+                      {
+                        "type": "doc",
+                        "id": "module-01-ros2/chapter-01/lesson-01-introduction-to-ros2-concepts"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "module-01-ros2/chapter-01/lesson-02-setting-up-ros2-environment"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "module-01-ros2/chapter-01/lesson-03-basic-command-line-tools"
+                      }
+                    ],
+                    "collapsed": true,
+                    "collapsible": true
+                  },
+                  {
+                    "type": "category",
+                    "label": "Chapter 2: Nodes, Topics, and Message Passing",
+                    "items": [
+                      {
+                        "type": "doc",
+                        "id": "module-01-ros2/chapter-02/lesson-01-understanding-nodes-and-lifecycle"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "module-01-ros2/chapter-02/lesson-02-publishers-and-subscribers-deep-dive"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "module-01-ros2/chapter-02/lesson-03-working-with-standard-messages"
+                      }
+                    ],
+                    "collapsed": true,
+                    "collapsible": true
+                  },
+                  {
+                    "type": "category",
+                    "label": "Chapter 3: Services, Actions, and Advanced Communication",
+                    "items": [
+                      {
+                        "type": "doc",
+                        "id": "module-01-ros2/chapter-03/lesson-01-services-request-response-communication"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "module-01-ros2/chapter-03/lesson-02-actions-goal-based-communication"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "module-01-ros2/chapter-03/lesson-03-parameters-and-configuration-management"
+                      }
+                    ],
+                    "collapsed": true,
+                    "collapsible": true
+                  },
+                  {
+                    "type": "category",
+                    "label": "Chapter 4: Launch Systems and Real-World Applications",
+                    "items": [
+                      {
+                        "type": "doc",
+                        "id": "module-01-ros2/chapter-04/lesson-01-launch-files-and-composable-nodes"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "module-01-ros2/chapter-04/lesson-02-building-production-ready-ros2-systems"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "module-01-ros2/chapter-04/lesson-03-simulation-to-reality-bridging-the-gap"
+                      }
+                    ],
+                    "collapsed": true,
+                    "collapsible": true
+                  }
+                ],
+                "collapsed": true,
+                "collapsible": true
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "docusaurus-plugin-content-pages": {
+    "default": null
+  },
+  "docusaurus-plugin-debug": {},
+  "docusaurus-theme-classic": {},
+  "docusaurus-bootstrap-plugin": {},
+  "docusaurus-mdx-fallback-plugin": {}
+}

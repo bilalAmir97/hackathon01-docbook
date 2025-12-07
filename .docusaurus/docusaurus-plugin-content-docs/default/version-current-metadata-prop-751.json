@@ -1,0 +1,230 @@
+{
+  "pluginId": "default",
+  "version": "current",
+  "label": "Next",
+  "banner": null,
+  "badge": false,
+  "noIndex": false,
+  "className": "docs-version-current",
+  "isLast": true,
+  "docsSidebars": {
+    "tutorialSidebar": [
+      {
+        "type": "link",
+        "label": "ROS 2 Robotics Education",
+        "href": "/docs/",
+        "docId": "index",
+        "unlisted": false
+      },
+      {
+        "type": "category",
+        "label": "Module 1: The Robotic Nervous System",
+        "items": [
+          {
+            "type": "category",
+            "label": "Chapter 1: ROS 2 Fundamentals and Architecture",
+            "items": [
+              {
+                "type": "link",
+                "label": "Introduction to ROS 2 Concepts",
+                "href": "/docs/module-01-ros2/chapter-01/lesson-01-introduction-to-ros2-concepts",
+                "docId": "module-01-ros2/chapter-01/lesson-01-introduction-to-ros2-concepts",
+                "unlisted": false
+              },
+              {
+                "type": "link",
+                "label": "Setting Up Your ROS 2 Environment",
+                "href": "/docs/module-01-ros2/chapter-01/lesson-02-setting-up-ros2-environment",
+                "docId": "module-01-ros2/chapter-01/lesson-02-setting-up-ros2-environment",
+                "unlisted": false
+              },
+              {
+                "type": "link",
+                "label": "Basic Command Line Tools",
+                "href": "/docs/module-01-ros2/chapter-01/lesson-03-basic-command-line-tools",
+                "docId": "module-01-ros2/chapter-01/lesson-03-basic-command-line-tools",
+                "unlisted": false
+              }
+            ],
+            "collapsed": true,
+            "collapsible": true
+          },
+          {
+            "type": "category",
+            "label": "Chapter 2: Nodes, Topics, and Message Passing",
+            "items": [
+              {
+                "type": "link",
+                "label": "Understanding Nodes and Their Lifecycle",
+                "href": "/docs/module-01-ros2/chapter-02/lesson-01-understanding-nodes-and-lifecycle",
+                "docId": "module-01-ros2/chapter-02/lesson-01-understanding-nodes-and-lifecycle",
+                "unlisted": false
+              },
+              {
+                "type": "link",
+                "label": "Publishers and Subscribers Deep Dive",
+                "href": "/docs/module-01-ros2/chapter-02/lesson-02-publishers-and-subscribers-deep-dive",
+                "docId": "module-01-ros2/chapter-02/lesson-02-publishers-and-subscribers-deep-dive",
+                "unlisted": false
+              },
+              {
+                "type": "link",
+                "label": "Working with Standard Messages",
+                "href": "/docs/module-01-ros2/chapter-02/lesson-03-working-with-standard-messages",
+                "docId": "module-01-ros2/chapter-02/lesson-03-working-with-standard-messages",
+                "unlisted": false
+              }
+            ],
+            "collapsed": true,
+            "collapsible": true
+          },
+          {
+            "type": "category",
+            "label": "Chapter 3: Services, Actions, and Advanced Communication",
+            "items": [
+              {
+                "type": "link",
+                "label": "Services - Request/Response Communication",
+                "href": "/docs/module-01-ros2/chapter-03/lesson-01-services-request-response-communication",
+                "docId": "module-01-ros2/chapter-03/lesson-01-services-request-response-communication",
+                "unlisted": false
+              },
+              {
+                "type": "link",
+                "label": "Actions - Goal-Based Communication",
+                "href": "/docs/module-01-ros2/chapter-03/lesson-02-actions-goal-based-communication",
+                "docId": "module-01-ros2/chapter-03/lesson-02-actions-goal-based-communication",
+                "unlisted": false
+              },
+              {
+                "type": "link",
+                "label": "Parameters and Configuration Management",
+                "href": "/docs/module-01-ros2/chapter-03/lesson-03-parameters-and-configuration-management",
+                "docId": "module-01-ros2/chapter-03/lesson-03-parameters-and-configuration-management",
+                "unlisted": false
+              }
+            ],
+            "collapsed": true,
+            "collapsible": true
+          },
+          {
+            "type": "category",
+            "label": "Chapter 4: Launch Systems and Real-World Applications",
+            "items": [
+              {
+                "type": "link",
+                "label": "Launch Files and Composable Nodes",
+                "href": "/docs/module-01-ros2/chapter-04/lesson-01-launch-files-and-composable-nodes",
+                "docId": "module-01-ros2/chapter-04/lesson-01-launch-files-and-composable-nodes",
+                "unlisted": false
+              },
+              {
+                "type": "link",
+                "label": "Building Production-Ready ROS 2 Systems",
+                "href": "/docs/module-01-ros2/chapter-04/lesson-02-building-production-ready-ros2-systems",
+                "docId": "module-01-ros2/chapter-04/lesson-02-building-production-ready-ros2-systems",
+                "unlisted": false
+              },
+              {
+                "type": "link",
+                "label": "Simulation to Reality - Bridging the Gap",
+                "href": "/docs/module-01-ros2/chapter-04/lesson-03-simulation-to-reality-bridging-the-gap",
+                "docId": "module-01-ros2/chapter-04/lesson-03-simulation-to-reality-bridging-the-gap",
+                "unlisted": false
+              }
+            ],
+            "collapsed": true,
+            "collapsible": true
+          }
+        ],
+        "collapsed": true,
+        "collapsible": true
+      }
+    ]
+  },
+  "docs": {
+    "index": {
+      "id": "index",
+      "title": "ROS 2 Robotics Education",
+      "description": "Welcome to the ROS 2 Robotics Education module! This comprehensive guide will help you master ROS 2 fundamentals and apply them to control humanoid robots.",
+      "sidebar": "tutorialSidebar"
+    },
+    "module-01-ros2/chapter-01/lesson-01-introduction-to-ros2-concepts": {
+      "id": "module-01-ros2/chapter-01/lesson-01-introduction-to-ros2-concepts",
+      "title": "Introduction to ROS 2 Concepts",
+      "description": "Learn the fundamental concepts of ROS 2 including nodes, topics, services, and actions",
+      "sidebar": "tutorialSidebar"
+    },
+    "module-01-ros2/chapter-01/lesson-02-setting-up-ros2-environment": {
+      "id": "module-01-ros2/chapter-01/lesson-02-setting-up-ros2-environment",
+      "title": "Setting Up Your ROS 2 Environment",
+      "description": "Step-by-step guide to installing and configuring ROS 2 Humble Hawksbill on your system",
+      "sidebar": "tutorialSidebar"
+    },
+    "module-01-ros2/chapter-01/lesson-03-basic-command-line-tools": {
+      "id": "module-01-ros2/chapter-01/lesson-03-basic-command-line-tools",
+      "title": "Basic Command Line Tools",
+      "description": "Master the essential ROS 2 command-line tools for node management, topic communication, and system inspection",
+      "sidebar": "tutorialSidebar"
+    },
+    "module-01-ros2/chapter-02/lesson-01-understanding-nodes-and-lifecycle": {
+      "id": "module-01-ros2/chapter-02/lesson-01-understanding-nodes-and-lifecycle",
+      "title": "Understanding Nodes and Their Lifecycle",
+      "description": "Deep dive into ROS 2 nodes, their structure, lifecycle management, and best practices for node development",
+      "sidebar": "tutorialSidebar"
+    },
+    "module-01-ros2/chapter-02/lesson-02-publishers-and-subscribers-deep-dive": {
+      "id": "module-01-ros2/chapter-02/lesson-02-publishers-and-subscribers-deep-dive",
+      "title": "Publishers and Subscribers Deep Dive",
+      "description": "Advanced concepts of ROS 2 publishers and subscribers including QoS policies, message types, and performance optimization",
+      "sidebar": "tutorialSidebar"
+    },
+    "module-01-ros2/chapter-02/lesson-03-working-with-standard-messages": {
+      "id": "module-01-ros2/chapter-02/lesson-03-working-with-standard-messages",
+      "title": "Working with Standard Messages",
+      "description": "Explore ROS 2's standard message types including geometry_msgs, sensor_msgs, and other common message definitions",
+      "sidebar": "tutorialSidebar"
+    },
+    "module-01-ros2/chapter-03/lesson-01-services-request-response-communication": {
+      "id": "module-01-ros2/chapter-03/lesson-01-services-request-response-communication",
+      "title": "Services - Request/Response Communication",
+      "description": "Learn how ROS 2 services enable request-response communication patterns for synchronous robotic operations.",
+      "sidebar": "tutorialSidebar"
+    },
+    "module-01-ros2/chapter-03/lesson-02-actions-goal-based-communication": {
+      "id": "module-01-ros2/chapter-03/lesson-02-actions-goal-based-communication",
+      "title": "Actions - Goal-Based Communication",
+      "description": "Explore ROS 2 actions for long-running operations with feedback and status updates in robotic systems.",
+      "sidebar": "tutorialSidebar"
+    },
+    "module-01-ros2/chapter-03/lesson-03-parameters-and-configuration-management": {
+      "id": "module-01-ros2/chapter-03/lesson-03-parameters-and-configuration-management",
+      "title": "Parameters and Configuration Management",
+      "description": "Master ROS 2 parameters for dynamic configuration of nodes and runtime system adjustments.",
+      "sidebar": "tutorialSidebar"
+    },
+    "module-01-ros2/chapter-04/lesson-01-launch-files-and-composable-nodes": {
+      "id": "module-01-ros2/chapter-04/lesson-01-launch-files-and-composable-nodes",
+      "title": "Launch Files and Composable Nodes",
+      "description": "Learn how to create and use launch files to manage complex ROS 2 systems with multiple nodes and composable components.",
+      "sidebar": "tutorialSidebar"
+    },
+    "module-01-ros2/chapter-04/lesson-02-building-production-ready-ros2-systems": {
+      "id": "module-01-ros2/chapter-04/lesson-02-building-production-ready-ros2-systems",
+      "title": "Building Production-Ready ROS 2 Systems",
+      "description": "Explore best practices and patterns for creating robust, maintainable ROS 2 systems suitable for real-world deployment.",
+      "sidebar": "tutorialSidebar"
+    },
+    "module-01-ros2/chapter-04/lesson-03-simulation-to-reality-bridging-the-gap": {
+      "id": "module-01-ros2/chapter-04/lesson-03-simulation-to-reality-bridging-the-gap",
+      "title": "Simulation to Reality - Bridging the Gap",
+      "description": "Learn how to transition from simulation to real hardware, including hardware abstraction, sensor integration, and system validation techniques.",
+      "sidebar": "tutorialSidebar"
+    },
+    "module-01-ros2/frontmatter-template": {
+      "id": "module-01-ros2/frontmatter-template",
+      "title": "Lesson Title",
+      "description": "Brief description of what this lesson covers (under 160 characters)"
+    }
+  }
+}

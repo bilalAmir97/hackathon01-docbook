@@ -1,0 +1,595 @@
+---
+title: "Publishers and Subscribers Deep Dive"
+description: "Advanced concepts of ROS 2 publishers and subscribers including QoS policies, message types, and performance optimization"
+sidebar_position: 2
+---
+
+# Publishers and Subscribers Deep Dive
+
+## Learning Objectives
+
+- Master Quality of Service (QoS) policies for publishers and subscribers
+- Understand different message types and their appropriate use cases
+- Optimize publisher/subscriber performance for various scenarios
+- Implement advanced communication patterns
+
+## Prerequisites
+
+- Understanding of basic ROS 2 concepts (Chapter 1)
+- Knowledge of node structure and lifecycle (Lesson 2.1)
+- Basic Python programming skills
+
+## Quality of Service (QoS) Policies
+
+QoS policies are a crucial aspect of ROS 2 communication that allow you to specify requirements for reliability, durability, and other aspects of message delivery.
+
+### Reliability Policy
+
+Controls whether messages are delivered reliably or best-effort:
+
+```python
+from rclpy.qos import QoSProfile, ReliabilityPolicy
+
+# Reliable: All messages are guaranteed to be delivered
+reliable_qos = QoSProfile(
+    depth=10,
+    reliability=ReliabilityPolicy.RELIABLE
+)
+
+# Best effort: Messages may be lost, but lower latency
+best_effort_qos = QoSProfile(
+    depth=10,
+    reliability=ReliabilityPolicy.BEST_EFFORT
+)
+```
+
+**Use reliable policy for:**
+- Critical control messages
+- Commands that must be received
+- Configuration data
+
+**Use best-effort policy for:**
+- Sensor data (newer data is more valuable than older data)
+- Video streams
+- High-frequency telemetry
+
+### Durability Policy
+
+Controls whether late-joining subscribers receive old messages:
+
+```python
+from rclpy.qos import QoSProfile, DurabilityPolicy
+
+# Transient local: Late joiners get last message
+transient_qos = QoSProfile(
+    depth=10,
+    durability=DurabilityPolicy.TRANSIENT_LOCAL
+)
+
+# Volatile: No messages stored for late joiners
+volatile_qos = QoSProfile(
+    depth=10,
+    durability=DurabilityPolicy.VOLATILE
+)
+```
+
+**Use transient local for:**
+- Static configuration
+- Map data
+- State information that new nodes need
+
+**Use volatile for:**
+- Real-time sensor data
+- Continuous streams
+- Temporary information
+
+### History Policy
+
+Controls how many messages are stored:
+
+```python
+from rclpy.qos import QoSProfile, HistoryPolicy
+
+# Keep last N messages
+keep_last_qos = QoSProfile(
+    depth=5,  # Keep last 5 messages
+    history=HistoryPolicy.KEEP_LAST
+)
+
+# Keep all messages (use with caution)
+keep_all_qos = QoSProfile(
+    depth=0,  # Keep all messages
+    history=HistoryPolicy.KEEP_ALL
+)
+```
+
+## Advanced Publisher Example
+
+Here's a comprehensive example of a publisher with various QoS configurations:
+
+```python
+#!/usr/bin/env python3
+
+import rclpy
+from rclpy.node import Node
+from rclpy.qos import QoSProfile, ReliabilityPolicy, DurabilityPolicy, HistoryPolicy
+from std_msgs.msg import String, Int32
+from sensor_msgs.msg import LaserScan
+import random
+
+
+class AdvancedPublisher(Node):
+    """
+    Advanced publisher demonstrating different QoS configurations.
+    """
+
+    def __init__(self):
+        super().__init__('advanced_publisher')
+
+        # Different QoS profiles for different use cases
+        # Reliable, keep last 10 messages
+        self.reliable_pub = self.create_publisher(
+            String,
+            'reliable_topic',
+            QoSProfile(
+                depth=10,
+                reliability=ReliabilityPolicy.RELIABLE,
+                history=HistoryPolicy.KEEP_LAST
+            )
+        )
+
+        # Best effort for sensor data
+        self.sensor_pub = self.create_publisher(
+            LaserScan,
+            'sensor_topic',
+            QoSProfile(
+                depth=5,
+                reliability=ReliabilityPolicy.BEST_EFFORT,
+                history=HistoryPolicy.KEEP_LAST
+            )
+        )
+
+        # Transient local for configuration
+        self.config_pub = self.create_publisher(
+            String,
+            'config_topic',
+            QoSProfile(
+                depth=1,
+                reliability=ReliabilityPolicy.RELIABLE,
+                durability=DurabilityPolicy.TRANSIENT_LOCAL,
+                history=HistoryPolicy.KEEP_LAST
+            )
+        )
+
+        # Timer for publishing
+        self.timer = self.create_timer(0.5, self.timer_callback)
+        self.counter = 0
+
+        self.get_logger().info('Advanced publisher initialized')
+
+    def timer_callback(self):
+        """Publish messages with different QoS profiles."""
+        # Publish reliable message
+        reliable_msg = String()
+        reliable_msg.data = f'Reliable message {self.counter}'
+        self.reliable_pub.publish(reliable_msg)
+
+        # Publish sensor data (best effort)
+        sensor_msg = LaserScan()
+        sensor_msg.header.stamp = self.get_clock().now().to_msg()
+        sensor_msg.header.frame_id = 'laser_frame'
+        sensor_msg.ranges = [random.uniform(0.1, 10.0) for _ in range(360)]
+        self.sensor_pub.publish(sensor_msg)
+
+        # Publish configuration (transient local)
+        if self.counter % 10 == 0:  # Every 10th message
+            config_msg = String()
+            config_msg.data = f'Configuration update {self.counter // 10}'
+            self.config_pub.publish(config_msg)
+
+        self.counter += 1
+
+
+def main(args=None):
+    rclpy.init(args=args)
+    publisher = AdvancedPublisher()
+
+    try:
+        rclpy.spin(publisher)
+    except KeyboardInterrupt:
+        pass
+    finally:
+        publisher.destroy_node()
+        rclpy.shutdown()
+
+
+if __name__ == '__main__':
+    main()
+```
+
+## Advanced Subscriber Example
+
+Here's a comprehensive subscriber that matches the QoS policies of the publisher:
+
+```python
+#!/usr/bin/env python3
+
+import rclpy
+from rclpy.node import Node
+from rclpy.qos import QoSProfile, ReliabilityPolicy, DurabilityPolicy, HistoryPolicy
+from std_msgs.msg import String
+from sensor_msgs.msg import LaserScan
+
+
+class AdvancedSubscriber(Node):
+    """
+    Advanced subscriber demonstrating different QoS configurations.
+    """
+
+    def __init__(self):
+        super().__init__('advanced_subscriber')
+
+        # Subscribe with matching QoS profiles
+        self.reliable_sub = self.create_subscription(
+            String,
+            'reliable_topic',
+            self.reliable_callback,
+            QoSProfile(
+                depth=10,
+                reliability=ReliabilityPolicy.RELIABLE,
+                history=HistoryPolicy.KEEP_LAST
+            )
+        )
+
+        self.sensor_sub = self.create_subscription(
+            LaserScan,
+            'sensor_topic',
+            self.sensor_callback,
+            QoSProfile(
+                depth=5,
+                reliability=ReliabilityPolicy.BEST_EFFORT,
+                history=HistoryPolicy.KEEP_LAST
+            )
+        )
+
+        self.config_sub = self.create_subscription(
+            String,
+            'config_topic',
+            self.config_callback,
+            QoSProfile(
+                depth=1,
+                reliability=ReliabilityPolicy.RELIABLE,
+                durability=DurabilityPolicy.TRANSIENT_LOCAL,
+                history=HistoryPolicy.KEEP_LAST
+            )
+        )
+
+        self.get_logger().info('Advanced subscriber initialized')
+
+    def reliable_callback(self, msg):
+        """Handle reliable messages."""
+        self.get_logger().info(f'Received reliable message: {msg.data}')
+
+    def sensor_callback(self, msg):
+        """Handle sensor messages."""
+        self.get_logger().info(f'Received sensor data with {len(msg.ranges)} range values')
+
+    def config_callback(self, msg):
+        """Handle configuration messages."""
+        self.get_logger().info(f'Received configuration: {msg.data}')
+
+
+def main(args=None):
+    rclpy.init(args=args)
+    subscriber = AdvancedSubscriber()
+
+    try:
+        rclpy.spin(subscriber)
+    except KeyboardInterrupt:
+        pass
+    finally:
+        subscriber.destroy_node()
+        rclpy.shutdown()
+
+
+if __name__ == '__main__':
+    main()
+```
+
+## Custom Message Types
+
+While ROS 2 provides many standard message types, you often need custom messages for specific applications.
+
+### Creating Custom Messages
+
+First, create a `.msg` file in your package's `msg/` directory:
+
+```
+# In msg/CustomRobotState.msg
+float64 x
+float64 y
+float64 theta
+string status
+bool is_moving
+```
+
+Then use it in your nodes:
+
+```python
+# Publisher with custom message
+from your_package.msg import CustomRobotState  # Replace with your package name
+
+class CustomMessagePublisher(Node):
+    def __init__(self):
+        super().__init__('custom_message_publisher')
+        self.publisher_ = self.create_publisher(CustomRobotState, 'robot_state', 10)
+        self.timer = self.create_timer(0.1, self.publish_robot_state)
+
+    def publish_robot_state(self):
+        msg = CustomRobotState()
+        msg.x = 1.0
+        msg.y = 2.0
+        msg.theta = 1.57
+        msg.status = 'moving'
+        msg.is_moving = True
+        self.publisher_.publish(msg)
+```
+
+## Performance Optimization
+
+### Batch Publishing
+
+For high-frequency data, consider batching messages:
+
+```python
+class BatchPublisher(Node):
+    def __init__(self):
+        super().__init__('batch_publisher')
+        self.publisher_ = self.create_publisher(String, 'batch_topic', 10)
+        self.message_buffer = []
+        self.batch_size = 5
+        self.timer = self.create_timer(0.1, self.publish_batch)
+
+    def add_to_batch(self, message):
+        """Add a message to the batch buffer."""
+        self.message_buffer.append(message)
+        if len(self.message_buffer) >= self.batch_size:
+            self.publish_batch()
+
+    def publish_batch(self):
+        """Publish all buffered messages."""
+        if self.message_buffer:
+            # Combine messages or send them all
+            combined_msg = String()
+            combined_msg.data = '; '.join(self.message_buffer)
+            self.publisher_.publish(combined_msg)
+            self.message_buffer.clear()
+```
+
+### Threading Considerations
+
+For CPU-intensive processing in callbacks:
+
+```python
+import threading
+from concurrent.futures import ThreadPoolExecutor
+
+class ThreadingSubscriber(Node):
+    def __init__(self):
+        super().__init__('threading_subscriber')
+        self.subscription = self.create_subscription(
+            String,
+            'heavy_topic',
+            self.heavy_callback,
+            10
+        )
+        self.executor = ThreadPoolExecutor(max_workers=2)
+
+    def heavy_callback(self, msg):
+        """Offload heavy processing to a thread."""
+        future = self.executor.submit(self.process_heavy_data, msg.data)
+        # Optionally add done callback
+        future.add_done_callback(self.on_processing_complete)
+
+    def process_heavy_data(self, data):
+        """Heavy processing that runs in a separate thread."""
+        # Simulate heavy processing
+        import time
+        time.sleep(0.1)  # Simulate processing time
+        result = f"Processed: {data}"
+        return result
+
+    def on_processing_complete(self, future):
+        """Called when processing is complete."""
+        try:
+            result = future.result()
+            self.get_logger().info(f'Processing complete: {result}')
+        except Exception as e:
+            self.get_logger().error(f'Processing failed: {e}')
+```
+
+## Common Patterns and Best Practices
+
+### Publisher-Subscriber Pattern Variations
+
+1. **One-to-Many**: Single publisher, multiple subscribers
+2. **Many-to-One**: Multiple publishers, single subscriber
+3. **Many-to-Many**: Multiple publishers and subscribers
+
+### Error Handling in Communication
+
+```python
+class RobustSubscriber(Node):
+    def __init__(self):
+        super().__init__('robust_subscriber')
+        self.subscription = self.create_subscription(
+            String,
+            'robust_topic',
+            self.robust_callback,
+            10
+        )
+
+    def robust_callback(self, msg):
+        """Callback with error handling."""
+        try:
+            # Process the message
+            processed_data = self.process_message(msg.data)
+
+            # Validate the result
+            if processed_data is not None:
+                self.handle_valid_data(processed_data)
+            else:
+                self.get_logger().warning('Received invalid data')
+
+        except ValueError as e:
+            self.get_logger().error(f'Value error in message: {e}')
+        except Exception as e:
+            self.get_logger().error(f'Unexpected error processing message: {e}')
+
+    def process_message(self, data):
+        """Process message with validation."""
+        if not isinstance(data, str):
+            raise ValueError('Data must be string')
+        # Additional processing logic
+        return data.upper()
+
+    def handle_valid_data(self, data):
+        """Handle validated data."""
+        self.get_logger().info(f'Valid data processed: {data}')
+```
+
+## Quality of Service (QoS) Policies in Depth
+
+Let's expand on the QoS policies section with more practical examples and explanations:
+
+### Deadline Policy
+
+Controls how stale data is handled:
+
+```python
+from rclpy.qos import QoSProfile, Duration
+
+# Messages must be delivered within 1 second, or they're considered stale
+deadline_qos = QoSProfile(
+    depth=10,
+    deadline=Duration(seconds=1)
+)
+```
+
+### Lifespan Policy
+
+Controls how long messages are kept in the publisher's history:
+
+```python
+from rclpy.qos import QoSProfile, Duration
+
+# Messages are kept for 30 seconds before being discarded
+lifespan_qos = QoSProfile(
+    depth=10,
+    lifespan=Duration(seconds=30)
+)
+```
+
+### Liveliness Policy
+
+Controls how node/service liveliness is monitored:
+
+```python
+from rclpy.qos import QoSProfile, LivelinessPolicy, Duration
+
+# Node must signal liveliness within 5 seconds
+liveliness_qos = QoSProfile(
+    depth=10,
+    liveliness=LivelinessPolicy.AUTOMATIC,
+    liveliness_lease_duration=Duration(seconds=5)
+)
+```
+
+### Complete QoS Example
+
+Here's a comprehensive example showing all QoS policies in use:
+
+```python
+#!/usr/bin/env python3
+
+import rclpy
+from rclpy.node import Node
+from rclpy.qos import QoSProfile, ReliabilityPolicy, DurabilityPolicy, HistoryPolicy
+from rclpy.qos import LivelinessPolicy, Duration
+from std_msgs.msg import String
+
+
+class ComprehensiveQoSPublisher(Node):
+    """
+    Publisher demonstrating comprehensive QoS configuration.
+    """
+
+    def __init__(self):
+        super().__init__('comprehensive_qos_publisher')
+
+        # Create QoS profile with all policies configured
+        qos_profile = QoSProfile(
+            # History policy
+            history=HistoryPolicy.KEEP_LAST,
+            depth=10,
+
+            # Reliability policy
+            reliability=ReliabilityPolicy.RELIABLE,
+
+            # Durability policy
+            durability=DurabilityPolicy.VOLATILE,
+
+            # Deadline policy (message must be delivered within 2 seconds)
+            deadline=Duration(seconds=2),
+
+            # Lifespan policy (messages kept for 30 seconds)
+            lifespan=Duration(seconds=30),
+
+            # Liveliness policy
+            liveliness=LivelinessPolicy.AUTOMATIC,
+            liveliness_lease_duration=Duration(seconds=5)
+        )
+
+        self.publisher_ = self.create_publisher(String, 'comprehensive_qos_topic', qos_profile)
+        self.timer = self.create_timer(1.0, self.timer_callback)
+        self.counter = 0
+
+        self.get_logger().info('Comprehensive QoS publisher initialized')
+
+    def timer_callback(self):
+        """Publish message with comprehensive QoS."""
+        msg = String()
+        msg.data = f'QoS message {self.counter}'
+        self.publisher_.publish(msg)
+        self.counter += 1
+
+
+def main(args=None):
+    rclpy.init(args=args)
+    publisher = ComprehensiveQoSPublisher()
+
+    try:
+        rclpy.spin(publisher)
+    except KeyboardInterrupt:
+        pass
+    finally:
+        publisher.destroy_node()
+        rclpy.shutdown()
+
+
+if __name__ == '__main__':
+    main()
+```
+
+## Key Takeaways
+
+- QoS policies are essential for matching communication requirements to application needs
+- Different message types serve different purposes (reliable vs. best-effort, transient vs. volatile)
+- Custom messages allow for application-specific data structures
+- Performance optimization may involve batching, threading, or other techniques
+- Proper error handling ensures robust communication
+- QoS policies provide fine-grained control over message delivery characteristics
+
+## Next Steps
+
+In the next lesson, we'll explore working with standard message types and creating more complex communication patterns using ROS 2's rich ecosystem of message types.

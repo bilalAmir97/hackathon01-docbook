@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "SlashCommand(/sp.adr ROS 2 Content Standards)",
+      "Bash(mkdir -p examples/ros2_basics/ examples/ros2_communication/ examples/ros2_advanced/ examples/ros2_launch/ examples/urdf/)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

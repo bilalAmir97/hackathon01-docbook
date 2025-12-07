@@ -1,0 +1,391 @@
+---
+title: "Basic Command Line Tools"
+description: "Master the essential ROS 2 command-line tools for node management, topic communication, and system inspection"
+sidebar_position: 3
+---
+
+# Basic Command Line Tools
+
+## Learning Objectives
+
+- Use core ROS 2 command-line tools for system inspection
+- Manage nodes, topics, and services using CLI commands
+- Monitor system state and debug communication issues
+- Understand the most commonly used ROS 2 commands
+
+## Prerequisites
+
+- ROS 2 Humble Hawksbill installed and sourced
+- Basic command-line knowledge
+- Understanding of ROS 2 concepts (nodes, topics, services)
+
+## Core ROS 2 Commands
+
+The `ros2` command is the primary interface for interacting with your ROS 2 system. Let's explore the most important subcommands.
+
+### Node Management
+
+#### Listing Active Nodes
+
+To see all currently running nodes:
+
+```bash
+ros2 node list
+```
+
+This command displays all nodes that are currently active in the ROS 2 system.
+
+#### Getting Node Information
+
+To get detailed information about a specific node:
+
+```bash
+ros2 node info <node_name>
+```
+
+This shows the topics and services that the node is publishing/subscribing to or offering.
+
+### Topic Communication
+
+#### Listing Topics
+
+To see all available topics:
+
+```bash
+ros2 topic list
+```
+
+Add `-t` to also see the message types:
+
+```bash
+ros2 topic list -t
+```
+
+#### Publishing to a Topic
+
+To publish a single message to a topic:
+
+```bash
+ros2 topic pub <topic_name> <msg_type> <args>
+```
+
+For example, to publish a string message:
+
+```bash
+ros2 topic pub /chatter std_msgs/String "data: Hello World"
+```
+
+#### Echoing Topic Data
+
+To continuously print messages from a topic:
+
+```bash
+ros2 topic echo <topic_name>
+```
+
+For example, if you have a talker node running:
+
+```bash
+ros2 topic echo /chatter
+```
+
+#### Getting Topic Information
+
+To get information about a topic:
+
+```bash
+ros2 topic info <topic_name>
+```
+
+This shows publishers, subscribers, and message type information.
+
+### Service Communication
+
+#### Listing Services
+
+To see all available services:
+
+```bash
+ros2 service list
+```
+
+Add `-t` to also see the service types:
+
+```bash
+ros2 service list -t
+```
+
+#### Calling a Service
+
+To call a service with specific arguments:
+
+```bash
+ros2 service call <service_name> <service_type> <request_args>
+```
+
+For example:
+
+```bash
+ros2 service call /add_two_ints example_interfaces/srv/AddTwoInts "{a: 1, b: 2}"
+```
+
+### Action Communication
+
+#### Listing Actions
+
+To see all available actions:
+
+```bash
+ros2 action list
+```
+
+Add `-t` to also see the action types:
+
+```bash
+ros2 action list -t
+```
+
+### Package Management
+
+#### Listing Packages
+
+To see all available packages:
+
+```bash
+ros2 pkg list
+```
+
+#### Getting Package Information
+
+To get information about a specific package:
+
+```bash
+ros2 pkg info <package_name>
+```
+
+### Parameter Management
+
+#### Listing Parameters
+
+To see parameters of a specific node:
+
+```bash
+ros2 param list <node_name>
+```
+
+#### Getting Parameter Values
+
+To get the value of a specific parameter:
+
+```bash
+ros2 param get <node_name> <parameter_name>
+```
+
+#### Setting Parameter Values
+
+To set a parameter value:
+
+```bash
+ros2 param set <node_name> <parameter_name> <value>
+```
+
+## Practical Examples
+
+### Example 1: Monitoring System State
+
+Let's run a simple talker node and monitor it:
+
+1. **In one terminal**, run the talker:
+
+   ```bash
+   ros2 run demo_nodes_cpp talker
+   ```
+
+2. **In another terminal**, list nodes:
+
+   ```bash
+   ros2 node list
+   ```
+
+3. **Check node details**:
+
+   ```bash
+   ros2 node info /talker
+   ```
+
+4. **Monitor the topic**:
+
+   ```bash
+   ros2 topic echo /chatter
+   ```
+
+5. **Check topic details**:
+
+   ```bash
+   ros2 topic info /chatter
+   ```
+
+### Example 2: Service Communication
+
+1. **Run a service server**:
+
+   ```bash
+   ros2 run demo_nodes_cpp add_two_ints_server
+   ```
+
+2. **In another terminal**, call the service:
+
+   ```bash
+   ros2 service call /add_two_ints example_interfaces/srv/AddTwoInts "{a: 3, b: 4}"
+   ```
+
+3. **List services to verify**:
+
+   ```bash
+   ros2 service list -t
+   ```
+
+## Quality of Service (QoS) Options
+
+Many ROS 2 commands support QoS profile options. For example, when echoing a topic:
+
+```bash
+ros2 topic echo /chatter --qos-profile sensor_data
+```
+
+Common QoS profiles:
+- `system_default`: Default profile
+- `sensor_data`: For high-frequency sensor data
+- `services_default`: For service communication
+- `parameters`: For parameter updates
+
+## Useful Command Options
+
+### Verbose Output
+
+Many commands support the `-v` or `--verbose` flag for additional information:
+
+```bash
+ros2 topic list -v
+```
+
+### Getting Help
+
+To get help for any ROS 2 command:
+
+```bash
+ros2 <subcommand> --help
+```
+
+For example:
+
+```bash
+ros2 topic --help
+```
+
+## Common Troubleshooting Commands
+
+### Network Issues
+
+If nodes can't communicate across machines:
+
+```bash
+# Check ROS domain ID
+echo $ROS_DOMAIN_ID
+
+# Check multicast connectivity
+ros2 multicast ping
+```
+
+### Performance Monitoring
+
+To monitor topic publication rates:
+
+```bash
+ros2 topic hz /topic_name
+```
+
+To monitor topic bandwidth:
+
+```bash
+ros2 topic bw /topic_name
+```
+
+## Key Takeaways
+
+- ROS 2 CLI tools are essential for system inspection and debugging
+- The `ros2` command has many subcommands for different aspects of the system
+- Understanding these tools helps with development and troubleshooting
+- Practice with simple examples to build familiarity
+
+## Rviz2 Visualization
+
+RViz2 is the 3D visualization tool for ROS 2. It allows you to visualize your robot model, sensor data, and other information in a 3D environment.
+
+### Installing RViz2
+
+RViz2 should be installed as part of the desktop package:
+
+```bash
+sudo apt install ros-humble-desktop
+```
+
+### Launching RViz2
+
+To start RViz2:
+
+```bash
+rviz2
+```
+
+### Visualizing a Robot Model
+
+To visualize a URDF robot model in RViz2:
+
+1. **Launch RViz2**:
+
+   ```bash
+   rviz2
+   ```
+
+2. **Add the RobotModel display**:
+   - Click "Add" in the Displays panel
+   - Select "RobotModel" under "rviz_default_plugins"
+   - Click "OK"
+
+3. **Set the Robot Description**:
+   - In the RobotModel display, change "Robot Description" to the parameter name that contains your URDF
+   - By default, this is often "robot_description"
+
+4. **Set the Fixed Frame**:
+   - Change the "Fixed Frame" in the Global Options to match the base link of your robot (e.g., "base_link")
+
+### Example: Visualizing Our Basic Robot
+
+If you have a URDF file like the one we created in the examples directory, you can visualize it using the robot_state_publisher:
+
+1. **Start a terminal and launch the robot state publisher**:
+
+   ```bash
+   ros2 run robot_state_publisher robot_state_publisher --ros-args -p robot_description:="`cat /path/to/basic_robot.urdf`"
+   ```
+
+2. **In another terminal, launch RViz2**:
+
+   ```bash
+   rviz2
+   ```
+
+3. **Configure RViz2 as described above** to visualize the robot.
+
+### Common RViz2 Displays
+
+- **RobotModel**: Shows the robot's URDF model
+- **LaserScan**: Visualizes laser scanner data
+- **PointCloud**: Shows point cloud data from sensors
+- **TF**: Displays the transform tree of the robot
+- **Image**: Shows camera image data
+
+## Next Steps
+
+Now that you understand the basic ROS 2 concepts and tools, the next chapter will dive deeper into nodes, topics, and message passing patterns.

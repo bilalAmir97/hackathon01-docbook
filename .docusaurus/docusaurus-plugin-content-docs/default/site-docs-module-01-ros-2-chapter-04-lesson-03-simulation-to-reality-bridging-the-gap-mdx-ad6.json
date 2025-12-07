@@ -1,0 +1,25 @@
+{
+  "id": "module-01-ros2/chapter-04/lesson-03-simulation-to-reality-bridging-the-gap",
+  "title": "Simulation to Reality - Bridging the Gap",
+  "description": "Learn how to transition from simulation to real hardware, including hardware abstraction, sensor integration, and system validation techniques.",
+  "source": "@site/docs/module-01-ros2/chapter-04/lesson-03-simulation-to-reality-bridging-the-gap.mdx",
+  "sourceDirName": "module-01-ros2/chapter-04",
+  "slug": "/module-01-ros2/chapter-04/lesson-03-simulation-to-reality-bridging-the-gap",
+  "permalink": "/docs/module-01-ros2/chapter-04/lesson-03-simulation-to-reality-bridging-the-gap",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/module-01-ros2/chapter-04/lesson-03-simulation-to-reality-bridging-the-gap.mdx",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 3,
+  "frontMatter": {
+    "title": "Simulation to Reality - Bridging the Gap",
+    "description": "Learn how to transition from simulation to real hardware, including hardware abstraction, sensor integration, and system validation techniques.",
+    "sidebar_position": 3
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Building Production-Ready ROS 2 Systems",
+    "permalink": "/docs/module-01-ros2/chapter-04/lesson-02-building-production-ready-ros2-systems"
+  }
+}

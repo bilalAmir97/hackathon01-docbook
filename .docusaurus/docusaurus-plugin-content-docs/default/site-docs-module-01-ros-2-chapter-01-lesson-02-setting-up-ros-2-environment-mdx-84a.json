@@ -1,0 +1,29 @@
+{
+  "id": "module-01-ros2/chapter-01/lesson-02-setting-up-ros2-environment",
+  "title": "Setting Up Your ROS 2 Environment",
+  "description": "Step-by-step guide to installing and configuring ROS 2 Humble Hawksbill on your system",
+  "source": "@site/docs/module-01-ros2/chapter-01/lesson-02-setting-up-ros2-environment.mdx",
+  "sourceDirName": "module-01-ros2/chapter-01",
+  "slug": "/module-01-ros2/chapter-01/lesson-02-setting-up-ros2-environment",
+  "permalink": "/docs/module-01-ros2/chapter-01/lesson-02-setting-up-ros2-environment",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/module-01-ros2/chapter-01/lesson-02-setting-up-ros2-environment.mdx",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "title": "Setting Up Your ROS 2 Environment",
+    "description": "Step-by-step guide to installing and configuring ROS 2 Humble Hawksbill on your system",
+    "sidebar_position": 2
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Introduction to ROS 2 Concepts",
+    "permalink": "/docs/module-01-ros2/chapter-01/lesson-01-introduction-to-ros2-concepts"
+  },
+  "next": {
+    "title": "Basic Command Line Tools",
+    "permalink": "/docs/module-01-ros2/chapter-01/lesson-03-basic-command-line-tools"
+  }
+}
