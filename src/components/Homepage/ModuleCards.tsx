@@ -112,7 +112,7 @@ const ModuleCards: React.FC = () => {
                   modulePath = '/docs/module-01-ros2/chapter-01/lesson-01-introduction-to-ros2-concepts';
                   break;
                 case 2:
-                  modulePath = '/docs/module-02-digital-twin/setup/index';
+                  modulePath = '/docs/module-02-digital-twin';
                   break;
                 case 3:
                   modulePath = '/docs/module-01-ros2/chapter-01/lesson-01-introduction-to-ros2-concepts'; // Will be updated when module is created
