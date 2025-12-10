@@ -32,16 +32,150 @@ export default {
         "blog": false,
         "theme": {
           "customCss": "D:\\Bilal\\Bilal\\Bilal Data\\Hackathon\\hackathon-01\\src\\css\\custom.css"
+        },
+        "sitemap": {
+          "changefreq": "weekly",
+          "priority": 0.5,
+          "ignorePatterns": [
+            "/tags/**"
+          ]
         }
       }
     ]
   ],
+  "stylesheets": [
+    {
+      "href": "https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Poppins:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap",
+      "type": "text/css",
+      "rel": "stylesheet",
+      "crossorigin": "anonymous"
+    }
+  ],
+  "themes": [],
   "themeConfig": {
     "image": "img/docusaurus-social-card.jpg",
+    "metadata": [
+      {
+        "name": "viewport",
+        "content": "width=device-width, initial-scale=1.0"
+      },
+      {
+        "name": "description",
+        "content": "Master robots that bridge digital intelligence and physical reality. Learn ROS 2, simulation, and humanoid control to build the next generation of intelligent robots."
+      },
+      {
+        "name": "keywords",
+        "content": "ROS 2, robotics, AI, humanoid robots, simulation, Gazebo, NVIDIA Isaac, machine learning"
+      },
+      {
+        "name": "theme-color",
+        "content": "#00d9ff"
+      },
+      {
+        "property": "og:title",
+        "content": "ROS 2 Robotics Education"
+      },
+      {
+        "property": "og:description",
+        "content": "Master robots that bridge digital intelligence and physical reality. Learn ROS 2, simulation, and humanoid control to build the next generation of intelligent robots."
+      },
+      {
+        "property": "og:type",
+        "content": "website"
+      },
+      {
+        "property": "og:url",
+        "content": "https://your-docusaurus-site.example.com"
+      },
+      {
+        "property": "og:image",
+        "content": "img/docusaurus-social-card.jpg"
+      },
+      {
+        "name": "twitter:card",
+        "content": "summary_large_image"
+      },
+      {
+        "name": "twitter:title",
+        "content": "ROS 2 Robotics Education"
+      },
+      {
+        "name": "twitter:description",
+        "content": "Master robots that bridge digital intelligence and physical reality. Learn ROS 2, simulation, and humanoid control to build the next generation of intelligent robots."
+      },
+      {
+        "name": "twitter:image",
+        "content": "img/docusaurus-social-card.jpg"
+      }
+    ],
+    "headTags": [
+      {
+        "tagName": "noscript",
+        "innerHTML": "<div class=\"noscript-message\" style=\"position: fixed; top: 0; left: 0; width: 100%; background: #ff6b6b; color: white; text-align: center; padding: 10px; z-index: 9999; font-family: sans-serif;\">This website requires JavaScript to function properly. Please enable JavaScript to experience the full interactive features.</div>"
+      },
+      {
+        "tagName": "link",
+        "attributes": {
+          "rel": "preload",
+          "href": "https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Poppins:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap",
+          "as": "style",
+          "onload": "this.onload=null;this.rel='stylesheet'"
+        }
+      }
+    ],
+    "fonts": {
+      "fontFace": [
+        {
+          "family": "Inter",
+          "urls": [
+            "/fonts/Inter-Regular.woff2",
+            "/fonts/Inter-Regular.woff"
+          ],
+          "style": "normal",
+          "weight": "400"
+        },
+        {
+          "family": "Inter",
+          "urls": [
+            "/fonts/Inter-Bold.woff2",
+            "/fonts/Inter-Bold.woff"
+          ],
+          "style": "normal",
+          "weight": "700"
+        },
+        {
+          "family": "Poppins",
+          "urls": [
+            "/fonts/Poppins-Regular.woff2",
+            "/fonts/Poppins-Regular.woff"
+          ],
+          "style": "normal",
+          "weight": "400"
+        },
+        {
+          "family": "Poppins",
+          "urls": [
+            "/fonts/Poppins-Bold.woff2",
+            "/fonts/Poppins-Bold.woff"
+          ],
+          "style": "normal",
+          "weight": "700"
+        },
+        {
+          "family": "JetBrains Mono",
+          "urls": [
+            "/fonts/JetBrainsMono-Regular.woff2",
+            "/fonts/JetBrainsMono-Regular.woff"
+          ],
+          "style": "normal",
+          "weight": "400"
+        }
+      ]
+    },
     "navbar": {
       "title": "ROS 2 Robotics Education",
       "logo": {
-        "alt": "ROS 2 Robotics Education Logo",
+        "alt": "",
         "src": "img/logo.svg"
       },
       "items": [
@@ -316,7 +450,6 @@ export default {
         "autoCollapseCategories": false
       }
     },
-    "metadata": [],
     "tableOfContents": {
       "minHeadingLevel": 2,
       "maxHeadingLevel": 3
@@ -330,10 +463,8 @@ export default {
   ],
   "customFields": {},
   "plugins": [],
-  "themes": [],
   "scripts": [],
   "headTags": [],
-  "stylesheets": [],
   "clientModules": [],
   "titleDelimiter": "|",
   "noIndex": false,

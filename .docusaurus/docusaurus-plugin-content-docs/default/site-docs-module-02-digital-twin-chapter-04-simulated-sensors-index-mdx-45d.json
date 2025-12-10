@@ -1,0 +1,28 @@
+{
+  "id": "module-02-digital-twin/chapter-04-simulated-sensors/index",
+  "title": "Chapter 4 - Simulated Sensors",
+  "description": "Learn how to implement and configure virtual sensors (LiDAR, depth cameras, IMUs) in Gazebo Garden for humanoid robotics simulation",
+  "source": "@site/docs/module-02-digital-twin/chapter-04-simulated-sensors/index.mdx",
+  "sourceDirName": "module-02-digital-twin/chapter-04-simulated-sensors",
+  "slug": "/module-02-digital-twin/chapter-04-simulated-sensors",
+  "permalink": "/docs/module-02-digital-twin/chapter-04-simulated-sensors",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/module-02-digital-twin/chapter-04-simulated-sensors/index.mdx",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "Chapter 4 - Simulated Sensors",
+    "description": "Learn how to implement and configure virtual sensors (LiDAR, depth cameras, IMUs) in Gazebo Garden for humanoid robotics simulation",
+    "slug": "/module-02-digital-twin/chapter-04-simulated-sensors"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Lesson 3: Humanoid Avatars and Interaction",
+    "permalink": "/docs/module-02-digital-twin/chapter-03-unity-environments/lesson-03-humanoid-avatars"
+  },
+  "next": {
+    "title": "LiDAR Simulation in Gazebo Garden",
+    "permalink": "/docs/module-02-digital-twin/chapter-04-simulated-sensors/lesson-01-lidar-simulation"
+  }
+}

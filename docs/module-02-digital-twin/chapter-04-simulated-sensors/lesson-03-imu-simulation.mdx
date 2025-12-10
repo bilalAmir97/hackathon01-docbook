@@ -1,0 +1,304 @@
+---
+title: IMU Simulation in Gazebo Garden
+description: Learn how to implement and configure IMU sensors in Gazebo Garden for orientation and motion sensing in humanoid robotics
+sidebar_position: 3
+---
+
+# IMU Simulation in Gazebo Garden
+
+## Introduction to IMU in Robotics
+
+An Inertial Measurement Unit (IMU) is a critical sensor in humanoid robotics that measures acceleration, angular velocity, and orientation. IMUs provide essential data for:
+- Balance and stability control
+- Motion tracking
+- Orientation estimation
+- State estimation for navigation
+
+## IMU Simulation in Gazebo Garden
+
+Gazebo Garden provides realistic IMU simulation that models the behavior of physical IMU sensors, including:
+- Acceleration measurements in 3D space
+- Angular velocity measurements (gyroscope)
+- Orientation estimation (magnetometer in some configurations)
+- Realistic noise and bias characteristics
+
+## Configuring IMU in URDF/SDF
+
+To add an IMU sensor to your humanoid robot model, you'll need to define it in your URDF file. Here's an example configuration:
+
+```xml
+<!-- IMU sensor definition -->
+<gazebo reference="imu_link">
+  <sensor name="imu_sensor" type="imu">
+    <always_on>true</always_on>
+    <update_rate>100</update_rate>
+    <imu>
+      <angular_velocity>
+        <x>
+          <noise type="gaussian">
+            <mean>0.0</mean>
+            <stddev>0.0017</stddev> <!-- ~0.1 deg/s stddev -->
+            <bias_mean>0.0</bias_mean>
+            <bias_stddev>0.0008</bias_stddev> <!-- ~0.05 deg/s bias -->
+          </noise>
+        </x>
+        <y>
+          <noise type="gaussian">
+            <mean>0.0</mean>
+            <stddev>0.0017</stddev>
+            <bias_mean>0.0</bias_mean>
+            <bias_stddev>0.0008</bias_stddev>
+          </noise>
+        </y>
+        <z>
+          <noise type="gaussian">
+            <mean>0.0</mean>
+            <stddev>0.0017</stddev>
+            <bias_mean>0.0</bias_mean>
+            <bias_stddev>0.0008</bias_stddev>
+          </noise>
+        </z>
+      </angular_velocity>
+      <linear_acceleration>
+        <x>
+          <noise type="gaussian">
+            <mean>0.0</mean>
+            <stddev>1.7e-2</stddev> <!-- 17 mg -->
+            <bias_mean>0.0</bias_mean>
+            <bias_stddev>8.5e-3</bias_stddev> <!-- 8.5 mg -->
+          </noise>
+        </x>
+        <y>
+          <noise type="gaussian">
+            <mean>0.0</mean>
+            <stddev>1.7e-2</stddev>
+            <bias_mean>0.0</bias_mean>
+            <bias_stddev>8.5e-3</bias_stddev>
+          </noise>
+        </y>
+        <z>
+          <noise type="gaussian">
+            <mean>0.0</mean>
+            <stddev>1.7e-2</stddev>
+            <bias_mean>0.0</bias_mean>
+            <bias_stddev>8.5e-3</bias_stddev>
+          </noise>
+        </z>
+      </linear_acceleration>
+    </imu>
+    <plugin name="imu_controller" filename="libgazebo_ros_imu_sensor.so">
+      <ros>
+        <namespace>/humanoid_robot</namespace>
+        <remapping>~/out:=imu/data</remapping>
+      </ros>
+      <frame_name>imu_link</frame_name>
+      <topic>imu/data</topic>
+      <update_rate>100</update_rate>
+    </plugin>
+  </sensor>
+</gazebo>
+```
+
+## ROS 2 Integration
+
+The IMU sensor publishes data to a ROS 2 topic using the `sensor_msgs/Imu` message type. The message contains:
+- Orientation (quaternion)
+- Angular velocity
+- Linear acceleration
+
+To visualize the IMU data in ROS 2:
+
+```bash
+# View IMU data in the terminal
+ros2 topic echo /humanoid_robot/imu/data
+
+# Use rqt to visualize IMU data
+rqt -p imu
+```
+
+## Practical Exercise: Adding IMU to Your Robot
+
+1. Add the IMU sensor definition to your humanoid robot's URDF file
+2. Position the IMU appropriately on the robot (typically in the torso for humanoid balance)
+3. Launch your simulation with `gz sim -r your_world.sdf`
+4. Verify the sensor is publishing data with `ros2 topic list` and `ros2 topic echo /humanoid_robot/imu/data`
+5. Visualize the IMU data in RViz2 by adding an Imu display
+
+## Key Parameters to Consider
+
+- **Update Rate**: Higher rates provide more responsive data but increase computational load
+- **Noise Parameters**: Realistic noise modeling improves sim-to-real transfer
+- **Bias Parameters**: Modeling sensor biases helps with calibration
+- **Mounting Position**: Affects the sensor's measurement reference frame
+
+## Working with IMU Data
+
+IMU data is typically processed using sensor fusion algorithms to estimate orientation. ROS 2 provides the `robot_localization` package for fusing IMU data with other sensors.
+
+Example code to process IMU data:
+
+```cpp
+#include <sensor_msgs/msg/imu.hpp>
+
+void imuCallback(const sensor_msgs::msg::Imu::SharedPtr msg)
+{
+  // Extract orientation
+  double orientation_x = msg->orientation.x;
+  double orientation_y = msg->orientation.y;
+  double orientation_z = msg->orientation.z;
+  double orientation_w = msg->orientation.w;
+
+  // Extract angular velocity
+  double angular_vel_x = msg->angular_velocity.x;
+  double angular_vel_y = msg->angular_velocity.y;
+  double angular_vel_z = msg->angular_velocity.z;
+
+  // Extract linear acceleration
+  double linear_acc_x = msg->linear_acceleration.x;
+  double linear_acc_y = msg->linear_acceleration.y;
+  double linear_acc_z = msg->linear_acceleration.z;
+
+  // Process the IMU data for your application
+}
+```
+
+## IMU in Humanoid Balance Control
+
+In humanoid robotics, IMU data is crucial for:
+- Balance control algorithms
+- Fall detection
+- Gait stabilization
+- Posture control
+
+The IMU provides real-time feedback about the robot's orientation and motion, which is essential for maintaining stability during locomotion.
+
+## Next Steps
+
+After implementing your IMU sensor, you'll need to:
+1. Test the sensor's response to various movements
+2. Validate the sensor data accuracy
+3. Integrate the sensor data into your robot's state estimation system
+4. Combine IMU data with other sensors for sensor fusion
+
+## Unity Visualization for IMU Data
+
+To visualize IMU data in Unity, you'll need to create a script that receives the IMU messages from ROS 2 and updates the orientation of a Unity object to match the robot's actual orientation. Here's an example C# script:
+
+```csharp
+using UnityEngine;
+using Ros2ForUnity.Messages.Sensor;
+using Ros2ForUnity.Messages.Std;
+
+public class IMUVisualizer : MonoBehaviour
+{
+    [Header("Visualization Settings")]
+    public GameObject imuIndicator;
+    public float orientationSmoothing = 0.1f;
+
+    [Header("ROS 2 Settings")]
+    public string imuTopic = "/humanoid_robot/imu/data";
+
+    private Quaternion targetOrientation;
+    private bool hasNewData = false;
+
+    void Start()
+    {
+        if (imuIndicator == null)
+        {
+            imuIndicator = this.gameObject; // Use this object if no indicator is specified
+        }
+
+        // Initialize with identity rotation
+        targetOrientation = Quaternion.identity;
+    }
+
+    void Update()
+    {
+        if (hasNewData)
+        {
+            // Smoothly interpolate to the target orientation
+            imuIndicator.transform.rotation = Quaternion.Slerp(
+                imuIndicator.transform.rotation,
+                targetOrientation,
+                Time.deltaTime / orientationSmoothing
+            );
+            hasNewData = false;
+        }
+    }
+
+    public void OnImuDataReceived(ImuMsg msg)
+    {
+        // Convert ROS quaternion to Unity quaternion
+        // ROS uses X, Y, Z, W format while Unity uses X, Y, Z, W
+        // Both use right-handed coordinate systems, but axes might be different
+        // Adjust the conversion based on your coordinate system mapping
+
+        // Standard conversion (may need adjustment based on coordinate system mapping)
+        targetOrientation = new Quaternion(
+            msg.orientation.x,  // ROS X -> Unity X
+            msg.orientation.y,  // ROS Y -> Unity Y
+            msg.orientation.z,  // ROS Z -> Unity Z
+            msg.orientation.w   // ROS W -> Unity W
+        );
+
+        // If you need coordinate system conversion (e.g., ROS right-handed to Unity left-handed)
+        // or axis remapping, do it here:
+        // targetOrientation = ConvertCoordinateSystem(targetOrientation);
+
+        hasNewData = true;
+    }
+
+    // Optional: Method for coordinate system conversion if needed
+    private Quaternion ConvertCoordinateSystem(Quaternion rosQuaternion)
+    {
+        // Example conversion if ROS coordinate system differs from Unity
+        // This is just an example - adjust based on your specific coordinate mapping
+        return new Quaternion(
+            rosQuaternion.x,
+            rosQuaternion.y,
+            rosQuaternion.z,
+            rosQuaternion.w
+        );
+    }
+
+    // Alternative method: Visualize angular velocity as rotation
+    public void OnImuAngularVelocityReceived(ImuMsg msg)
+    {
+        // Calculate rotation based on angular velocity for visualization
+        Vector3 angularVelocity = new Vector3(
+            msg.angular_velocity.x,
+            msg.angular_velocity.y,
+            msg.angular_velocity.z
+        );
+
+        // Apply rotation based on angular velocity
+        transform.Rotate(angularVelocity * Mathf.Rad2Deg * Time.deltaTime, Space.World);
+    }
+
+    // Method to visualize linear acceleration
+    public void OnImuLinearAccelerationReceived(ImuMsg msg)
+    {
+        // You can visualize linear acceleration as a force vector
+        Vector3 linearAcc = new Vector3(
+            msg.linear_acceleration.x,
+            msg.linear_acceleration.y,
+            msg.linear_acceleration.z
+        );
+
+        // Optionally apply this as a visual effect or debug visualization
+        Debug.DrawRay(transform.position, linearAcc.normalized * 0.5f, Color.red);
+    }
+}
+```
+
+## Practical Exercise: IMU Visualization in Unity
+
+1. Create a new Unity scene for IMU visualization
+2. Add a GameObject to represent your robot's IMU (e.g., a small cube)
+3. Attach the IMUVisualizer script to the GameObject
+4. Configure the ROS 2 topic to match your IMU topic
+5. Run the Unity scene and observe how the IMU indicator follows the robot's orientation in Gazebo
+
+## Summary
+
+IMU simulation in Gazebo Garden provides critical motion and orientation sensing capabilities for humanoid robotics applications. By properly configuring the sensor parameters and integrating it with ROS 2, you can create a robust state estimation system for balance control, navigation, and motion tracking. The Unity visualization component allows you to display the IMU data in the digital twin environment, providing real-time feedback for debugging and demonstration purposes.

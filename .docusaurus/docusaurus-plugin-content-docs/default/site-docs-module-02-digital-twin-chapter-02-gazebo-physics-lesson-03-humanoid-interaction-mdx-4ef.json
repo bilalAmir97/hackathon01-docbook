@@ -1,0 +1,27 @@
+{
+  "id": "module-02-digital-twin/chapter-02-gazebo-physics/lesson-03-humanoid-interaction",
+  "title": "Lesson 3: Humanoid-Environment Interaction",
+  "description": "Implementing collision detection and response for humanoid robots in Gazebo",
+  "source": "@site/docs/module-02-digital-twin/chapter-02-gazebo-physics/lesson-03-humanoid-interaction.mdx",
+  "sourceDirName": "module-02-digital-twin/chapter-02-gazebo-physics",
+  "slug": "/module-02-digital-twin/chapter-02-gazebo-physics/lesson-03-humanoid-interaction",
+  "permalink": "/docs/module-02-digital-twin/chapter-02-gazebo-physics/lesson-03-humanoid-interaction",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/module-02-digital-twin/chapter-02-gazebo-physics/lesson-03-humanoid-interaction.mdx",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "sidebar_label": "Lesson 3: Humanoid-Environment Interaction",
+    "description": "Implementing collision detection and response for humanoid robots in Gazebo"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Lesson 2: Creating Worlds with Gravity and Collisions",
+    "permalink": "/docs/module-02-digital-twin/chapter-02-gazebo-physics/lesson-02-world-creation"
+  },
+  "next": {
+    "title": "Chapter 3: Unity Environments",
+    "permalink": "/docs/module-02-digital-twin/chapter-03-unity-environments/"
+  }
+}

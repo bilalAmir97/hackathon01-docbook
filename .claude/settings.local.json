@@ -2,7 +2,16 @@
   "permissions": {
     "allow": [
       "SlashCommand(/sp.adr ROS 2 Content Standards)",
-      "Bash(mkdir -p examples/ros2_basics/ examples/ros2_communication/ examples/ros2_advanced/ examples/ros2_launch/ examples/urdf/)"
+      "Bash(mkdir -p examples/ros2_basics/ examples/ros2_communication/ examples/ros2_advanced/ examples/ros2_launch/ examples/urdf/)",
+      "Bash(.specify/scripts/bash/check-prerequisites.sh --json --require-tasks --include-tasks)",
+      "Bash(ls -la docusaurus.config*)",
+      "Bash(npx tsc --noEmit)",
+      "Bash(node -e \"console.log(JSON.parse(require(''fs'').readFileSync(''./tsconfig.json'', ''utf8'')));\")",
+      "Bash(npx tsc --noEmit --project tsconfig.json)",
+      "Bash(node -e \"console.log(''Valid JSON:'', JSON.parse(require(''fs'').readFileSync(''./tsconfig.json'', ''utf8'')));\")",
+      "Bash(dir D:BilalBilalBilal DataHackathonhackathon-01srcutils*.ts)",
+      "Bash(dir \"D:\\Bilal\\Bilal\\Bilal Data\\Hackathon\\hackathon-01\\src\\utils\" /s)",
+      "Bash(npm run build)"
     ],
     "deny": [],
     "ask": []

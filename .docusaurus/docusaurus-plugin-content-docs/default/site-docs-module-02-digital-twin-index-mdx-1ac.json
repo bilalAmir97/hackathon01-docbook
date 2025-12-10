@@ -1,0 +1,30 @@
+{
+  "id": "module-02-digital-twin/index",
+  "title": "Module 2 - The Digital Twin (Gazebo & Unity)",
+  "description": "Comprehensive guide to creating digital twins with ROS 2, Gazebo Garden, and Unity for humanoid robotics",
+  "source": "@site/docs/module-02-digital-twin/index.mdx",
+  "sourceDirName": "module-02-digital-twin",
+  "slug": "/module-02-digital-twin",
+  "permalink": "/docs/module-02-digital-twin",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/module-02-digital-twin/index.mdx",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "title": "Module 2 - The Digital Twin (Gazebo & Unity)",
+    "description": "Comprehensive guide to creating digital twins with ROS 2, Gazebo Garden, and Unity for humanoid robotics",
+    "slug": "/module-02-digital-twin",
+    "sidebar_position": 2
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Simulation to Reality - Bridging the Gap",
+    "permalink": "/docs/module-01-ros2/chapter-04/lesson-03-simulation-to-reality-bridging-the-gap"
+  },
+  "next": {
+    "title": "Setup Guide",
+    "permalink": "/docs/module-02-digital-twin/setup/"
+  }
+}

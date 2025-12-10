@@ -1,0 +1,27 @@
+{
+  "id": "module-02-digital-twin/chapter-03-unity-environments/lesson-02-lighting-and-rendering",
+  "title": "Lesson 2: Lighting and Rendering for Robot Evaluation",
+  "description": "Implementing realistic lighting and rendering techniques for robot evaluation",
+  "source": "@site/docs/module-02-digital-twin/chapter-03-unity-environments/lesson-02-lighting-and-rendering.mdx",
+  "sourceDirName": "module-02-digital-twin/chapter-03-unity-environments",
+  "slug": "/module-02-digital-twin/chapter-03-unity-environments/lesson-02-lighting-and-rendering",
+  "permalink": "/docs/module-02-digital-twin/chapter-03-unity-environments/lesson-02-lighting-and-rendering",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/module-02-digital-twin/chapter-03-unity-environments/lesson-02-lighting-and-rendering.mdx",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "sidebar_label": "Lesson 2: Lighting and Rendering for Robot Evaluation",
+    "description": "Implementing realistic lighting and rendering techniques for robot evaluation"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Lesson 1: Unity Scene Setup for Robotics",
+    "permalink": "/docs/module-02-digital-twin/chapter-03-unity-environments/lesson-01-unity-scene-setup"
+  },
+  "next": {
+    "title": "Lesson 3: Humanoid Avatars and Interaction",
+    "permalink": "/docs/module-02-digital-twin/chapter-03-unity-environments/lesson-03-humanoid-avatars"
+  }
+}

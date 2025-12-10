@@ -1,0 +1,10 @@
+{
+  "label": "Chapter 5 - Bridging Sim to Real",
+  "position": 5,
+  "link": {
+    "type": "generated-index",
+    "title": "Chapter 5: Bridging Sim to Real",
+    "description": "Understanding the challenges and best practices for transferring robotic systems from simulation to real-world deployment",
+    "slug": "/module-02-digital-twin/chapter-05-sim-to-real"
+  }
+}

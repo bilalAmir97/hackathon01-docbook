@@ -21,5 +21,9 @@
   "previous": {
     "title": "Building Production-Ready ROS 2 Systems",
     "permalink": "/docs/module-01-ros2/chapter-04/lesson-02-building-production-ready-ros2-systems"
+  },
+  "next": {
+    "title": "Module 2 - The Digital Twin (Gazebo & Unity)",
+    "permalink": "/docs/module-02-digital-twin"
   }
 }

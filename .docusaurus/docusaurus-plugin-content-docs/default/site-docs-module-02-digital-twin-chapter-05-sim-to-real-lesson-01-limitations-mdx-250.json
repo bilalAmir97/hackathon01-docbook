@@ -1,0 +1,29 @@
+{
+  "id": "module-02-digital-twin/chapter-05-sim-to-real/lesson-01-limitations",
+  "title": "Chapter 5 Lesson 1 - Limitations of Simulation",
+  "description": "Understanding the fundamental limitations of simulation environments and their impact on sim-to-real transfer for humanoid robotics",
+  "source": "@site/docs/module-02-digital-twin/chapter-05-sim-to-real/lesson-01-limitations.mdx",
+  "sourceDirName": "module-02-digital-twin/chapter-05-sim-to-real",
+  "slug": "/module-02-digital-twin/chapter-05-sim-to-real/lesson-01-limitations",
+  "permalink": "/docs/module-02-digital-twin/chapter-05-sim-to-real/lesson-01-limitations",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/module-02-digital-twin/chapter-05-sim-to-real/lesson-01-limitations.mdx",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "title": "Chapter 5 Lesson 1 - Limitations of Simulation",
+    "description": "Understanding the fundamental limitations of simulation environments and their impact on sim-to-real transfer for humanoid robotics",
+    "sidebar_position": 1
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Chapter 5 - Bridging Sim to Real",
+    "permalink": "/docs/module-02-digital-twin/chapter-05-sim-to-real"
+  },
+  "next": {
+    "title": "Chapter 5 Lesson 2 - Transfer Considerations",
+    "permalink": "/docs/module-02-digital-twin/chapter-05-sim-to-real/lesson-02-transfer-considerations"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "id": "module-02-digital-twin/chapter-02-gazebo-physics/lesson-02-world-creation",
+  "title": "Lesson 2: Creating Worlds with Gravity and Collisions",
+  "description": "Building Gazebo worlds with configurable physics parameters",
+  "source": "@site/docs/module-02-digital-twin/chapter-02-gazebo-physics/lesson-02-world-creation.mdx",
+  "sourceDirName": "module-02-digital-twin/chapter-02-gazebo-physics",
+  "slug": "/module-02-digital-twin/chapter-02-gazebo-physics/lesson-02-world-creation",
+  "permalink": "/docs/module-02-digital-twin/chapter-02-gazebo-physics/lesson-02-world-creation",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/module-02-digital-twin/chapter-02-gazebo-physics/lesson-02-world-creation.mdx",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "sidebar_label": "Lesson 2: Creating Worlds with Gravity and Collisions",
+    "description": "Building Gazebo worlds with configurable physics parameters"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Lesson 1: Setting up Gazebo for Physics Simulation",
+    "permalink": "/docs/module-02-digital-twin/chapter-02-gazebo-physics/lesson-01-gazebo-setup"
+  },
+  "next": {
+    "title": "Lesson 3: Humanoid-Environment Interaction",
+    "permalink": "/docs/module-02-digital-twin/chapter-02-gazebo-physics/lesson-03-humanoid-interaction"
+  }
+}

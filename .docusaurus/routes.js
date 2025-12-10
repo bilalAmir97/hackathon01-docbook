@@ -39,15 +39,15 @@ export default [
   },
   {
     path: '/docs',
-    component: ComponentCreator('/docs', '3b9'),
+    component: ComponentCreator('/docs', 'e3e'),
     routes: [
       {
         path: '/docs',
-        component: ComponentCreator('/docs', 'd8e'),
+        component: ComponentCreator('/docs', '1c6'),
         routes: [
           {
             path: '/docs',
-            component: ComponentCreator('/docs', '470'),
+            component: ComponentCreator('/docs', '7b6'),
             routes: [
               {
                 path: '/docs/',
@@ -131,12 +131,173 @@ export default [
                 path: '/docs/module-01-ros2/frontmatter-template',
                 component: ComponentCreator('/docs/module-01-ros2/frontmatter-template', '36e'),
                 exact: true
+              },
+              {
+                path: '/docs/module-02-digital-twin',
+                component: ComponentCreator('/docs/module-02-digital-twin', '75b'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/docs/module-02-digital-twin/chapter-01-foundations/',
+                component: ComponentCreator('/docs/module-02-digital-twin/chapter-01-foundations/', '267'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/docs/module-02-digital-twin/chapter-01-foundations/lesson-01-introduction',
+                component: ComponentCreator('/docs/module-02-digital-twin/chapter-01-foundations/lesson-01-introduction', 'e0a'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/docs/module-02-digital-twin/chapter-01-foundations/lesson-02-ros2-integration',
+                component: ComponentCreator('/docs/module-02-digital-twin/chapter-01-foundations/lesson-02-ros2-integration', '48e'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/docs/module-02-digital-twin/chapter-01-foundations/lesson-03-digital-twin-concepts',
+                component: ComponentCreator('/docs/module-02-digital-twin/chapter-01-foundations/lesson-03-digital-twin-concepts', '216'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/docs/module-02-digital-twin/chapter-02-gazebo-physics/',
+                component: ComponentCreator('/docs/module-02-digital-twin/chapter-02-gazebo-physics/', '810'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/docs/module-02-digital-twin/chapter-02-gazebo-physics/lesson-01-gazebo-setup',
+                component: ComponentCreator('/docs/module-02-digital-twin/chapter-02-gazebo-physics/lesson-01-gazebo-setup', '7d7'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/docs/module-02-digital-twin/chapter-02-gazebo-physics/lesson-02-world-creation',
+                component: ComponentCreator('/docs/module-02-digital-twin/chapter-02-gazebo-physics/lesson-02-world-creation', '0ca'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/docs/module-02-digital-twin/chapter-02-gazebo-physics/lesson-03-humanoid-interaction',
+                component: ComponentCreator('/docs/module-02-digital-twin/chapter-02-gazebo-physics/lesson-03-humanoid-interaction', 'c2a'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/docs/module-02-digital-twin/chapter-03-unity-environments/',
+                component: ComponentCreator('/docs/module-02-digital-twin/chapter-03-unity-environments/', '03c'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/docs/module-02-digital-twin/chapter-03-unity-environments/lesson-01-unity-scene-setup',
+                component: ComponentCreator('/docs/module-02-digital-twin/chapter-03-unity-environments/lesson-01-unity-scene-setup', 'fbf'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/docs/module-02-digital-twin/chapter-03-unity-environments/lesson-02-lighting-and-rendering',
+                component: ComponentCreator('/docs/module-02-digital-twin/chapter-03-unity-environments/lesson-02-lighting-and-rendering', '3ed'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/docs/module-02-digital-twin/chapter-03-unity-environments/lesson-03-humanoid-avatars',
+                component: ComponentCreator('/docs/module-02-digital-twin/chapter-03-unity-environments/lesson-03-humanoid-avatars', '3a8'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/docs/module-02-digital-twin/chapter-04-simulated-sensors',
+                component: ComponentCreator('/docs/module-02-digital-twin/chapter-04-simulated-sensors', '6e9'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/docs/module-02-digital-twin/chapter-04-simulated-sensors/lesson-01-lidar-simulation',
+                component: ComponentCreator('/docs/module-02-digital-twin/chapter-04-simulated-sensors/lesson-01-lidar-simulation', 'e1d'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/docs/module-02-digital-twin/chapter-04-simulated-sensors/lesson-02-depth-camera-simulation',
+                component: ComponentCreator('/docs/module-02-digital-twin/chapter-04-simulated-sensors/lesson-02-depth-camera-simulation', '747'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/docs/module-02-digital-twin/chapter-04-simulated-sensors/lesson-03-imu-simulation',
+                component: ComponentCreator('/docs/module-02-digital-twin/chapter-04-simulated-sensors/lesson-03-imu-simulation', 'a77'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/docs/module-02-digital-twin/chapter-05-sim-to-real',
+                component: ComponentCreator('/docs/module-02-digital-twin/chapter-05-sim-to-real', '9fd'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/docs/module-02-digital-twin/chapter-05-sim-to-real/lesson-01-limitations',
+                component: ComponentCreator('/docs/module-02-digital-twin/chapter-05-sim-to-real/lesson-01-limitations', 'e73'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/docs/module-02-digital-twin/chapter-05-sim-to-real/lesson-02-transfer-considerations',
+                component: ComponentCreator('/docs/module-02-digital-twin/chapter-05-sim-to-real/lesson-02-transfer-considerations', 'b41'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/docs/module-02-digital-twin/chapter-05-sim-to-real/lesson-03-best-practices',
+                component: ComponentCreator('/docs/module-02-digital-twin/chapter-05-sim-to-real/lesson-03-best-practices', 'fd7'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/docs/module-02-digital-twin/setup/',
+                component: ComponentCreator('/docs/module-02-digital-twin/setup/', '8cc'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/docs/module-02-digital-twin/setup/basic-humanoid-urdf',
+                component: ComponentCreator('/docs/module-02-digital-twin/setup/basic-humanoid-urdf', '829'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/docs/module-02-digital-twin/setup/environment-setup',
+                component: ComponentCreator('/docs/module-02-digital-twin/setup/environment-setup', 'f55'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/docs/module-02-digital-twin/setup/ros-gz-bridge-setup',
+                component: ComponentCreator('/docs/module-02-digital-twin/setup/ros-gz-bridge-setup', 'b07'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/docs/module-02-digital-twin/setup/version-control-setup',
+                component: ComponentCreator('/docs/module-02-digital-twin/setup/version-control-setup', '58c'),
+                exact: true,
+                sidebar: "tutorialSidebar"
               }
             ]
           }
         ]
       }
     ]
+  },
+  {
+    path: '/',
+    component: ComponentCreator('/', '68e'),
+    exact: true
   },
   {
     path: '*',

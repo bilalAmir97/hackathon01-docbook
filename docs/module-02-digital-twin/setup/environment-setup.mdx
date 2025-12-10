@@ -1,0 +1,183 @@
+# Development Environment Setup
+
+This document provides instructions for configuring your development environment with ROS 2 Humble, Gazebo Garden, and Unity 2022.3 LTS for the Digital Twin module.
+
+## Prerequisites
+
+Before beginning the setup, ensure your system meets the following requirements:
+- Ubuntu 22.04 LTS (recommended) or compatible Linux distribution
+- At least 8GB RAM (16GB recommended)
+- At least 50GB free disk space
+- Internet connection for package downloads
+
+## ROS 2 Humble Installation
+
+### 1. Set up locale
+```bash
+locale  # check for UTF-8
+
+sudo apt update && sudo apt install locales
+sudo locale-gen en_US en_US.UTF-8
+sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
+export LANG=en_US.UTF-8
+
+# Verify locale
+locale
+```
+
+### 2. Add ROS 2 apt repository
+```bash
+sudo apt update && sudo apt install curl gnupg lsb-release
+curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/rosInstall.sh | bash
+```
+
+### 3. Install ROS 2 Humble packages
+```bash
+sudo apt update
+sudo apt install ros-humble-desktop
+sudo apt install ros-dev-tools
+```
+
+### 4. Source the ROS 2 environment
+```bash
+source /opt/ros/humble/setup.bash
+```
+
+To automatically source the ROS 2 environment on each terminal session, add the following line to your `~/.bashrc` file:
+```bash
+echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
+```
+
+## Gazebo Garden Installation
+
+### 1. Add Gazebo packages repository
+```bash
+sudo apt install software-properties-common
+sudo add-apt-repository universe
+
+# Download the release key
+wget https://packages.osrfoundation.org/gazebo.gpg -O /tmp/gazebo.gpg
+if [ $? -eq 0 ]; then
+  sudo cp /tmp/gazebo.gpg /usr/share/keyrings/gazebo-archive-keyring.gpg
+  rm /tmp/gazebo.gpg
+else
+  echo "Failed to download Gazebo release key"
+  exit 1
+fi
+
+# Add the repository to apt sources
+echo "deb [arch=amd64 signed-by=/usr/share/keyrings/gazebo-archive-keyring.gpg] http://packages.osrfoundation.org/gazebo/ubuntu-stable $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/gazebo-stable.list > /dev/null
+```
+
+### 2. Refresh the package list and install Gazebo Garden
+```bash
+sudo apt update
+sudo apt install gz-garden
+```
+
+### 3. Verify installation
+```bash
+gz --version
+```
+
+## Unity 2022.3 LTS Installation
+
+### 1. Download Unity Hub
+Visit the Unity website and download Unity Hub for Linux (Unity provides Unity Hub for Windows and macOS, but for Linux you may need to use Unity through other methods or use Unity's containerized solutions).
+
+### 2. For Linux users, install Unity through package manager or use containerized version
+Unity does not officially support Linux editor, but you can:
+- Use Unity through a virtual machine
+- Use Unity Cloud Build
+- Use Unity through containerization (Docker)
+
+For educational purposes, you can also access Unity through Unity's web-based solutions or use the Unity Personal Edition on Windows/macOS.
+
+## ROS-Gazebo Bridge Installation
+
+### 1. Install ros_gz bridge packages
+```bash
+sudo apt update
+sudo apt install ros-humble-ros-gz
+sudo apt install ros-humble-ros-gz-bridge
+sudo apt install ros-humble-ros-gz-sim
+sudo apt install ros-humble-ros-gz-plugins
+```
+
+### 2. Verify the installation
+```bash
+# Check if ros_gz packages are available
+ros2 pkg list | grep gz
+```
+
+## Workspace Setup
+
+### 1. Create a ROS 2 workspace
+```bash
+mkdir -p ~/digital_twin_ws/src
+cd ~/digital_twin_ws
+```
+
+### 2. Build the workspace
+```bash
+colcon build
+source install/setup.bash
+```
+
+### 3. Add workspace sourcing to bashrc
+```bash
+echo "source ~/digital_twin_ws/install/setup.bash" >> ~/.bashrc
+```
+
+## Verification Steps
+
+### 1. Test ROS 2 installation
+```bash
+# Source the ROS 2 environment
+source /opt/ros/humble/setup.bash
+
+# Run a simple test
+ros2 topic list
+```
+
+### 2. Test Gazebo Garden
+```bash
+# Launch Gazebo Garden with an empty world
+gz sim
+```
+
+### 3. Test ROS-Gazebo bridge
+```bash
+# Check if the bridge package is available
+ros2 run | grep ros_gz
+```
+
+## Troubleshooting
+
+### Common Issues:
+
+1. **Package not found errors**: Make sure your apt repositories are properly configured and updated
+2. **Permission errors**: Ensure you're using sudo for system-wide installations
+3. **Environment not sourced**: Make sure to source the ROS 2 setup.bash file in each terminal or add it to your bashrc
+
+### Verification Commands:
+```bash
+# Check ROS 2 version
+ros2 --version
+
+# Check Gazebo version
+gz --version
+
+# Check available ROS packages
+ros2 pkg list | grep gz
+```
+
+## Next Steps
+
+After completing the environment setup, you should:
+1. Verify all components are working together
+2. Create a simple test robot model (URDF)
+3. Load the model in Gazebo
+4. Test the ROS-Gazebo bridge communication
+
+Continue with the next steps in the Digital Twin module to create your first humanoid robot model and test the digital twin pipeline.

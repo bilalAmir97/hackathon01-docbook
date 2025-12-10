@@ -6,13 +6,24 @@
 
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #2e8555;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
+  /* Futuristic homepage color palette */
+  --homepage-bg-dark: #0a0e27;
+  --homepage-accent-cyan: #00d9ff;
+  --homepage-text-white: #ffffff;
+  --homepage-text-gray: #8892b0;
+  --homepage-accent-green: #64ffda;
+
+  /* Specific styles for bridge word */
+  --bridge-word-color: #00d9ff;
+
+  /* Docusaurus theme colors */
+  --ifm-color-primary: #00d9ff;
+  --ifm-color-primary-dark: #00c0e6;
+  --ifm-color-primary-darker: #00b4d9;
+  --ifm-color-primary-darkest: #0096b6;
+  --ifm-color-primary-light: #1adfff;
+  --ifm-color-primary-lighter: #2ae5ff;
+  --ifm-color-primary-lightest: #5df2ff;
   --ifm-code-font-size: 95%;
 }
 

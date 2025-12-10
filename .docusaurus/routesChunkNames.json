@@ -42,17 +42,17 @@
       "plugin": "plugin---docusaurus-debug-9-d-5-200"
     }
   },
-  "/docs-3b9": {
+  "/docs-e3e": {
     "__comp": "__comp---theme-docs-root-5-e-9-0b6",
     "__context": {
       "plugin": "plugin---docsd-9-d-112"
     }
   },
-  "/docs-d8e": {
+  "/docs-1c6": {
     "__comp": "__comp---theme-doc-version-roota-7-b-5de",
     "version": "version---docs-935-398"
   },
-  "/docs-470": {
+  "/docs-7b6": {
     "__comp": "__comp---theme-doc-roota-94-67a"
   },
   "/docs/-a8c": {
@@ -110,5 +110,116 @@
   "/docs/module-01-ros2/frontmatter-template-36e": {
     "__comp": "__comp---theme-doc-item-178-a40",
     "content": "content---docs-module-01-ros-2-frontmatter-template-652-409"
+  },
+  "/docs/module-02-digital-twin-75b": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-module-02-digital-twin-1-ac-cbb"
+  },
+  "/docs/module-02-digital-twin/chapter-01-foundations/-267": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-module-02-digital-twin-chapter-01-foundations-fb-4-8a9"
+  },
+  "/docs/module-02-digital-twin/chapter-01-foundations/lesson-01-introduction-e0a": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-module-02-digital-twin-chapter-01-foundations-lesson-01-introductionf-7-f-a8c"
+  },
+  "/docs/module-02-digital-twin/chapter-01-foundations/lesson-02-ros2-integration-48e": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-module-02-digital-twin-chapter-01-foundations-lesson-02-ros-2-integration-8-f-7-c3c"
+  },
+  "/docs/module-02-digital-twin/chapter-01-foundations/lesson-03-digital-twin-concepts-216": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-module-02-digital-twin-chapter-01-foundations-lesson-03-digital-twin-concepts-458-d41"
+  },
+  "/docs/module-02-digital-twin/chapter-02-gazebo-physics/-810": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-module-02-digital-twin-chapter-02-gazebo-physics-129-d72"
+  },
+  "/docs/module-02-digital-twin/chapter-02-gazebo-physics/lesson-01-gazebo-setup-7d7": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-module-02-digital-twin-chapter-02-gazebo-physics-lesson-01-gazebo-setup-43-b-eca"
+  },
+  "/docs/module-02-digital-twin/chapter-02-gazebo-physics/lesson-02-world-creation-0ca": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-module-02-digital-twin-chapter-02-gazebo-physics-lesson-02-world-creation-154-6be"
+  },
+  "/docs/module-02-digital-twin/chapter-02-gazebo-physics/lesson-03-humanoid-interaction-c2a": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-module-02-digital-twin-chapter-02-gazebo-physics-lesson-03-humanoid-interaction-4-ef-9bd"
+  },
+  "/docs/module-02-digital-twin/chapter-03-unity-environments/-03c": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-module-02-digital-twin-chapter-03-unity-environments-caf-221"
+  },
+  "/docs/module-02-digital-twin/chapter-03-unity-environments/lesson-01-unity-scene-setup-fbf": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-module-02-digital-twin-chapter-03-unity-environments-lesson-01-unity-scene-setupa-90-171"
+  },
+  "/docs/module-02-digital-twin/chapter-03-unity-environments/lesson-02-lighting-and-rendering-3ed": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-module-02-digital-twin-chapter-03-unity-environments-lesson-02-lighting-and-rendering-528-f1f"
+  },
+  "/docs/module-02-digital-twin/chapter-03-unity-environments/lesson-03-humanoid-avatars-3a8": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-module-02-digital-twin-chapter-03-unity-environments-lesson-03-humanoid-avatars-4-c-9-3a4"
+  },
+  "/docs/module-02-digital-twin/chapter-04-simulated-sensors-6e9": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-module-02-digital-twin-chapter-04-simulated-sensors-45-d-65e"
+  },
+  "/docs/module-02-digital-twin/chapter-04-simulated-sensors/lesson-01-lidar-simulation-e1d": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-module-02-digital-twin-chapter-04-simulated-sensors-lesson-01-lidar-simulationf-62-09a"
+  },
+  "/docs/module-02-digital-twin/chapter-04-simulated-sensors/lesson-02-depth-camera-simulation-747": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-module-02-digital-twin-chapter-04-simulated-sensors-lesson-02-depth-camera-simulatione-4-e-1ea"
+  },
+  "/docs/module-02-digital-twin/chapter-04-simulated-sensors/lesson-03-imu-simulation-a77": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-module-02-digital-twin-chapter-04-simulated-sensors-lesson-03-imu-simulationfa-1-271"
+  },
+  "/docs/module-02-digital-twin/chapter-05-sim-to-real-9fd": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-module-02-digital-twin-chapter-05-sim-to-real-97-b-c72"
+  },
+  "/docs/module-02-digital-twin/chapter-05-sim-to-real/lesson-01-limitations-e73": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-module-02-digital-twin-chapter-05-sim-to-real-lesson-01-limitations-250-63a"
+  },
+  "/docs/module-02-digital-twin/chapter-05-sim-to-real/lesson-02-transfer-considerations-b41": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-module-02-digital-twin-chapter-05-sim-to-real-lesson-02-transfer-considerations-04-e-c79"
+  },
+  "/docs/module-02-digital-twin/chapter-05-sim-to-real/lesson-03-best-practices-fd7": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-module-02-digital-twin-chapter-05-sim-to-real-lesson-03-best-practices-53-f-733"
+  },
+  "/docs/module-02-digital-twin/setup/-8cc": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-module-02-digital-twin-setup-cf-6-68f"
+  },
+  "/docs/module-02-digital-twin/setup/basic-humanoid-urdf-829": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-module-02-digital-twin-setup-basic-humanoid-urdf-782-caa"
+  },
+  "/docs/module-02-digital-twin/setup/environment-setup-f55": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-module-02-digital-twin-setup-environment-setupb-58-27b"
+  },
+  "/docs/module-02-digital-twin/setup/ros-gz-bridge-setup-b07": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-module-02-digital-twin-setup-ros-gz-bridge-setup-44-d-617"
+  },
+  "/docs/module-02-digital-twin/setup/version-control-setup-58c": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-module-02-digital-twin-setup-version-control-setup-8-a-4-71c"
+  },
+  "/-68e": {
+    "__comp": "__comp---site-src-pages-index-jsc-4-f-f99",
+    "__context": {
+      "plugin": "plugin---3-b-1-b75"
+    },
+    "config": "config---5-e-9-4f3"
   }
 }

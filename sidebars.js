@@ -46,6 +46,74 @@ const sidebars = {
         },
       ],
     },
+    {
+      type: 'category',
+      label: 'Module 2: The Digital Twin (Gazebo & Unity)',
+      items: [
+        'module-02-digital-twin/index',
+        {
+          type: 'category',
+          label: 'Setup Guide',
+          items: [
+            'module-02-digital-twin/setup/index',
+            'module-02-digital-twin/setup/environment-setup',
+            'module-02-digital-twin/setup/ros-gz-bridge-setup',
+            'module-02-digital-twin/setup/basic-humanoid-urdf',
+            'module-02-digital-twin/setup/version-control-setup'
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Chapter 1: Foundations',
+          items: [
+            'module-02-digital-twin/chapter-01-foundations/index',
+            'module-02-digital-twin/chapter-01-foundations/lesson-01-introduction',
+            'module-02-digital-twin/chapter-01-foundations/lesson-02-ros2-integration',
+            'module-02-digital-twin/chapter-01-foundations/lesson-03-digital-twin-concepts'
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Chapter 2: Gazebo Physics',
+          items: [
+            'module-02-digital-twin/chapter-02-gazebo-physics/index',
+            'module-02-digital-twin/chapter-02-gazebo-physics/lesson-01-gazebo-setup',
+            'module-02-digital-twin/chapter-02-gazebo-physics/lesson-02-world-creation',
+            'module-02-digital-twin/chapter-02-gazebo-physics/lesson-03-humanoid-interaction'
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Chapter 3: Unity Environments',
+          items: [
+            'module-02-digital-twin/chapter-03-unity-environments/index',
+            'module-02-digital-twin/chapter-03-unity-environments/lesson-01-unity-scene-setup',
+            'module-02-digital-twin/chapter-03-unity-environments/lesson-02-lighting-and-rendering',
+            'module-02-digital-twin/chapter-03-unity-environments/lesson-03-humanoid-avatars'
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Chapter 4: Simulated Sensors',
+          items: [
+            'module-02-digital-twin/chapter-04-simulated-sensors/index',
+            'module-02-digital-twin/chapter-04-simulated-sensors/lesson-01-lidar-simulation',
+            'module-02-digital-twin/chapter-04-simulated-sensors/lesson-02-depth-camera-simulation',
+            'module-02-digital-twin/chapter-04-simulated-sensors/lesson-03-imu-simulation'
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Chapter 5: Bridging Sim to Real',
+          items: [
+            'module-02-digital-twin/chapter-05-sim-to-real/index',
+            'module-02-digital-twin/chapter-05-sim-to-real/lesson-01-limitations',
+            'module-02-digital-twin/chapter-05-sim-to-real/lesson-02-transfer-considerations',
+            'module-02-digital-twin/chapter-05-sim-to-real/lesson-03-best-practices'
+          ],
+        },
+      ],
+    },
   ],
 };
 

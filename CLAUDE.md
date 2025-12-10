@@ -208,3 +208,10 @@ Wait for consent; never auto-create ADRs. Group related decisions (stacks, authe
 
 ## Code Standards
 See `.specify/memory/constitution.md` for code quality, testing, performance, security, and architecture principles.
+
+## Active Technologies
+- Python 3.11, C++ for Gazebo plugins, C# for Unity scripts + ROS 2 Humble, Gazebo Garden (Ignition), Unity 2022.3 LTS, Docusaurus (002-module-02)
+- File-based (URDF models, SDF worlds, Unity scenes) (002-module-02)
+
+## Recent Changes
+- 002-module-02: Added Python 3.11, C++ for Gazebo plugins, C# for Unity scripts + ROS 2 Humble, Gazebo Garden (Ignition), Unity 2022.3 LTS, Docusaurus

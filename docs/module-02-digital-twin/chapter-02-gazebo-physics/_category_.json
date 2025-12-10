@@ -1,0 +1,8 @@
+{
+  "label": "Chapter 2: Gazebo Physics",
+  "position": 2,
+  "link": {
+    "type": "generated-index",
+    "description": "Physics simulation in Gazebo for humanoid robotics"
+  }
+}

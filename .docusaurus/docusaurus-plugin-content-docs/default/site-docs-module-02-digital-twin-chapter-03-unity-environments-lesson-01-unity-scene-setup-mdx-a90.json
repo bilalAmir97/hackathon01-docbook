@@ -1,0 +1,27 @@
+{
+  "id": "module-02-digital-twin/chapter-03-unity-environments/lesson-01-unity-scene-setup",
+  "title": "Lesson 1: Unity Scene Setup for Robotics",
+  "description": "Configuring Unity scenes with lighting and camera systems for robot visualization",
+  "source": "@site/docs/module-02-digital-twin/chapter-03-unity-environments/lesson-01-unity-scene-setup.mdx",
+  "sourceDirName": "module-02-digital-twin/chapter-03-unity-environments",
+  "slug": "/module-02-digital-twin/chapter-03-unity-environments/lesson-01-unity-scene-setup",
+  "permalink": "/docs/module-02-digital-twin/chapter-03-unity-environments/lesson-01-unity-scene-setup",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/module-02-digital-twin/chapter-03-unity-environments/lesson-01-unity-scene-setup.mdx",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "sidebar_label": "Lesson 1: Unity Scene Setup for Robotics",
+    "description": "Configuring Unity scenes with lighting and camera systems for robot visualization"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Chapter 3: Unity Environments",
+    "permalink": "/docs/module-02-digital-twin/chapter-03-unity-environments/"
+  },
+  "next": {
+    "title": "Lesson 2: Lighting and Rendering for Robot Evaluation",
+    "permalink": "/docs/module-02-digital-twin/chapter-03-unity-environments/lesson-02-lighting-and-rendering"
+  }
+}

@@ -1,0 +1,333 @@
+---
+title: Depth Camera Simulation in Gazebo Garden
+description: Learn how to implement and configure depth cameras in Gazebo Garden for 3D perception in humanoid robotics
+sidebar_position: 2
+---
+
+# Depth Camera Simulation in Gazebo Garden
+
+## Introduction to Depth Cameras in Robotics
+
+Depth cameras are essential sensors in humanoid robotics that provide both visual imagery and depth information for each pixel. These sensors enable robots to perceive their environment in 3D, allowing for object recognition, scene understanding, and spatial reasoning capabilities.
+
+## Depth Camera Simulation in Gazebo Garden
+
+Gazebo Garden provides realistic depth camera simulation through its sensor plugins. The simulated depth camera produces:
+- RGB color images
+- Depth maps with distance information
+- Point cloud data
+- Realistic noise and distortion characteristics
+
+## Configuring Depth Camera in URDF/SDF
+
+To add a depth camera sensor to your humanoid robot model, you'll need to define it in your URDF file. Here's an example configuration:
+
+```xml
+<!-- Depth camera sensor definition -->
+<gazebo reference="camera_link">
+  <sensor name="depth_camera" type="depth">
+    <update_rate>30</update_rate>
+    <camera name="head">
+      <horizontal_fov>1.047</horizontal_fov> <!-- 60 degrees in radians -->
+      <image>
+        <width>640</width>
+        <height>480</height>
+        <format>R8G8B8</format>
+      </image>
+      <clip>
+        <near>0.1</near>
+        <far>10.0</far>
+      </clip>
+      <noise>
+        <type>gaussian</type>
+        <mean>0.0</mean>
+        <stddev>0.007</stddev>
+      </noise>
+    </camera>
+    <plugin name="camera_controller" filename="libgazebo_ros_openni_kinect.so">
+      <always_on>true</always_on>
+      <update_rate>30</update_rate>
+      <camera_name>humanoid_robot/camera</camera_name>
+      <image_topic_name>image_raw</image_topic_name>
+      <depth_image_topic_name>depth/image_raw</depth_image_topic_name>
+      <point_cloud_topic_name>depth/points</point_cloud_topic_name>
+      <camera_info_topic_name>camera_info</camera_info_topic_name>
+      <frame_name>camera_link</frame_name>
+      <baseline>0.1</baseline>
+      <distortion_k1>0.0</distortion_k1>
+      <distortion_k2>0.0</distortion_k2>
+      <distortion_k3>0.0</distortion_k3>
+      <distortion_t1>0.0</distortion_t1>
+      <distortion_t2>0.0</distortion_t2>
+      <point_cloud_cutoff>0.1</point_cloud_cutoff>
+      <point_cloud_cutoff_max>3.0</point_cloud_cutoff_max>
+      <Cx_prime>0</Cx_prime>
+      <Cx>320.5</Cx>
+      <Cy>240.5</Cy>
+      <focal_length>320.0</focal_length>
+      <hack_baseline>0.0718</hack_baseline>
+    </plugin>
+  </sensor>
+</gazebo>
+```
+
+## ROS 2 Integration
+
+The depth camera sensor publishes multiple data streams to ROS 2 topics:
+- `/humanoid_robot/camera/image_raw`: RGB image data
+- `/humanoid_robot/camera/depth/image_raw`: Depth map data
+- `/humanoid_robot/camera/depth/points`: Point cloud data
+- `/humanoid_robot/camera/camera_info`: Camera calibration information
+
+To visualize the depth camera data in ROS 2:
+
+```bash
+# View RGB image
+ros2 run image_view image_view --ros-args --remap image:=/humanoid_robot/camera/image_raw
+
+# View depth image
+ros2 run image_view image_view --ros-args --remap image:=/humanoid_robot/camera/depth/image_raw
+
+# View point cloud in RViz2
+rviz2
+```
+
+## Practical Exercise: Adding Depth Camera to Your Robot
+
+1. Add the depth camera sensor definition to your humanoid robot's URDF file
+2. Position the camera appropriately on the robot (typically on the head)
+3. Launch your simulation with `gz sim -r your_world.sdf`
+4. Verify the sensor is publishing data with `ros2 topic list`
+5. Visualize the RGB and depth data in RViz2 by adding Image and PointCloud2 displays
+
+## Key Parameters to Consider
+
+- **Resolution**: Higher resolution provides more detailed data but increases computational load
+- **Frame Rate**: Affects real-time processing capabilities
+- **Field of View**: Determines the sensor's coverage area
+- **Range**: Minimum and maximum detection distances
+- **Noise**: Realistic noise modeling for sim-to-real transfer
+
+## Working with Point Cloud Data
+
+Depth cameras generate point cloud data that can be used for 3D scene understanding. In ROS 2, point clouds are typically processed using the `sensor_msgs/PointCloud2` message type and libraries like PCL (Point Cloud Library).
+
+Example code to process point cloud data:
+
+```cpp
+#include <pcl_conversions/pcl_conversions.h>
+#include <pcl/point_cloud.h>
+#include <pcl/point_types.h>
+
+void pointCloudCallback(const sensor_msgs::msg::PointCloud2::SharedPtr msg)
+{
+  pcl::PCLPointCloud2 pcl_pc2;
+  pcl_conversions::toPCL(*msg, pcl_pc2);
+  pcl::PointCloud<pcl::PointXYZ>::Ptr temp_cloud(new pcl::PointCloud<pcl::PointXYZ>);
+  pcl::fromPCLPointCloud2(pcl_pc2, *temp_cloud);
+
+  // Process the point cloud data here
+}
+```
+
+## Next Steps
+
+After implementing your depth camera sensor, you'll need to:
+1. Test the sensor in various lighting conditions
+2. Validate the depth accuracy
+3. Integrate the sensor data into your robot's perception pipeline
+4. Move on to implementing IMU sensors for complete perception capabilities
+
+## Unity Visualization for Depth Camera Data
+
+To visualize depth camera data in Unity, you'll need to create a script that receives the RGB and depth images from ROS 2 and renders them appropriately. Here's an example C# script:
+
+```csharp
+using System;
+using System.Collections;
+using UnityEngine;
+using Ros2ForUnity.Messages.Sensor;
+using Ros2ForUnity.Messages.Std;
+
+public class DepthCameraVisualizer : MonoBehaviour
+{
+    [Header("Visualization Settings")]
+    public Material depthMaterial;
+    public Renderer imageRenderer;
+    public GameObject pointCloudObject;
+    public float pointCloudScale = 0.01f;
+
+    [Header("ROS 2 Settings")]
+    public string rgbTopic = "/humanoid_robot/camera/image_raw";
+    public string depthTopic = "/humanoid_robot/camera/depth/image_raw";
+    public string pointCloudTopic = "/humanoid_robot/camera/depth/points";
+
+    private Texture2D rgbTexture;
+    private Texture2D depthTexture;
+    private Color32[] rgbColors;
+    private float[] depthValues;
+    private bool newRgbData = false;
+    private bool newDepthData = false;
+
+    void Start()
+    {
+        // Initialize materials and textures if not set in inspector
+        if (imageRenderer == null)
+        {
+            imageRenderer = GetComponent<Renderer>();
+        }
+
+        if (depthMaterial == null)
+        {
+            depthMaterial = new Material(Shader.Find("Standard"));
+        }
+    }
+
+    void Update()
+    {
+        if (newRgbData || newDepthData)
+        {
+            UpdateVisualizations();
+            newRgbData = false;
+            newDepthData = false;
+        }
+    }
+
+    public void OnRgbImageReceived(ImageMsg msg)
+    {
+        // Create or resize texture based on image dimensions
+        if (rgbTexture == null || rgbTexture.width != msg.width || rgbTexture.height != msg.height)
+        {
+            rgbTexture = new Texture2D(msg.width, msg.height, TextureFormat.RGB24, false);
+        }
+
+        // Convert ROS image data to Unity Color32 array
+        if (msg.encoding == "rgb8" || msg.encoding == "bgr8")
+        {
+            rgbColors = new Color32[msg.data.Length / 3];
+            for (int i = 0; i < rgbColors.Length; i++)
+            {
+                if (msg.encoding == "rgb8")
+                {
+                    rgbColors[i] = new Color32(
+                        msg.data[i * 3],
+                        msg.data[i * 3 + 1],
+                        msg.data[i * 3 + 2],
+                        255
+                    );
+                }
+                else if (msg.encoding == "bgr8") // BGR to RGB conversion
+                {
+                    rgbColors[i] = new Color32(
+                        msg.data[i * 3 + 2],
+                        msg.data[i * 3 + 1],
+                        msg.data[i * 3],
+                        255
+                    );
+                }
+            }
+        }
+
+        rgbTexture.SetPixels32(rgbColors);
+        rgbTexture.Apply();
+        imageRenderer.material.mainTexture = rgbTexture;
+
+        newRgbData = true;
+    }
+
+    public void OnDepthImageReceived(ImageMsg msg)
+    {
+        // Create or resize texture based on image dimensions
+        if (depthTexture == null || depthTexture.width != msg.width || depthTexture.height != msg.height)
+        {
+            depthTexture = new Texture2D(msg.width, msg.height, TextureFormat.RFloat, false);
+        }
+
+        // Convert depth data (assuming 32-bit float encoding)
+        if (msg.encoding == "32FC1")
+        {
+            depthValues = new float[msg.data.Length / 4];
+            for (int i = 0; i < depthValues.Length; i++)
+            {
+                // Convert bytes to float (little-endian)
+                byte[] floatBytes = new byte[4];
+                Array.Copy(msg.data, i * 4, floatBytes, 0, 4);
+                depthValues[i] = BitConverter.ToSingle(floatBytes, 0);
+            }
+        }
+
+        // Create a grayscale representation of depth for visualization
+        Color32[] depthColors = new Color32[depthValues.Length];
+        float maxDepth = 10.0f; // Set based on your sensor's max range
+
+        for (int i = 0; i < depthColors.Length; i++)
+        {
+            float normalizedDepth = Mathf.Clamp01(depthValues[i] / maxDepth);
+            // Map depth to grayscale (white = close, black = far)
+            byte grayValue = (byte)(255 * (1.0f - normalizedDepth));
+            depthColors[i] = new Color32(grayValue, grayValue, grayValue, 255);
+        }
+
+        depthTexture.SetPixels32(depthColors);
+        depthTexture.Apply();
+
+        newDepthData = true;
+    }
+
+    private void UpdateVisualizations()
+    {
+        // Update the renderer with the new textures
+        if (rgbTexture != null)
+        {
+            imageRenderer.material.mainTexture = rgbTexture;
+        }
+    }
+
+    // Function to update point cloud visualization from PointCloud2 data
+    public void OnPointCloudReceived(PointCloud2Msg msg)
+    {
+        if (pointCloudObject == null) return;
+
+        // This is a simplified approach - in practice, you'd need to parse the PointCloud2 format
+        // which is more complex due to its flexible structure
+
+        // Extract field information (x, y, z are typically the first three fields)
+        int x_offset = -1, y_offset = -1, z_offset = -1;
+
+        for (int i = 0; i < msg.fields.Length; i++)
+        {
+            if (msg.fields[i].name == "x") x_offset = msg.fields[i].offset;
+            if (msg.fields[i].name == "y") y_offset = msg.fields[i].offset;
+            if (msg.fields[i].name == "z") z_offset = msg.fields[i].offset;
+        }
+
+        if (x_offset == -1 || y_offset == -1 || z_offset == -1) return;
+
+        // Create point cloud visualization
+        GameObject[] points = new GameObject[msg.width * msg.height];
+
+        for (int v = 0; v < msg.height; v++)
+        {
+            for (int u = 0; u < msg.width; u++)
+            {
+                int pointIndex = v * msg.row_step + u * msg.point_step;
+
+                // Extract x, y, z coordinates
+                float x = BitConverter.ToSingle(msg.data, pointIndex + x_offset);
+                float y = BitConverter.ToSingle(msg.data, pointIndex + y_offset);
+                float z = BitConverter.ToSingle(msg.data, pointIndex + z_offset);
+
+                // Create point visualization
+                GameObject point = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                point.transform.position = new Vector3(x, y, z) * pointCloudScale;
+                point.transform.SetParent(pointCloudObject.transform);
+                point.transform.localScale = Vector3.one * 0.01f;
+            }
+        }
+    }
+}
+```
+
+## Summary
+
+Depth camera simulation in Gazebo Garden provides rich 32D perception capabilities for humanoid robotics applications. By properly configuring the sensor parameters and integrating it with ROS 2, you can create a powerful perception system for object recognition, scene understanding, and spatial reasoning. The Unity visualization component allows you to display both RGB and depth data in the digital twin environment, providing comprehensive visual feedback for debugging and demonstration purposes.

@@ -78,6 +78,136 @@
             {
               "id": "module-01-ros2/frontmatter-template",
               "path": "/docs/module-01-ros2/frontmatter-template"
+            },
+            {
+              "id": "module-02-digital-twin/chapter-01-foundations/index",
+              "path": "/docs/module-02-digital-twin/chapter-01-foundations/",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "module-02-digital-twin/chapter-01-foundations/lesson-01-introduction",
+              "path": "/docs/module-02-digital-twin/chapter-01-foundations/lesson-01-introduction",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "module-02-digital-twin/chapter-01-foundations/lesson-02-ros2-integration",
+              "path": "/docs/module-02-digital-twin/chapter-01-foundations/lesson-02-ros2-integration",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "module-02-digital-twin/chapter-01-foundations/lesson-03-digital-twin-concepts",
+              "path": "/docs/module-02-digital-twin/chapter-01-foundations/lesson-03-digital-twin-concepts",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "module-02-digital-twin/chapter-02-gazebo-physics/index",
+              "path": "/docs/module-02-digital-twin/chapter-02-gazebo-physics/",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "module-02-digital-twin/chapter-02-gazebo-physics/lesson-01-gazebo-setup",
+              "path": "/docs/module-02-digital-twin/chapter-02-gazebo-physics/lesson-01-gazebo-setup",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "module-02-digital-twin/chapter-02-gazebo-physics/lesson-02-world-creation",
+              "path": "/docs/module-02-digital-twin/chapter-02-gazebo-physics/lesson-02-world-creation",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "module-02-digital-twin/chapter-02-gazebo-physics/lesson-03-humanoid-interaction",
+              "path": "/docs/module-02-digital-twin/chapter-02-gazebo-physics/lesson-03-humanoid-interaction",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "module-02-digital-twin/chapter-03-unity-environments/index",
+              "path": "/docs/module-02-digital-twin/chapter-03-unity-environments/",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "module-02-digital-twin/chapter-03-unity-environments/lesson-01-unity-scene-setup",
+              "path": "/docs/module-02-digital-twin/chapter-03-unity-environments/lesson-01-unity-scene-setup",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "module-02-digital-twin/chapter-03-unity-environments/lesson-02-lighting-and-rendering",
+              "path": "/docs/module-02-digital-twin/chapter-03-unity-environments/lesson-02-lighting-and-rendering",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "module-02-digital-twin/chapter-03-unity-environments/lesson-03-humanoid-avatars",
+              "path": "/docs/module-02-digital-twin/chapter-03-unity-environments/lesson-03-humanoid-avatars",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "module-02-digital-twin/chapter-04-simulated-sensors/index",
+              "path": "/docs/module-02-digital-twin/chapter-04-simulated-sensors",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "module-02-digital-twin/chapter-04-simulated-sensors/lesson-01-lidar-simulation",
+              "path": "/docs/module-02-digital-twin/chapter-04-simulated-sensors/lesson-01-lidar-simulation",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "module-02-digital-twin/chapter-04-simulated-sensors/lesson-02-depth-camera-simulation",
+              "path": "/docs/module-02-digital-twin/chapter-04-simulated-sensors/lesson-02-depth-camera-simulation",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "module-02-digital-twin/chapter-04-simulated-sensors/lesson-03-imu-simulation",
+              "path": "/docs/module-02-digital-twin/chapter-04-simulated-sensors/lesson-03-imu-simulation",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "module-02-digital-twin/chapter-05-sim-to-real/index",
+              "path": "/docs/module-02-digital-twin/chapter-05-sim-to-real",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "module-02-digital-twin/chapter-05-sim-to-real/lesson-01-limitations",
+              "path": "/docs/module-02-digital-twin/chapter-05-sim-to-real/lesson-01-limitations",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "module-02-digital-twin/chapter-05-sim-to-real/lesson-02-transfer-considerations",
+              "path": "/docs/module-02-digital-twin/chapter-05-sim-to-real/lesson-02-transfer-considerations",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "module-02-digital-twin/chapter-05-sim-to-real/lesson-03-best-practices",
+              "path": "/docs/module-02-digital-twin/chapter-05-sim-to-real/lesson-03-best-practices",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "module-02-digital-twin/index",
+              "path": "/docs/module-02-digital-twin",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "module-02-digital-twin/setup/basic-humanoid-urdf",
+              "path": "/docs/module-02-digital-twin/setup/basic-humanoid-urdf",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "module-02-digital-twin/setup/environment-setup",
+              "path": "/docs/module-02-digital-twin/setup/environment-setup",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "module-02-digital-twin/setup/index",
+              "path": "/docs/module-02-digital-twin/setup/",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "module-02-digital-twin/setup/ros-gz-bridge-setup",
+              "path": "/docs/module-02-digital-twin/setup/ros-gz-bridge-setup",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "module-02-digital-twin/setup/version-control-setup",
+              "path": "/docs/module-02-digital-twin/setup/version-control-setup",
+              "sidebar": "tutorialSidebar"
             }
           ],
           "draftIds": [],

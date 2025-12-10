@@ -1,0 +1,27 @@
+{
+  "id": "module-02-digital-twin/chapter-02-gazebo-physics/lesson-01-gazebo-setup",
+  "title": "Lesson 1: Setting up Gazebo for Physics Simulation",
+  "description": "Configuring Gazebo Garden for physics simulation of humanoid robots",
+  "source": "@site/docs/module-02-digital-twin/chapter-02-gazebo-physics/lesson-01-gazebo-setup.mdx",
+  "sourceDirName": "module-02-digital-twin/chapter-02-gazebo-physics",
+  "slug": "/module-02-digital-twin/chapter-02-gazebo-physics/lesson-01-gazebo-setup",
+  "permalink": "/docs/module-02-digital-twin/chapter-02-gazebo-physics/lesson-01-gazebo-setup",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/module-02-digital-twin/chapter-02-gazebo-physics/lesson-01-gazebo-setup.mdx",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "sidebar_label": "Lesson 1: Setting up Gazebo for Physics Simulation",
+    "description": "Configuring Gazebo Garden for physics simulation of humanoid robots"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Chapter 2: Gazebo Physics",
+    "permalink": "/docs/module-02-digital-twin/chapter-02-gazebo-physics/"
+  },
+  "next": {
+    "title": "Lesson 2: Creating Worlds with Gravity and Collisions",
+    "permalink": "/docs/module-02-digital-twin/chapter-02-gazebo-physics/lesson-02-world-creation"
+  }
+}

@@ -1,0 +1,227 @@
+---
+title: LiDAR Simulation in Gazebo Garden
+description: Learn how to implement and configure LiDAR sensors in Gazebo Garden for humanoid robotics simulation
+sidebar_position: 1
+---
+
+# LiDAR Simulation in Gazebo Garden
+
+## Introduction to LiDAR in Robotics
+
+LiDAR (Light Detection and Ranging) is a critical sensor technology in robotics that uses laser pulses to measure distances and create 3D maps of the environment. In humanoid robotics, LiDAR sensors provide essential perception capabilities for navigation, obstacle detection, and environment mapping.
+
+## LiDAR Simulation in Gazebo Garden
+
+Gazebo Garden provides robust LiDAR simulation capabilities through its sensor plugins. The simulated LiDAR sensor accurately replicates real-world LiDAR behavior, including:
+- Distance measurement with configurable noise parameters
+- Point cloud generation
+- Angular resolution and range limitations
+- Performance characteristics similar to physical sensors
+
+## Configuring LiDAR in URDF/SDF
+
+To add a LiDAR sensor to your humanoid robot model, you'll need to define it in your URDF file. Here's an example configuration:
+
+```xml
+<!-- LiDAR sensor definition -->
+<gazebo reference="lidar_link">
+  <sensor name="lidar_sensor" type="ray">
+    <ray>
+      <scan>
+        <horizontal>
+          <samples>360</samples>
+          <resolution>1.0</resolution>
+          <min_angle>-3.14159</min_angle>  <!-- -π radians -->
+          <max_angle>3.14159</max_angle>    <!-- π radians -->
+        </horizontal>
+      </scan>
+      <range>
+        <min>0.1</min>
+        <max>10.0</max>
+        <resolution>0.01</resolution>
+      </range>
+    </ray>
+    <plugin name="lidar_controller" filename="libgazebo_ros_ray_sensor.so">
+      <ros>
+        <namespace>/humanoid_robot</namespace>
+        <remapping>~/out:=scan</remapping>
+      </ros>
+      <output_type>sensor_msgs/LaserScan</output_type>
+      <frame_name>lidar_link</frame_name>
+    </plugin>
+  </sensor>
+</gazebo>
+```
+
+## ROS 2 Integration
+
+The LiDAR sensor publishes data to a ROS 2 topic that can be consumed by your robot's perception stack. By default, the sensor publishes to the `/scan` topic with the `sensor_msgs/LaserScan` message type.
+
+To visualize the LiDAR data in ROS 2, you can use:
+
+```bash
+# View LiDAR data in the terminal
+ros2 topic echo /humanoid_robot/scan
+
+# Visualize in RViz2
+rviz2
+```
+
+## Practical Exercise: Adding LiDAR to Your Robot
+
+1. Add the LiDAR sensor definition to your humanoid robot's URDF file
+2. Position the sensor appropriately on the robot (typically on the head or torso)
+3. Launch your simulation with `gz sim -r your_world.sdf`
+4. Verify the sensor is publishing data with `ros2 topic list` and `ros2 topic echo /humanoid_robot/scan`
+5. Visualize the data in RViz2 by adding a LaserScan display
+
+## Key Parameters to Consider
+
+- **Resolution**: Higher resolution provides more detailed data but increases computational load
+- **Range**: Maximum detection distance affects planning and navigation capabilities
+- **Update Rate**: Frequency of sensor readings affects real-time performance
+- **Noise**: Realistic noise modeling improves sim-to-real transfer
+
+## Next Steps
+
+After implementing your LiDAR sensor, you'll need to:
+1. Test the sensor in various environments
+2. Validate the sensor data quality
+3. Integrate the sensor data into your robot's perception pipeline
+4. Move on to implementing other sensor types like depth cameras and IMUs
+
+## Unity Visualization for LiDAR Data
+
+To visualize LiDAR data in Unity, you'll need to create a script that receives the point cloud data from ROS 2 and renders it as a point cloud in the Unity environment. Here's an example C# script:
+
+```csharp
+using System.Collections.Generic;
+using UnityEngine;
+using Ros2ForUnity.Messages.Sensor;
+
+public class LidarPointCloudVisualizer : MonoBehaviour
+{
+    [Header("Visualization Settings")]
+    public float pointSize = 0.05f;
+    public Color pointColor = Color.red;
+    public GameObject pointPrefab;
+
+    [Header("ROS 2 Settings")]
+    public string lidarTopic = "/humanoid_robot/scan";
+
+    private GameObject[] pointCloudObjects;
+    private LaserScanMsg lastLaserScan;
+    private bool newDataAvailable = false;
+
+    void Start()
+    {
+        // Initialize point cloud objects if using game objects
+        if (pointPrefab == null)
+        {
+            CreateDefaultPointPrefab();
+        }
+    }
+
+    void Update()
+    {
+        if (newDataAvailable)
+        {
+            UpdatePointCloudVisualization();
+            newDataAvailable = false;
+        }
+    }
+
+    public void OnLaserScanReceived(LaserScanMsg msg)
+    {
+        lastLaserScan = msg;
+        newDataAvailable = true;
+    }
+
+    private void UpdatePointCloudVisualization()
+    {
+        if (lastLaserScan == null) return;
+
+        // Calculate number of valid points
+        int validPoints = 0;
+        for (int i = 0; i < lastLaserScan.ranges.Length; i++)
+        {
+            if (!float.IsNaN(lastLaserScan.ranges[i]) &&
+                lastLaserScan.ranges[i] >= lastLaserScan.range_min &&
+                lastLaserScan.ranges[i] <= lastLaserScan.range_max)
+            {
+                validPoints++;
+            }
+        }
+
+        // Resize point cloud objects array if needed
+        if (pointCloudObjects == null || pointCloudObjects.Length != validPoints)
+        {
+            // Destroy old objects
+            if (pointCloudObjects != null)
+            {
+                foreach (GameObject obj in pointCloudObjects)
+                {
+                    if (obj != null) Destroy(obj);
+                }
+            }
+
+            pointCloudObjects = new GameObject[validPoints];
+        }
+
+        // Create or update point cloud visualization
+        int pointIndex = 0;
+        float angle = lastLaserScan.angle_min;
+
+        for (int i = 0; i < lastLaserScan.ranges.Length; i++)
+        {
+            float range = lastLaserScan.ranges[i];
+
+            if (!float.IsNaN(range) &&
+                range >= lastLaserScan.range_min &&
+                range <= lastLaserScan.range_max)
+            {
+                Vector3 pointPosition = new Vector3(
+                    range * Mathf.Cos(angle),
+                    0f, // Height - adjust as needed
+                    range * Mathf.Sin(angle)
+                );
+
+                if (pointIndex < pointCloudObjects.Length)
+                {
+                    if (pointCloudObjects[pointIndex] == null)
+                    {
+                        pointCloudObjects[pointIndex] = Instantiate(pointPrefab,
+                            transform.position + pointPosition,
+                            Quaternion.identity);
+                        pointCloudObjects[pointIndex].transform.SetParent(transform);
+                    }
+                    else
+                    {
+                        pointCloudObjects[pointIndex].transform.position =
+                            transform.position + pointPosition;
+                    }
+
+                    pointCloudObjects[pointIndex].GetComponent<Renderer>().material.color = pointColor;
+                }
+
+                pointIndex++;
+            }
+
+            angle += lastLaserScan.angle_increment;
+        }
+    }
+
+    private void CreateDefaultPointPrefab()
+    {
+        // Create a simple sphere as the point prefab
+        pointPrefab = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+        pointPrefab.GetComponent<Renderer>().material = new Material(Shader.Find("Standard"));
+        pointPrefab.transform.localScale = Vector3.one * pointSize;
+        pointPrefab.SetActive(false); // Deactivate to hide from scene
+    }
+}
+```
+
+## Summary
+
+LiDAR simulation in Gazebo Garden provides a realistic and configurable sensor for humanoid robotics applications. By properly configuring the sensor parameters and integrating it with ROS 2, you can create a robust perception system for your robot's navigation and mapping tasks. The Unity visualization component allows you to display the LiDAR data in the digital twin environment, providing real-time feedback for debugging and demonstration purposes.

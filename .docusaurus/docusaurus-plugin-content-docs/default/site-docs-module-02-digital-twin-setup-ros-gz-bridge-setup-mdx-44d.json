@@ -1,0 +1,24 @@
+{
+  "id": "module-02-digital-twin/setup/ros-gz-bridge-setup",
+  "title": "ROS-Gazebo Bridge Setup and Verification",
+  "description": "This document provides instructions for installing and verifying the ros_gz bridge packages for Gazebo integration in the Digital Twin module.",
+  "source": "@site/docs/module-02-digital-twin/setup/ros-gz-bridge-setup.mdx",
+  "sourceDirName": "module-02-digital-twin/setup",
+  "slug": "/module-02-digital-twin/setup/ros-gz-bridge-setup",
+  "permalink": "/docs/module-02-digital-twin/setup/ros-gz-bridge-setup",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/module-02-digital-twin/setup/ros-gz-bridge-setup.mdx",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Development Environment Setup",
+    "permalink": "/docs/module-02-digital-twin/setup/environment-setup"
+  },
+  "next": {
+    "title": "Basic Humanoid Robot URDF Model",
+    "permalink": "/docs/module-02-digital-twin/setup/basic-humanoid-urdf"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "label": "Setup Guide",
+  "position": 0,
+  "link": {
+    "type": "generated-index",
+    "title": "Digital Twin Module Setup Guide",
+    "description": "Complete setup guide for the Digital Twin module including environment configuration, bridge setup, and asset management",
+    "slug": "/module-02-digital-twin/setup"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "id": "module-02-digital-twin/chapter-01-foundations/lesson-01-introduction",
+  "title": "Lesson 1: Introduction to Digital Twin Concepts",
+  "description": "Understanding the fundamental concepts of digital twins in robotics and simulation",
+  "source": "@site/docs/module-02-digital-twin/chapter-01-foundations/lesson-01-introduction.mdx",
+  "sourceDirName": "module-02-digital-twin/chapter-01-foundations",
+  "slug": "/module-02-digital-twin/chapter-01-foundations/lesson-01-introduction",
+  "permalink": "/docs/module-02-digital-twin/chapter-01-foundations/lesson-01-introduction",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/module-02-digital-twin/chapter-01-foundations/lesson-01-introduction.mdx",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "sidebar_label": "Lesson 1: Introduction to Digital Twin Concepts",
+    "description": "Understanding the fundamental concepts of digital twins in robotics and simulation"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Chapter 1: Foundations",
+    "permalink": "/docs/module-02-digital-twin/chapter-01-foundations/"
+  },
+  "next": {
+    "title": "Lesson 2: ROS 2 Integration for Digital Twins",
+    "permalink": "/docs/module-02-digital-twin/chapter-01-foundations/lesson-02-ros2-integration"
+  }
+}

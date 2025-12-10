@@ -1,0 +1,23 @@
+---
+sidebar_label: 'Lesson 3: Establishing the Digital Twin Pipeline'
+description: 'Creating the foundational pipeline that connects Gazebo and Unity environments'
+---
+
+# Lesson 3: Establishing the Digital Twin Pipeline
+
+The digital twin pipeline is the core infrastructure that enables real-time synchronization between Gazebo simulation and Unity visualization environments.
+
+## Pipeline Components
+
+The digital twin pipeline consists of:
+- Data publishers in Gazebo environment
+- ROS 2 bridge for message transmission
+- Data subscribers in Unity environment
+- Synchronization validation mechanisms
+
+## Coordinate System Mapping
+
+Proper coordinate system mapping is essential:
+- Gazebo uses a right-handed coordinate system (X forward, Y left, Z up)
+- Unity uses a left-handed coordinate system (X right, Y up, Z forward)
+- Transformations must account for these differences

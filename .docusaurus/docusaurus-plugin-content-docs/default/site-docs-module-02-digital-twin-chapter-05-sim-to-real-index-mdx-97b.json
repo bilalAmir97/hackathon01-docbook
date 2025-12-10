@@ -1,0 +1,28 @@
+{
+  "id": "module-02-digital-twin/chapter-05-sim-to-real/index",
+  "title": "Chapter 5 - Bridging Sim to Real",
+  "description": "Understanding the challenges and best practices for transferring robotic systems from simulation to real-world deployment",
+  "source": "@site/docs/module-02-digital-twin/chapter-05-sim-to-real/index.mdx",
+  "sourceDirName": "module-02-digital-twin/chapter-05-sim-to-real",
+  "slug": "/module-02-digital-twin/chapter-05-sim-to-real",
+  "permalink": "/docs/module-02-digital-twin/chapter-05-sim-to-real",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/module-02-digital-twin/chapter-05-sim-to-real/index.mdx",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "Chapter 5 - Bridging Sim to Real",
+    "description": "Understanding the challenges and best practices for transferring robotic systems from simulation to real-world deployment",
+    "slug": "/module-02-digital-twin/chapter-05-sim-to-real"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "IMU Simulation in Gazebo Garden",
+    "permalink": "/docs/module-02-digital-twin/chapter-04-simulated-sensors/lesson-03-imu-simulation"
+  },
+  "next": {
+    "title": "Chapter 5 Lesson 1 - Limitations of Simulation",
+    "permalink": "/docs/module-02-digital-twin/chapter-05-sim-to-real/lesson-01-limitations"
+  }
+}

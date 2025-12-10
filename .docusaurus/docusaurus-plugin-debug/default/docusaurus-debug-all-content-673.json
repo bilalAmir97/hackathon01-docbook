@@ -383,6 +383,10 @@
               "previous": {
                 "title": "Building Production-Ready ROS 2 Systems",
                 "permalink": "/docs/module-01-ros2/chapter-04/lesson-02-building-production-ready-ros2-systems"
+              },
+              "next": {
+                "title": "Module 2 - The Digital Twin (Gazebo & Unity)",
+                "permalink": "/docs/module-02-digital-twin"
               }
             },
             {
@@ -403,6 +407,708 @@
                 "title": "Lesson Title",
                 "description": "Brief description of what this lesson covers (under 160 characters)",
                 "sidebar_position": 1
+              }
+            },
+            {
+              "id": "module-02-digital-twin/chapter-01-foundations/index",
+              "title": "Chapter 1: Foundations",
+              "description": "This chapter covers the foundational concepts for creating a digital twin with Gazebo and Unity.",
+              "source": "@site/docs/module-02-digital-twin/chapter-01-foundations/index.mdx",
+              "sourceDirName": "module-02-digital-twin/chapter-01-foundations",
+              "slug": "/module-02-digital-twin/chapter-01-foundations/",
+              "permalink": "/docs/module-02-digital-twin/chapter-01-foundations/",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/module-02-digital-twin/chapter-01-foundations/index.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "sidebar_label": "Chapter 1: Foundations"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Version Control Setup for Simulation Assets",
+                "permalink": "/docs/module-02-digital-twin/setup/version-control-setup"
+              },
+              "next": {
+                "title": "Lesson 1: Introduction to Digital Twin Concepts",
+                "permalink": "/docs/module-02-digital-twin/chapter-01-foundations/lesson-01-introduction"
+              }
+            },
+            {
+              "id": "module-02-digital-twin/chapter-01-foundations/lesson-01-introduction",
+              "title": "Lesson 1: Introduction to Digital Twin Concepts",
+              "description": "Understanding the fundamental concepts of digital twins in robotics and simulation",
+              "source": "@site/docs/module-02-digital-twin/chapter-01-foundations/lesson-01-introduction.mdx",
+              "sourceDirName": "module-02-digital-twin/chapter-01-foundations",
+              "slug": "/module-02-digital-twin/chapter-01-foundations/lesson-01-introduction",
+              "permalink": "/docs/module-02-digital-twin/chapter-01-foundations/lesson-01-introduction",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/module-02-digital-twin/chapter-01-foundations/lesson-01-introduction.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "sidebar_label": "Lesson 1: Introduction to Digital Twin Concepts",
+                "description": "Understanding the fundamental concepts of digital twins in robotics and simulation"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Chapter 1: Foundations",
+                "permalink": "/docs/module-02-digital-twin/chapter-01-foundations/"
+              },
+              "next": {
+                "title": "Lesson 2: ROS 2 Integration for Digital Twins",
+                "permalink": "/docs/module-02-digital-twin/chapter-01-foundations/lesson-02-ros2-integration"
+              }
+            },
+            {
+              "id": "module-02-digital-twin/chapter-01-foundations/lesson-02-ros2-integration",
+              "title": "Lesson 2: ROS 2 Integration for Digital Twins",
+              "description": "Understanding how ROS 2 enables communication between simulation and real systems",
+              "source": "@site/docs/module-02-digital-twin/chapter-01-foundations/lesson-02-ros2-integration.mdx",
+              "sourceDirName": "module-02-digital-twin/chapter-01-foundations",
+              "slug": "/module-02-digital-twin/chapter-01-foundations/lesson-02-ros2-integration",
+              "permalink": "/docs/module-02-digital-twin/chapter-01-foundations/lesson-02-ros2-integration",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/module-02-digital-twin/chapter-01-foundations/lesson-02-ros2-integration.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "sidebar_label": "Lesson 2: ROS 2 Integration for Digital Twins",
+                "description": "Understanding how ROS 2 enables communication between simulation and real systems"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Lesson 1: Introduction to Digital Twin Concepts",
+                "permalink": "/docs/module-02-digital-twin/chapter-01-foundations/lesson-01-introduction"
+              },
+              "next": {
+                "title": "Lesson 3: Establishing the Digital Twin Pipeline",
+                "permalink": "/docs/module-02-digital-twin/chapter-01-foundations/lesson-03-digital-twin-concepts"
+              }
+            },
+            {
+              "id": "module-02-digital-twin/chapter-01-foundations/lesson-03-digital-twin-concepts",
+              "title": "Lesson 3: Establishing the Digital Twin Pipeline",
+              "description": "Creating the foundational pipeline that connects Gazebo and Unity environments",
+              "source": "@site/docs/module-02-digital-twin/chapter-01-foundations/lesson-03-digital-twin-concepts.mdx",
+              "sourceDirName": "module-02-digital-twin/chapter-01-foundations",
+              "slug": "/module-02-digital-twin/chapter-01-foundations/lesson-03-digital-twin-concepts",
+              "permalink": "/docs/module-02-digital-twin/chapter-01-foundations/lesson-03-digital-twin-concepts",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/module-02-digital-twin/chapter-01-foundations/lesson-03-digital-twin-concepts.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "sidebar_label": "Lesson 3: Establishing the Digital Twin Pipeline",
+                "description": "Creating the foundational pipeline that connects Gazebo and Unity environments"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Lesson 2: ROS 2 Integration for Digital Twins",
+                "permalink": "/docs/module-02-digital-twin/chapter-01-foundations/lesson-02-ros2-integration"
+              },
+              "next": {
+                "title": "Chapter 2: Gazebo Physics",
+                "permalink": "/docs/module-02-digital-twin/chapter-02-gazebo-physics/"
+              }
+            },
+            {
+              "id": "module-02-digital-twin/chapter-02-gazebo-physics/index",
+              "title": "Chapter 2: Gazebo Physics",
+              "description": "This chapter covers the physics simulation capabilities in Gazebo for humanoid robotics.",
+              "source": "@site/docs/module-02-digital-twin/chapter-02-gazebo-physics/index.mdx",
+              "sourceDirName": "module-02-digital-twin/chapter-02-gazebo-physics",
+              "slug": "/module-02-digital-twin/chapter-02-gazebo-physics/",
+              "permalink": "/docs/module-02-digital-twin/chapter-02-gazebo-physics/",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/module-02-digital-twin/chapter-02-gazebo-physics/index.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "sidebar_label": "Chapter 2: Gazebo Physics"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Lesson 3: Establishing the Digital Twin Pipeline",
+                "permalink": "/docs/module-02-digital-twin/chapter-01-foundations/lesson-03-digital-twin-concepts"
+              },
+              "next": {
+                "title": "Lesson 1: Setting up Gazebo for Physics Simulation",
+                "permalink": "/docs/module-02-digital-twin/chapter-02-gazebo-physics/lesson-01-gazebo-setup"
+              }
+            },
+            {
+              "id": "module-02-digital-twin/chapter-02-gazebo-physics/lesson-01-gazebo-setup",
+              "title": "Lesson 1: Setting up Gazebo for Physics Simulation",
+              "description": "Configuring Gazebo Garden for physics simulation of humanoid robots",
+              "source": "@site/docs/module-02-digital-twin/chapter-02-gazebo-physics/lesson-01-gazebo-setup.mdx",
+              "sourceDirName": "module-02-digital-twin/chapter-02-gazebo-physics",
+              "slug": "/module-02-digital-twin/chapter-02-gazebo-physics/lesson-01-gazebo-setup",
+              "permalink": "/docs/module-02-digital-twin/chapter-02-gazebo-physics/lesson-01-gazebo-setup",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/module-02-digital-twin/chapter-02-gazebo-physics/lesson-01-gazebo-setup.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "sidebar_label": "Lesson 1: Setting up Gazebo for Physics Simulation",
+                "description": "Configuring Gazebo Garden for physics simulation of humanoid robots"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Chapter 2: Gazebo Physics",
+                "permalink": "/docs/module-02-digital-twin/chapter-02-gazebo-physics/"
+              },
+              "next": {
+                "title": "Lesson 2: Creating Worlds with Gravity and Collisions",
+                "permalink": "/docs/module-02-digital-twin/chapter-02-gazebo-physics/lesson-02-world-creation"
+              }
+            },
+            {
+              "id": "module-02-digital-twin/chapter-02-gazebo-physics/lesson-02-world-creation",
+              "title": "Lesson 2: Creating Worlds with Gravity and Collisions",
+              "description": "Building Gazebo worlds with configurable physics parameters",
+              "source": "@site/docs/module-02-digital-twin/chapter-02-gazebo-physics/lesson-02-world-creation.mdx",
+              "sourceDirName": "module-02-digital-twin/chapter-02-gazebo-physics",
+              "slug": "/module-02-digital-twin/chapter-02-gazebo-physics/lesson-02-world-creation",
+              "permalink": "/docs/module-02-digital-twin/chapter-02-gazebo-physics/lesson-02-world-creation",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/module-02-digital-twin/chapter-02-gazebo-physics/lesson-02-world-creation.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "sidebar_label": "Lesson 2: Creating Worlds with Gravity and Collisions",
+                "description": "Building Gazebo worlds with configurable physics parameters"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Lesson 1: Setting up Gazebo for Physics Simulation",
+                "permalink": "/docs/module-02-digital-twin/chapter-02-gazebo-physics/lesson-01-gazebo-setup"
+              },
+              "next": {
+                "title": "Lesson 3: Humanoid-Environment Interaction",
+                "permalink": "/docs/module-02-digital-twin/chapter-02-gazebo-physics/lesson-03-humanoid-interaction"
+              }
+            },
+            {
+              "id": "module-02-digital-twin/chapter-02-gazebo-physics/lesson-03-humanoid-interaction",
+              "title": "Lesson 3: Humanoid-Environment Interaction",
+              "description": "Implementing collision detection and response for humanoid robots in Gazebo",
+              "source": "@site/docs/module-02-digital-twin/chapter-02-gazebo-physics/lesson-03-humanoid-interaction.mdx",
+              "sourceDirName": "module-02-digital-twin/chapter-02-gazebo-physics",
+              "slug": "/module-02-digital-twin/chapter-02-gazebo-physics/lesson-03-humanoid-interaction",
+              "permalink": "/docs/module-02-digital-twin/chapter-02-gazebo-physics/lesson-03-humanoid-interaction",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/module-02-digital-twin/chapter-02-gazebo-physics/lesson-03-humanoid-interaction.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "sidebar_label": "Lesson 3: Humanoid-Environment Interaction",
+                "description": "Implementing collision detection and response for humanoid robots in Gazebo"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Lesson 2: Creating Worlds with Gravity and Collisions",
+                "permalink": "/docs/module-02-digital-twin/chapter-02-gazebo-physics/lesson-02-world-creation"
+              },
+              "next": {
+                "title": "Chapter 3: Unity Environments",
+                "permalink": "/docs/module-02-digital-twin/chapter-03-unity-environments/"
+              }
+            },
+            {
+              "id": "module-02-digital-twin/chapter-03-unity-environments/index",
+              "title": "Chapter 3: Unity Environments",
+              "description": "This chapter covers setting up high-fidelity visualization environments in Unity for robotics applications.",
+              "source": "@site/docs/module-02-digital-twin/chapter-03-unity-environments/index.mdx",
+              "sourceDirName": "module-02-digital-twin/chapter-03-unity-environments",
+              "slug": "/module-02-digital-twin/chapter-03-unity-environments/",
+              "permalink": "/docs/module-02-digital-twin/chapter-03-unity-environments/",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/module-02-digital-twin/chapter-03-unity-environments/index.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "sidebar_label": "Chapter 3: Unity Environments"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Lesson 3: Humanoid-Environment Interaction",
+                "permalink": "/docs/module-02-digital-twin/chapter-02-gazebo-physics/lesson-03-humanoid-interaction"
+              },
+              "next": {
+                "title": "Lesson 1: Unity Scene Setup for Robotics",
+                "permalink": "/docs/module-02-digital-twin/chapter-03-unity-environments/lesson-01-unity-scene-setup"
+              }
+            },
+            {
+              "id": "module-02-digital-twin/chapter-03-unity-environments/lesson-01-unity-scene-setup",
+              "title": "Lesson 1: Unity Scene Setup for Robotics",
+              "description": "Configuring Unity scenes with lighting and camera systems for robot visualization",
+              "source": "@site/docs/module-02-digital-twin/chapter-03-unity-environments/lesson-01-unity-scene-setup.mdx",
+              "sourceDirName": "module-02-digital-twin/chapter-03-unity-environments",
+              "slug": "/module-02-digital-twin/chapter-03-unity-environments/lesson-01-unity-scene-setup",
+              "permalink": "/docs/module-02-digital-twin/chapter-03-unity-environments/lesson-01-unity-scene-setup",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/module-02-digital-twin/chapter-03-unity-environments/lesson-01-unity-scene-setup.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "sidebar_label": "Lesson 1: Unity Scene Setup for Robotics",
+                "description": "Configuring Unity scenes with lighting and camera systems for robot visualization"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Chapter 3: Unity Environments",
+                "permalink": "/docs/module-02-digital-twin/chapter-03-unity-environments/"
+              },
+              "next": {
+                "title": "Lesson 2: Lighting and Rendering for Robot Evaluation",
+                "permalink": "/docs/module-02-digital-twin/chapter-03-unity-environments/lesson-02-lighting-and-rendering"
+              }
+            },
+            {
+              "id": "module-02-digital-twin/chapter-03-unity-environments/lesson-02-lighting-and-rendering",
+              "title": "Lesson 2: Lighting and Rendering for Robot Evaluation",
+              "description": "Implementing realistic lighting and rendering techniques for robot evaluation",
+              "source": "@site/docs/module-02-digital-twin/chapter-03-unity-environments/lesson-02-lighting-and-rendering.mdx",
+              "sourceDirName": "module-02-digital-twin/chapter-03-unity-environments",
+              "slug": "/module-02-digital-twin/chapter-03-unity-environments/lesson-02-lighting-and-rendering",
+              "permalink": "/docs/module-02-digital-twin/chapter-03-unity-environments/lesson-02-lighting-and-rendering",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/module-02-digital-twin/chapter-03-unity-environments/lesson-02-lighting-and-rendering.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "sidebar_label": "Lesson 2: Lighting and Rendering for Robot Evaluation",
+                "description": "Implementing realistic lighting and rendering techniques for robot evaluation"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Lesson 1: Unity Scene Setup for Robotics",
+                "permalink": "/docs/module-02-digital-twin/chapter-03-unity-environments/lesson-01-unity-scene-setup"
+              },
+              "next": {
+                "title": "Lesson 3: Humanoid Avatars and Interaction",
+                "permalink": "/docs/module-02-digital-twin/chapter-03-unity-environments/lesson-03-humanoid-avatars"
+              }
+            },
+            {
+              "id": "module-02-digital-twin/chapter-03-unity-environments/lesson-03-humanoid-avatars",
+              "title": "Lesson 3: Humanoid Avatars and Interaction",
+              "description": "Creating humanoid avatars and implementing interaction visualization in Unity",
+              "source": "@site/docs/module-02-digital-twin/chapter-03-unity-environments/lesson-03-humanoid-avatars.mdx",
+              "sourceDirName": "module-02-digital-twin/chapter-03-unity-environments",
+              "slug": "/module-02-digital-twin/chapter-03-unity-environments/lesson-03-humanoid-avatars",
+              "permalink": "/docs/module-02-digital-twin/chapter-03-unity-environments/lesson-03-humanoid-avatars",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/module-02-digital-twin/chapter-03-unity-environments/lesson-03-humanoid-avatars.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "sidebar_label": "Lesson 3: Humanoid Avatars and Interaction",
+                "description": "Creating humanoid avatars and implementing interaction visualization in Unity"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Lesson 2: Lighting and Rendering for Robot Evaluation",
+                "permalink": "/docs/module-02-digital-twin/chapter-03-unity-environments/lesson-02-lighting-and-rendering"
+              },
+              "next": {
+                "title": "Chapter 4 - Simulated Sensors",
+                "permalink": "/docs/module-02-digital-twin/chapter-04-simulated-sensors"
+              }
+            },
+            {
+              "id": "module-02-digital-twin/chapter-04-simulated-sensors/index",
+              "title": "Chapter 4 - Simulated Sensors",
+              "description": "Learn how to implement and configure virtual sensors (LiDAR, depth cameras, IMUs) in Gazebo Garden for humanoid robotics simulation",
+              "source": "@site/docs/module-02-digital-twin/chapter-04-simulated-sensors/index.mdx",
+              "sourceDirName": "module-02-digital-twin/chapter-04-simulated-sensors",
+              "slug": "/module-02-digital-twin/chapter-04-simulated-sensors",
+              "permalink": "/docs/module-02-digital-twin/chapter-04-simulated-sensors",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/module-02-digital-twin/chapter-04-simulated-sensors/index.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "title": "Chapter 4 - Simulated Sensors",
+                "description": "Learn how to implement and configure virtual sensors (LiDAR, depth cameras, IMUs) in Gazebo Garden for humanoid robotics simulation",
+                "slug": "/module-02-digital-twin/chapter-04-simulated-sensors"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Lesson 3: Humanoid Avatars and Interaction",
+                "permalink": "/docs/module-02-digital-twin/chapter-03-unity-environments/lesson-03-humanoid-avatars"
+              },
+              "next": {
+                "title": "LiDAR Simulation in Gazebo Garden",
+                "permalink": "/docs/module-02-digital-twin/chapter-04-simulated-sensors/lesson-01-lidar-simulation"
+              }
+            },
+            {
+              "id": "module-02-digital-twin/chapter-04-simulated-sensors/lesson-01-lidar-simulation",
+              "title": "LiDAR Simulation in Gazebo Garden",
+              "description": "Learn how to implement and configure LiDAR sensors in Gazebo Garden for humanoid robotics simulation",
+              "source": "@site/docs/module-02-digital-twin/chapter-04-simulated-sensors/lesson-01-lidar-simulation.mdx",
+              "sourceDirName": "module-02-digital-twin/chapter-04-simulated-sensors",
+              "slug": "/module-02-digital-twin/chapter-04-simulated-sensors/lesson-01-lidar-simulation",
+              "permalink": "/docs/module-02-digital-twin/chapter-04-simulated-sensors/lesson-01-lidar-simulation",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/module-02-digital-twin/chapter-04-simulated-sensors/lesson-01-lidar-simulation.mdx",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 1,
+              "frontMatter": {
+                "title": "LiDAR Simulation in Gazebo Garden",
+                "description": "Learn how to implement and configure LiDAR sensors in Gazebo Garden for humanoid robotics simulation",
+                "sidebar_position": 1
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Chapter 4 - Simulated Sensors",
+                "permalink": "/docs/module-02-digital-twin/chapter-04-simulated-sensors"
+              },
+              "next": {
+                "title": "Depth Camera Simulation in Gazebo Garden",
+                "permalink": "/docs/module-02-digital-twin/chapter-04-simulated-sensors/lesson-02-depth-camera-simulation"
+              }
+            },
+            {
+              "id": "module-02-digital-twin/chapter-04-simulated-sensors/lesson-02-depth-camera-simulation",
+              "title": "Depth Camera Simulation in Gazebo Garden",
+              "description": "Learn how to implement and configure depth cameras in Gazebo Garden for 3D perception in humanoid robotics",
+              "source": "@site/docs/module-02-digital-twin/chapter-04-simulated-sensors/lesson-02-depth-camera-simulation.mdx",
+              "sourceDirName": "module-02-digital-twin/chapter-04-simulated-sensors",
+              "slug": "/module-02-digital-twin/chapter-04-simulated-sensors/lesson-02-depth-camera-simulation",
+              "permalink": "/docs/module-02-digital-twin/chapter-04-simulated-sensors/lesson-02-depth-camera-simulation",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/module-02-digital-twin/chapter-04-simulated-sensors/lesson-02-depth-camera-simulation.mdx",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 2,
+              "frontMatter": {
+                "title": "Depth Camera Simulation in Gazebo Garden",
+                "description": "Learn how to implement and configure depth cameras in Gazebo Garden for 3D perception in humanoid robotics",
+                "sidebar_position": 2
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "LiDAR Simulation in Gazebo Garden",
+                "permalink": "/docs/module-02-digital-twin/chapter-04-simulated-sensors/lesson-01-lidar-simulation"
+              },
+              "next": {
+                "title": "IMU Simulation in Gazebo Garden",
+                "permalink": "/docs/module-02-digital-twin/chapter-04-simulated-sensors/lesson-03-imu-simulation"
+              }
+            },
+            {
+              "id": "module-02-digital-twin/chapter-04-simulated-sensors/lesson-03-imu-simulation",
+              "title": "IMU Simulation in Gazebo Garden",
+              "description": "Learn how to implement and configure IMU sensors in Gazebo Garden for orientation and motion sensing in humanoid robotics",
+              "source": "@site/docs/module-02-digital-twin/chapter-04-simulated-sensors/lesson-03-imu-simulation.mdx",
+              "sourceDirName": "module-02-digital-twin/chapter-04-simulated-sensors",
+              "slug": "/module-02-digital-twin/chapter-04-simulated-sensors/lesson-03-imu-simulation",
+              "permalink": "/docs/module-02-digital-twin/chapter-04-simulated-sensors/lesson-03-imu-simulation",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/module-02-digital-twin/chapter-04-simulated-sensors/lesson-03-imu-simulation.mdx",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 3,
+              "frontMatter": {
+                "title": "IMU Simulation in Gazebo Garden",
+                "description": "Learn how to implement and configure IMU sensors in Gazebo Garden for orientation and motion sensing in humanoid robotics",
+                "sidebar_position": 3
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Depth Camera Simulation in Gazebo Garden",
+                "permalink": "/docs/module-02-digital-twin/chapter-04-simulated-sensors/lesson-02-depth-camera-simulation"
+              },
+              "next": {
+                "title": "Chapter 5 - Bridging Sim to Real",
+                "permalink": "/docs/module-02-digital-twin/chapter-05-sim-to-real"
+              }
+            },
+            {
+              "id": "module-02-digital-twin/chapter-05-sim-to-real/index",
+              "title": "Chapter 5 - Bridging Sim to Real",
+              "description": "Understanding the challenges and best practices for transferring robotic systems from simulation to real-world deployment",
+              "source": "@site/docs/module-02-digital-twin/chapter-05-sim-to-real/index.mdx",
+              "sourceDirName": "module-02-digital-twin/chapter-05-sim-to-real",
+              "slug": "/module-02-digital-twin/chapter-05-sim-to-real",
+              "permalink": "/docs/module-02-digital-twin/chapter-05-sim-to-real",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/module-02-digital-twin/chapter-05-sim-to-real/index.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "title": "Chapter 5 - Bridging Sim to Real",
+                "description": "Understanding the challenges and best practices for transferring robotic systems from simulation to real-world deployment",
+                "slug": "/module-02-digital-twin/chapter-05-sim-to-real"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "IMU Simulation in Gazebo Garden",
+                "permalink": "/docs/module-02-digital-twin/chapter-04-simulated-sensors/lesson-03-imu-simulation"
+              },
+              "next": {
+                "title": "Chapter 5 Lesson 1 - Limitations of Simulation",
+                "permalink": "/docs/module-02-digital-twin/chapter-05-sim-to-real/lesson-01-limitations"
+              }
+            },
+            {
+              "id": "module-02-digital-twin/chapter-05-sim-to-real/lesson-01-limitations",
+              "title": "Chapter 5 Lesson 1 - Limitations of Simulation",
+              "description": "Understanding the fundamental limitations of simulation environments and their impact on sim-to-real transfer for humanoid robotics",
+              "source": "@site/docs/module-02-digital-twin/chapter-05-sim-to-real/lesson-01-limitations.mdx",
+              "sourceDirName": "module-02-digital-twin/chapter-05-sim-to-real",
+              "slug": "/module-02-digital-twin/chapter-05-sim-to-real/lesson-01-limitations",
+              "permalink": "/docs/module-02-digital-twin/chapter-05-sim-to-real/lesson-01-limitations",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/module-02-digital-twin/chapter-05-sim-to-real/lesson-01-limitations.mdx",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 1,
+              "frontMatter": {
+                "title": "Chapter 5 Lesson 1 - Limitations of Simulation",
+                "description": "Understanding the fundamental limitations of simulation environments and their impact on sim-to-real transfer for humanoid robotics",
+                "sidebar_position": 1
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Chapter 5 - Bridging Sim to Real",
+                "permalink": "/docs/module-02-digital-twin/chapter-05-sim-to-real"
+              },
+              "next": {
+                "title": "Chapter 5 Lesson 2 - Transfer Considerations",
+                "permalink": "/docs/module-02-digital-twin/chapter-05-sim-to-real/lesson-02-transfer-considerations"
+              }
+            },
+            {
+              "id": "module-02-digital-twin/chapter-05-sim-to-real/lesson-02-transfer-considerations",
+              "title": "Chapter 5 Lesson 2 - Transfer Considerations",
+              "description": "Key considerations and strategies for successfully transferring robotic systems from simulation to real-world deployment",
+              "source": "@site/docs/module-02-digital-twin/chapter-05-sim-to-real/lesson-02-transfer-considerations.mdx",
+              "sourceDirName": "module-02-digital-twin/chapter-05-sim-to-real",
+              "slug": "/module-02-digital-twin/chapter-05-sim-to-real/lesson-02-transfer-considerations",
+              "permalink": "/docs/module-02-digital-twin/chapter-05-sim-to-real/lesson-02-transfer-considerations",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/module-02-digital-twin/chapter-05-sim-to-real/lesson-02-transfer-considerations.mdx",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 2,
+              "frontMatter": {
+                "title": "Chapter 5 Lesson 2 - Transfer Considerations",
+                "description": "Key considerations and strategies for successfully transferring robotic systems from simulation to real-world deployment",
+                "sidebar_position": 2
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Chapter 5 Lesson 1 - Limitations of Simulation",
+                "permalink": "/docs/module-02-digital-twin/chapter-05-sim-to-real/lesson-01-limitations"
+              },
+              "next": {
+                "title": "Chapter 5 Lesson 3 - Best Practices for Digital Twins",
+                "permalink": "/docs/module-02-digital-twin/chapter-05-sim-to-real/lesson-03-best-practices"
+              }
+            },
+            {
+              "id": "module-02-digital-twin/chapter-05-sim-to-real/lesson-03-best-practices",
+              "title": "Chapter 5 Lesson 3 - Best Practices for Digital Twins",
+              "description": "Essential best practices for developing and maintaining effective digital twin systems in robotics applications",
+              "source": "@site/docs/module-02-digital-twin/chapter-05-sim-to-real/lesson-03-best-practices.mdx",
+              "sourceDirName": "module-02-digital-twin/chapter-05-sim-to-real",
+              "slug": "/module-02-digital-twin/chapter-05-sim-to-real/lesson-03-best-practices",
+              "permalink": "/docs/module-02-digital-twin/chapter-05-sim-to-real/lesson-03-best-practices",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/module-02-digital-twin/chapter-05-sim-to-real/lesson-03-best-practices.mdx",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 3,
+              "frontMatter": {
+                "title": "Chapter 5 Lesson 3 - Best Practices for Digital Twins",
+                "description": "Essential best practices for developing and maintaining effective digital twin systems in robotics applications",
+                "sidebar_position": 3
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Chapter 5 Lesson 2 - Transfer Considerations",
+                "permalink": "/docs/module-02-digital-twin/chapter-05-sim-to-real/lesson-02-transfer-considerations"
+              }
+            },
+            {
+              "id": "module-02-digital-twin/index",
+              "title": "Module 2 - The Digital Twin (Gazebo & Unity)",
+              "description": "Comprehensive guide to creating digital twins with ROS 2, Gazebo Garden, and Unity for humanoid robotics",
+              "source": "@site/docs/module-02-digital-twin/index.mdx",
+              "sourceDirName": "module-02-digital-twin",
+              "slug": "/module-02-digital-twin",
+              "permalink": "/docs/module-02-digital-twin",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/module-02-digital-twin/index.mdx",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 2,
+              "frontMatter": {
+                "title": "Module 2 - The Digital Twin (Gazebo & Unity)",
+                "description": "Comprehensive guide to creating digital twins with ROS 2, Gazebo Garden, and Unity for humanoid robotics",
+                "slug": "/module-02-digital-twin",
+                "sidebar_position": 2
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Simulation to Reality - Bridging the Gap",
+                "permalink": "/docs/module-01-ros2/chapter-04/lesson-03-simulation-to-reality-bridging-the-gap"
+              },
+              "next": {
+                "title": "Setup Guide",
+                "permalink": "/docs/module-02-digital-twin/setup/"
+              }
+            },
+            {
+              "id": "module-02-digital-twin/setup/basic-humanoid-urdf",
+              "title": "Basic Humanoid Robot URDF Model",
+              "description": "This document provides a basic URDF model for a humanoid robot that works in both Gazebo and Unity for the Digital Twin module.",
+              "source": "@site/docs/module-02-digital-twin/setup/basic-humanoid-urdf.mdx",
+              "sourceDirName": "module-02-digital-twin/setup",
+              "slug": "/module-02-digital-twin/setup/basic-humanoid-urdf",
+              "permalink": "/docs/module-02-digital-twin/setup/basic-humanoid-urdf",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/module-02-digital-twin/setup/basic-humanoid-urdf.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "ROS-Gazebo Bridge Setup and Verification",
+                "permalink": "/docs/module-02-digital-twin/setup/ros-gz-bridge-setup"
+              },
+              "next": {
+                "title": "Version Control Setup for Simulation Assets",
+                "permalink": "/docs/module-02-digital-twin/setup/version-control-setup"
+              }
+            },
+            {
+              "id": "module-02-digital-twin/setup/environment-setup",
+              "title": "Development Environment Setup",
+              "description": "This document provides instructions for configuring your development environment with ROS 2 Humble, Gazebo Garden, and Unity 2022.3 LTS for the Digital Twin module.",
+              "source": "@site/docs/module-02-digital-twin/setup/environment-setup.mdx",
+              "sourceDirName": "module-02-digital-twin/setup",
+              "slug": "/module-02-digital-twin/setup/environment-setup",
+              "permalink": "/docs/module-02-digital-twin/setup/environment-setup",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/module-02-digital-twin/setup/environment-setup.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Setup Guide",
+                "permalink": "/docs/module-02-digital-twin/setup/"
+              },
+              "next": {
+                "title": "ROS-Gazebo Bridge Setup and Verification",
+                "permalink": "/docs/module-02-digital-twin/setup/ros-gz-bridge-setup"
+              }
+            },
+            {
+              "id": "module-02-digital-twin/setup/index",
+              "title": "Setup Guide",
+              "description": "Complete setup guide for the Digital Twin module including environment configuration, bridge setup, and asset management",
+              "source": "@site/docs/module-02-digital-twin/setup/index.mdx",
+              "sourceDirName": "module-02-digital-twin/setup",
+              "slug": "/module-02-digital-twin/setup/",
+              "permalink": "/docs/module-02-digital-twin/setup/",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/module-02-digital-twin/setup/index.mdx",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 1,
+              "frontMatter": {
+                "title": "Setup Guide",
+                "description": "Complete setup guide for the Digital Twin module including environment configuration, bridge setup, and asset management",
+                "sidebar_position": 1
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Module 2 - The Digital Twin (Gazebo & Unity)",
+                "permalink": "/docs/module-02-digital-twin"
+              },
+              "next": {
+                "title": "Development Environment Setup",
+                "permalink": "/docs/module-02-digital-twin/setup/environment-setup"
+              }
+            },
+            {
+              "id": "module-02-digital-twin/setup/ros-gz-bridge-setup",
+              "title": "ROS-Gazebo Bridge Setup and Verification",
+              "description": "This document provides instructions for installing and verifying the ros_gz bridge packages for Gazebo integration in the Digital Twin module.",
+              "source": "@site/docs/module-02-digital-twin/setup/ros-gz-bridge-setup.mdx",
+              "sourceDirName": "module-02-digital-twin/setup",
+              "slug": "/module-02-digital-twin/setup/ros-gz-bridge-setup",
+              "permalink": "/docs/module-02-digital-twin/setup/ros-gz-bridge-setup",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/module-02-digital-twin/setup/ros-gz-bridge-setup.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Development Environment Setup",
+                "permalink": "/docs/module-02-digital-twin/setup/environment-setup"
+              },
+              "next": {
+                "title": "Basic Humanoid Robot URDF Model",
+                "permalink": "/docs/module-02-digital-twin/setup/basic-humanoid-urdf"
+              }
+            },
+            {
+              "id": "module-02-digital-twin/setup/version-control-setup",
+              "title": "Version Control Setup for Simulation Assets",
+              "description": "This document provides instructions for setting up version control for simulation assets including URDF, SDF, and Unity scenes for the Digital Twin module.",
+              "source": "@site/docs/module-02-digital-twin/setup/version-control-setup.mdx",
+              "sourceDirName": "module-02-digital-twin/setup",
+              "slug": "/module-02-digital-twin/setup/version-control-setup",
+              "permalink": "/docs/module-02-digital-twin/setup/version-control-setup",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/module-02-digital-twin/setup/version-control-setup.mdx",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {},
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Basic Humanoid Robot URDF Model",
+                "permalink": "/docs/module-02-digital-twin/setup/basic-humanoid-urdf"
+              },
+              "next": {
+                "title": "Chapter 1: Foundations",
+                "permalink": "/docs/module-02-digital-twin/chapter-01-foundations/"
               }
             }
           ],
@@ -500,6 +1206,166 @@
                 ],
                 "collapsed": true,
                 "collapsible": true
+              },
+              {
+                "type": "category",
+                "label": "Module 2: The Digital Twin (Gazebo & Unity)",
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "module-02-digital-twin/index"
+                  },
+                  {
+                    "type": "category",
+                    "label": "Setup Guide",
+                    "items": [
+                      {
+                        "type": "doc",
+                        "id": "module-02-digital-twin/setup/index"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "module-02-digital-twin/setup/environment-setup"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "module-02-digital-twin/setup/ros-gz-bridge-setup"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "module-02-digital-twin/setup/basic-humanoid-urdf"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "module-02-digital-twin/setup/version-control-setup"
+                      }
+                    ],
+                    "collapsed": true,
+                    "collapsible": true
+                  },
+                  {
+                    "type": "category",
+                    "label": "Chapter 1: Foundations",
+                    "items": [
+                      {
+                        "type": "doc",
+                        "id": "module-02-digital-twin/chapter-01-foundations/index"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "module-02-digital-twin/chapter-01-foundations/lesson-01-introduction"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "module-02-digital-twin/chapter-01-foundations/lesson-02-ros2-integration"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "module-02-digital-twin/chapter-01-foundations/lesson-03-digital-twin-concepts"
+                      }
+                    ],
+                    "collapsed": true,
+                    "collapsible": true
+                  },
+                  {
+                    "type": "category",
+                    "label": "Chapter 2: Gazebo Physics",
+                    "items": [
+                      {
+                        "type": "doc",
+                        "id": "module-02-digital-twin/chapter-02-gazebo-physics/index"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "module-02-digital-twin/chapter-02-gazebo-physics/lesson-01-gazebo-setup"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "module-02-digital-twin/chapter-02-gazebo-physics/lesson-02-world-creation"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "module-02-digital-twin/chapter-02-gazebo-physics/lesson-03-humanoid-interaction"
+                      }
+                    ],
+                    "collapsed": true,
+                    "collapsible": true
+                  },
+                  {
+                    "type": "category",
+                    "label": "Chapter 3: Unity Environments",
+                    "items": [
+                      {
+                        "type": "doc",
+                        "id": "module-02-digital-twin/chapter-03-unity-environments/index"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "module-02-digital-twin/chapter-03-unity-environments/lesson-01-unity-scene-setup"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "module-02-digital-twin/chapter-03-unity-environments/lesson-02-lighting-and-rendering"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "module-02-digital-twin/chapter-03-unity-environments/lesson-03-humanoid-avatars"
+                      }
+                    ],
+                    "collapsed": true,
+                    "collapsible": true
+                  },
+                  {
+                    "type": "category",
+                    "label": "Chapter 4: Simulated Sensors",
+                    "items": [
+                      {
+                        "type": "doc",
+                        "id": "module-02-digital-twin/chapter-04-simulated-sensors/index"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "module-02-digital-twin/chapter-04-simulated-sensors/lesson-01-lidar-simulation"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "module-02-digital-twin/chapter-04-simulated-sensors/lesson-02-depth-camera-simulation"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "module-02-digital-twin/chapter-04-simulated-sensors/lesson-03-imu-simulation"
+                      }
+                    ],
+                    "collapsed": true,
+                    "collapsible": true
+                  },
+                  {
+                    "type": "category",
+                    "label": "Chapter 5: Bridging Sim to Real",
+                    "items": [
+                      {
+                        "type": "doc",
+                        "id": "module-02-digital-twin/chapter-05-sim-to-real/index"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "module-02-digital-twin/chapter-05-sim-to-real/lesson-01-limitations"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "module-02-digital-twin/chapter-05-sim-to-real/lesson-02-transfer-considerations"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "module-02-digital-twin/chapter-05-sim-to-real/lesson-03-best-practices"
+                      }
+                    ],
+                    "collapsed": true,
+                    "collapsible": true
+                  }
+                ],
+                "collapsed": true,
+                "collapsible": true
               }
             ]
           }
@@ -508,7 +1374,13 @@
     }
   },
   "docusaurus-plugin-content-pages": {
-    "default": null
+    "default": [
+      {
+        "type": "jsx",
+        "permalink": "/",
+        "source": "@site/src/pages/index.js"
+      }
+    ]
   },
   "docusaurus-plugin-debug": {},
   "docusaurus-theme-classic": {},

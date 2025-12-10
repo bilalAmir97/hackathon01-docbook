@@ -1,0 +1,456 @@
+# Version Control Setup for Simulation Assets
+
+This document provides instructions for setting up version control for simulation assets including URDF, SDF, and Unity scenes for the Digital Twin module.
+
+## Overview
+
+Proper version control is essential for managing simulation assets in robotics projects. This guide covers best practices for version controlling URDF models, SDF worlds, and Unity scenes while considering their specific requirements and file types.
+
+## Git Configuration for Simulation Assets
+
+### 1. Create a .gitignore file for simulation projects
+
+Create a comprehensive `.gitignore` file that handles both ROS/Gazebo assets and Unity assets:
+
+```gitignore
+# ROS/Gazebo specific
+build/
+install/
+log/
+*.pyc
+__pycache__/
+*.so
+*.o
+*.a
+*.dll
+*.dylib
+*.swp
+*.swo
+*~
+*.log
+*.log.*
+
+# ROS build artifacts
+.deps/
+*.cache
+*.pid.lock
+*.pid
+pids/
+
+# URDF/SDF specific
+*.dae
+*.stl
+*.obj
+*.fbx
+*.blend
+
+# Gazebo models
+~/.gazebo/models/
+~/.gazebo/worlds/
+
+# Unity specific
+[Oo]bj/
+[Tt]emp/
+[Ll]ibrary/
+[Ll]ogs/
+[Uu]serSettings/
+[Bb]uild/
+[Bb]uilds/
+Assets/AssetStoreTools*
+*.UnityPackage
+*.unitypackage
+*.meta
+
+# Unity cache
+/Library/BuildCache/
+/Library/LastSceneManagerSetup.txt
+/Library/ScriptAssemblies/
+/Library/StateCache/
+/Packages/packages-lock.json
+
+# Unity collab
+!Packages/packages-lock.json
+CollabEditor/
+ProjectSettings/ProjectVersion.txt
+
+# Unity specific files
+*.unity
+*.prefab
+*.mat
+*.anim
+*.controller
+*.physicsMaterial
+*.physicsMaterial2D
+*.asset
+*.guiskin
+*.fontsettings
+*.giparams
+*.preset
+*.mask
+*.overrideController
+*.signal
+*.layer
+*.mixer
+*.avi
+*.mov
+*.mp4
+*.mpeg
+*.mpg
+*.m4v
+*.ogv
+*.vp8
+*.webm
+*.wmv
+
+# Unity artifacts
+*.pidb
+*.userprefs
+*.booproj
+*.svd
+*.unityproj
+*.unity
+*.unity3d
+
+# Unity generated files
+Build/
+Builds/
+Lumin/
+OpenScene-*.meta
+OpenScene-*.unity
+OpenScene-*.unity.meta
+
+# Unity Vuforia
+/Vuforia/
+/Vuforia.xml
+
+# Unity specific ignore
+Assets/Editor Default Resources/
+Assets/Plugins/Android/
+Assets/Plugins/iOS/
+Assets/Plugins/WSA/
+Assets/Plugins/x86/
+Assets/Plugins/x86_64/
+Assets/Plugins/Universal Windows Platform/
+
+# Visual Studio
+*.sln
+*.csproj
+*.unityproj
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.userprefs
+*.pidb.meta
+*.pdb.meta
+
+# Rider
+.idea/
+*.iml
+
+# Visual Studio Code
+.vscode/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# IDE
+*.swp
+*.swo
+*~
+.vs/
+.vscode/
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+build/
+bld/
+[Bb]in/
+[Oo]bj/
+
+# Configuration files (if they contain sensitive data)
+config/
+*.config
+```
+
+### 2. Git configuration for large files
+
+For simulation assets that might be large (3D models, textures, etc.), configure Git LFS (Large File Storage):
+
+```bash
+# Install Git LFS
+git lfs install
+
+# Track large file types commonly used in robotics simulation
+git lfs track "*.dae"
+git lfs track "*.stl"
+git lfs track "*.obj"
+git lfs track "*.fbx"
+git lfs track "*.blend"
+git lfs track "*.png"
+git lfs track "*.jpg"
+git lfs track "*.gif"
+git lfs track "*.tga"
+git lfs track "*.hdr"
+git lfs track "*.unity"
+git lfs track "*.prefab"
+
+# Commit the .gitattributes file
+git add .gitattributes
+git commit -m "Add Git LFS tracking for large simulation assets"
+```
+
+## Repository Structure
+
+### Recommended structure for simulation assets:
+
+```
+robotics-project/
+├── .git/
+├── .gitignore
+├── .gitattributes          # Git LFS tracking
+├── README.md
+├── docs/                   # Documentation
+├── src/                    # ROS packages
+│   ├── robot_description/  # URDF models, meshes
+│   ├── gazebo_worlds/      # SDF world files
+│   └── robot_control/      # ROS control nodes
+├── unity/                  # Unity project
+│   ├── Assets/
+│   ├── ProjectSettings/
+│   └── Packages/
+├── models/                 # Standalone 3D models
+├── worlds/                 # Gazebo world files
+├── launch/                 # ROS launch files
+└── config/                 # Configuration files
+```
+
+## Git Workflow for Simulation Assets
+
+### 1. Initialize the repository
+
+```bash
+# Create a new repository
+mkdir digital_twin_project
+cd digital_twin_project
+git init
+
+# Add the .gitignore file
+cp path/to/simulation-gitignore .gitignore
+
+# Add Git LFS if needed
+git lfs install
+
+# Create initial structure
+mkdir -p src/robot_description/urdf
+mkdir -p src/robot_description/meshes
+mkdir -p src/gazebo_worlds
+mkdir -p unity
+
+# Initial commit
+git add .
+git commit -m "Initial commit: Set up repository structure for digital twin simulation"
+```
+
+### 2. Branching strategy for simulation development
+
+```bash
+# Create feature branches for different simulation aspects
+git checkout -b feature/gazebo-physics
+git checkout -b feature/unity-visualization
+git checkout -b feature/sensor-integration
+git checkout -b feature/digital-twin-pipeline
+```
+
+### 3. Working with URDF files
+
+```bash
+# When adding URDF files
+git add src/robot_description/urdf/
+git add src/robot_description/meshes/
+
+# Commit with descriptive message
+git commit -m "Add basic humanoid URDF model with collision and visual properties"
+```
+
+### 4. Working with SDF worlds
+
+```bash
+# When adding world files
+git add src/gazebo_worlds/
+
+# For binary mesh files, use Git LFS
+git lfs track "src/gazebo_worlds/meshes/*.dae"
+git add src/gazebo_worlds/meshes/
+git add .gitattributes
+```
+
+### 5. Working with Unity assets
+
+Unity assets should be stored in a separate repository or submodule due to their binary nature and size, but if including in the same repo:
+
+```bash
+# Track Unity-specific binary files with Git LFS
+git lfs track "unity/Assets/**/*.unity"
+git lfs track "unity/Assets/**/*.prefab"
+git lfs track "unity/Assets/**/*.asset"
+git lfs track "unity/Assets/**/*.mat"
+git lfs track "unity/Assets/**/*.meta"
+```
+
+## Best Practices for Simulation Asset Version Control
+
+### 1. Commit Guidelines
+
+- Commit small, logical changes rather than large batches
+- Write descriptive commit messages
+- Separate model changes from configuration changes
+- Use semantic versioning for major model updates
+
+### 2. Tagging Releases
+
+```bash
+# Tag major simulation releases
+git tag -a v1.0.0 -m "Initial humanoid robot model release"
+git tag -a v1.0.1 -m "Added sensor mounts to robot model"
+git push origin --tags
+```
+
+### 3. Handling Binary Assets
+
+For large binary files (3D models, textures, Unity scenes):
+
+- Use Git LFS for files > 100KB
+- Compress large models when possible
+- Consider external storage for very large assets
+- Document the asset pipeline
+
+### 4. Backup and Recovery
+
+```bash
+# Regular backup to remote repository
+git push origin main
+
+# Create backup branches for experimental work
+git checkout -b backup/experimental-model
+```
+
+## Git Hooks for Quality Assurance
+
+### 1. Pre-commit hook to validate URDF files
+
+Create `.git/hooks/pre-commit`:
+
+```bash
+#!/bin/bash
+# Validate URDF files before commit
+for urdf_file in $(git diff --cached --name-only | grep '\.urdf$'); do
+    if command -v check_urdf &> /dev/null; then
+        if ! check_urdf "$urdf_file" &> /dev/null; then
+            echo "Error: Invalid URDF file: $urdf_file"
+            exit 1
+        fi
+    fi
+done
+```
+
+### 2. Pre-commit hook to check file sizes
+
+```bash
+#!/bin/bash
+# Check for large files that should be in Git LFS
+for file in $(git diff --cached --name-only --diff-filter=ACM); do
+    size=$(stat -f%z "$file" 2>/dev/null || stat -c%s "$file" 2>/dev/null)
+    if [ $size -gt 10485760 ]; then  # 10MB
+        echo "File $file is larger than 10MB. Consider using Git LFS."
+        echo "Run: git lfs track '$file' && git add '$file'"
+        exit 1
+    fi
+done
+```
+
+## Unity-Specific Considerations
+
+### 1. Unity Asset Serialization
+
+Configure Unity to use text-based serialization for better version control:
+
+In Unity:
+- Edit → Project Settings → Editor
+- Set Asset Serialization Mode to "Force Text"
+- This allows for better diffing and merging
+
+### 2. Unity Scene Management
+
+```bash
+# For Unity scenes, consider using additive scene loading
+# to work on different parts of the environment separately
+```
+
+## Collaboration Guidelines
+
+### 1. Feature Branch Workflow
+
+```bash
+# Create feature branch for specific simulation components
+git checkout -b feature/gazebo-sensors
+
+# Work on the feature
+git add .
+git commit -m "Add LiDAR sensor to humanoid robot"
+
+# Push and create pull request
+git push origin feature/gazebo-sensors
+```
+
+### 2. Merge Strategies
+
+- Use `--no-ff` for merge commits to preserve history
+- Squash and merge for feature branches to keep history clean
+- Rebase for linear history when appropriate
+
+## Troubleshooting
+
+### Common Issues:
+
+1. **Large file errors**: Use Git LFS for files > 100MB
+2. **Merge conflicts in binary files**: Use Unity's merge tools or resolve manually
+3. **Repository bloat**: Use `git gc` and `git lfs prune` to clean up
+4. **Slow operations**: Consider using shallow clones for large repositories
+
+### Recovery Commands:
+
+```bash
+# If repository becomes too large
+git lfs migrate import --include="*.dae,*.stl,*.obj,*.fbx"
+
+# Clean up repository
+git gc --aggressive --prune=now
+
+# Verify repository integrity
+git fsck
+```
+
+## Next Steps
+
+After setting up version control for simulation assets:
+1. Initialize your repository with proper .gitignore and .gitattributes
+2. Set up Git LFS for large assets
+3. Establish a branching strategy for your team
+4. Configure Git hooks for quality assurance
+5. Document the asset pipeline for team members
+6. Set up automated testing for simulation assets
+
+This version control setup will ensure that your simulation assets are properly tracked, managed, and collaborative across the development team.
