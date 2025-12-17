@@ -1,0 +1,25 @@
+Metadata-Version: 2.4
+Name: backend
+Version: 0.2.0
+Summary: RAG Agent API for Docusaurus book content
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+Requires-Dist: beautifulsoup4>=4.14.3
+Requires-Dist: cohere>=5.20.0
+Requires-Dist: httpx>=0.28.1
+Requires-Dist: lxml>=6.0.2
+Requires-Dist: python-dotenv>=1.2.1
+Requires-Dist: qdrant-client>=1.16.2
+Requires-Dist: openai-agents[litellm]>=0.0.3
+Requires-Dist: fastapi>=0.109.0
+Requires-Dist: uvicorn[standard]>=0.27.0
+Requires-Dist: sse-starlette>=1.8.0
+Requires-Dist: pydantic>=2.0.0
+Requires-Dist: structlog>=24.1.0
+Requires-Dist: asyncpg>=0.29.0
+Provides-Extra: test
+Requires-Dist: pytest>=8.0.0; extra == "test"
+Requires-Dist: pytest-asyncio>=0.23.0; extra == "test"
+Provides-Extra: dev
+Requires-Dist: pytest>=8.0.0; extra == "dev"
+Requires-Dist: pytest-asyncio>=0.23.0; extra == "dev"

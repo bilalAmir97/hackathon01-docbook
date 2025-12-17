@@ -1,0 +1,60 @@
+[project]
+name = "backend"
+version = "0.2.0"
+description = "RAG Agent API for Docusaurus book content"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    # Spec-2: Retrieval pipeline
+    "beautifulsoup4>=4.14.3",
+    "cohere>=5.20.0",
+    "httpx>=0.28.1",
+    "lxml>=6.0.2",
+    "python-dotenv>=1.2.1",
+    "qdrant-client>=1.16.2",
+    # Spec-3: Agent API
+    "openai-agents[litellm]>=0.0.3",
+    "fastapi>=0.109.0",
+    "uvicorn[standard]>=0.27.0",
+    "sse-starlette>=1.8.0",
+    "pydantic>=2.0.0",
+    "structlog>=24.1.0",
+    "asyncpg>=0.29.0",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.23.0",
+]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.23.0",
+]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+py-modules = [
+    "api",
+    "api_models",
+    "agent",
+    "config",
+    "database",
+    "errors",
+    "evaluation",
+    "logging_config",
+    "main",
+    "models",
+    "retrieval",
+    "server",
+    "validation",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_functions = ["test_*"]
+asyncio_mode = "auto"

@@ -68,6 +68,10 @@ const config: Config = {
     // ... your other themes
   ],
 
+  // Custom fields for API configuration (accessible via siteConfig.customFields)
+  customFields: {
+    apiUrl: process.env.DOCUSAURUS_API_URL || 'http://localhost:8000',
+  },
 
   themeConfig: {
     // Replace with your project's social card

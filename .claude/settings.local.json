@@ -11,7 +11,16 @@
       "Bash(node -e \"console.log(''Valid JSON:'', JSON.parse(require(''fs'').readFileSync(''./tsconfig.json'', ''utf8'')));\")",
       "Bash(dir D:BilalBilalBilal DataHackathonhackathon-01srcutils*.ts)",
       "Bash(dir \"D:\\Bilal\\Bilal\\Bilal Data\\Hackathon\\hackathon-01\\src\\utils\" /s)",
-      "Bash(npm run build)"
+      "Bash(npm run build)",
+      "Bash(\".venv\\Scripts\\python.exe\":*)",
+      "Bash(\".venv\\Scripts\\python.exe\" -c:*)",
+      "Bash(bash:*)",
+      "Bash(uv run python:*)",
+      "Bash(python:*)",
+      "Bash(timeout 10 uvicorn:*)",
+      "Bash(findstr:*)",
+      "Bash(curl:*)",
+      "Bash(powershell -Command \"Start-Sleep -Seconds 50; curl.exe -s -X POST http://localhost:8000/chat -H ''Content-Type: application/json'' -d ''{\"\"query\"\": \"\"hi\"\", \"\"session_id\"\": \"\"550e8400-e29b-41d4-a716-446655440000\"\"}''\")"
     ],
     "deny": [],
     "ask": []

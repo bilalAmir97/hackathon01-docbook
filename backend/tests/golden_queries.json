@@ -1,0 +1,91 @@
+{
+  "description": "Golden test set for retrieval evaluation",
+  "version": "1.0.1",
+  "created": "2025-12-16",
+  "queries": [
+    {
+      "query": "What is ROS 2?",
+      "expected_urls": ["https://hackathon01-docbook-f1h8.vercel.app/docs/module-01-ros2/chapter-01/lesson-01-introduction-to-ros2-concepts"],
+      "query_type": "factual"
+    },
+    {
+      "query": "What is the Robot Operating System?",
+      "expected_urls": ["https://hackathon01-docbook-f1h8.vercel.app/docs/module-01-ros2/chapter-01/lesson-01-introduction-to-ros2-concepts"],
+      "query_type": "factual"
+    },
+    {
+      "query": "What are ROS 2 nodes?",
+      "expected_urls": ["https://hackathon01-docbook-f1h8.vercel.app/docs/module-01-ros2/chapter-01/lesson-01-introduction-to-ros2-concepts"],
+      "query_type": "factual"
+    },
+    {
+      "query": "What are services in ROS 2?",
+      "expected_urls": ["https://hackathon01-docbook-f1h8.vercel.app/docs/module-01-ros2/chapter-03/lesson-01-services-request-response-communication"],
+      "query_type": "factual"
+    },
+    {
+      "query": "What are actions in ROS 2?",
+      "expected_urls": ["https://hackathon01-docbook-f1h8.vercel.app/docs/module-01-ros2/chapter-03/lesson-02-actions-goal-based-communication"],
+      "query_type": "factual"
+    },
+    {
+      "query": "How does communication work in ROS 2?",
+      "expected_urls": ["https://hackathon01-docbook-f1h8.vercel.app/docs/module-01-ros2/chapter-01/lesson-01-introduction-to-ros2-concepts"],
+      "query_type": "conceptual"
+    },
+    {
+      "query": "What are standard messages in ROS 2?",
+      "expected_urls": ["https://hackathon01-docbook-f1h8.vercel.app/docs/module-01-ros2/chapter-02/lesson-03-working-with-standard-messages"],
+      "query_type": "conceptual"
+    },
+    {
+      "query": "What is the difference between services and actions?",
+      "expected_urls": [
+        "https://hackathon01-docbook-f1h8.vercel.app/docs/module-01-ros2/chapter-03/lesson-01-services-request-response-communication",
+        "https://hackathon01-docbook-f1h8.vercel.app/docs/module-01-ros2/chapter-03/lesson-02-actions-goal-based-communication"
+      ],
+      "query_type": "conceptual"
+    },
+    {
+      "query": "How to build production ready ROS 2 systems?",
+      "expected_urls": ["https://hackathon01-docbook-f1h8.vercel.app/docs/module-01-ros2/chapter-04/lesson-02-building-production-ready-ros2-systems"],
+      "query_type": "conceptual"
+    },
+    {
+      "query": "What is a digital twin simulation?",
+      "expected_urls": [
+        "https://hackathon01-docbook-f1h8.vercel.app/docs/module-02-digital-twin/chapter-04-simulated-sensors/lesson-02-depth-camera-simulation",
+        "https://hackathon01-docbook-f1h8.vercel.app/docs/module-02-digital-twin/chapter-04-simulated-sensors/lesson-03-imu-simulation"
+      ],
+      "query_type": "conceptual"
+    },
+    {
+      "query": "How to simulate sensors?",
+      "expected_urls": [
+        "https://hackathon01-docbook-f1h8.vercel.app/docs/module-02-digital-twin/chapter-04-simulated-sensors/lesson-02-depth-camera-simulation",
+        "https://hackathon01-docbook-f1h8.vercel.app/docs/module-02-digital-twin/chapter-04-simulated-sensors/lesson-03-imu-simulation"
+      ],
+      "query_type": "procedural"
+    },
+    {
+      "query": "What is depth camera simulation?",
+      "expected_urls": ["https://hackathon01-docbook-f1h8.vercel.app/docs/module-02-digital-twin/chapter-04-simulated-sensors/lesson-02-depth-camera-simulation"],
+      "query_type": "factual"
+    },
+    {
+      "query": "How does IMU simulation work?",
+      "expected_urls": ["https://hackathon01-docbook-f1h8.vercel.app/docs/module-02-digital-twin/chapter-04-simulated-sensors/lesson-03-imu-simulation"],
+      "query_type": "procedural"
+    },
+    {
+      "query": "What are sim to real limitations?",
+      "expected_urls": ["https://hackathon01-docbook-f1h8.vercel.app/docs/module-02-digital-twin/chapter-05-sim-to-real/lesson-01-limitations"],
+      "query_type": "conceptual"
+    },
+    {
+      "query": "Best practices for simulation to reality transfer",
+      "expected_urls": ["https://hackathon01-docbook-f1h8.vercel.app/docs/module-02-digital-twin/chapter-05-sim-to-real/lesson-03-best-practices"],
+      "query_type": "procedural"
+    }
+  ]
+}

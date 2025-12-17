@@ -39,21 +39,26 @@ export default [
   },
   {
     path: '/docs',
-    component: ComponentCreator('/docs', 'e3e'),
+    component: ComponentCreator('/docs', '6d1'),
     routes: [
       {
         path: '/docs',
-        component: ComponentCreator('/docs', '1c6'),
+        component: ComponentCreator('/docs', '962'),
         routes: [
           {
             path: '/docs',
-            component: ComponentCreator('/docs', '7b6'),
+            component: ComponentCreator('/docs', '4dc'),
             routes: [
               {
                 path: '/docs/',
                 component: ComponentCreator('/docs/', 'a8c'),
                 exact: true,
                 sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/docs/chat-assistant',
+                component: ComponentCreator('/docs/chat-assistant', 'f3b'),
+                exact: true
               },
               {
                 path: '/docs/module-01-ros2/chapter-01/lesson-01-introduction-to-ros2-concepts',

@@ -212,6 +212,10 @@ See `.specify/memory/constitution.md` for code quality, testing, performance, se
 ## Active Technologies
 - Python 3.11, C++ for Gazebo plugins, C# for Unity scripts + ROS 2 Humble, Gazebo Garden (Ignition), Unity 2022.3 LTS, Docusaurus (002-module-02)
 - File-based (URDF models, SDF worlds, Unity scenes) (002-module-02)
+- Python 3.11 (managed via `uv`) + `cohere` (embeddings), `qdrant-client` (vector DB), `httpx` (async HTTP), `beautifulsoup4` + `lxml` (HTML parsing), `python-dotenv` (env vars) (004-Spec01-embedding-pipeline)
+- Qdrant Cloud (collection: `rag_embedding`) (004-Spec01-embedding-pipeline)
+- Python 3.11 (managed via `uv`, matches Spec-1) + `cohere` (query embeddings), `qdrant-client` (vector search), `python-dotenv` (env vars), `pytest` (testing) (005-spec02-retrieval-validation)
+- Qdrant Cloud (collection: `rag_embedding`, read-only access) (005-spec02-retrieval-validation)
 
 ## Recent Changes
 - 002-module-02: Added Python 3.11, C++ for Gazebo plugins, C# for Unity scripts + ROS 2 Humble, Gazebo Garden (Ignition), Unity 2022.3 LTS, Docusaurus
