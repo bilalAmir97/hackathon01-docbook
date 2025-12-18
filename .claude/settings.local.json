@@ -4,14 +4,31 @@
       "SlashCommand(/sp.adr ROS 2 Content Standards)",
       "Bash(mkdir -p examples/ros2_basics/ examples/ros2_communication/ examples/ros2_advanced/ examples/ros2_launch/ examples/urdf/)",
       "Bash(.specify/scripts/bash/check-prerequisites.sh --json --require-tasks --include-tasks)",
-      "Bash(ls -la docusaurus.config*)",
+      "Bash(ls -la docusaurus.config:*)",
       "Bash(npx tsc --noEmit)",
       "Bash(node -e \"console.log(JSON.parse(require(''fs'').readFileSync(''./tsconfig.json'', ''utf8'')));\")",
       "Bash(npx tsc --noEmit --project tsconfig.json)",
       "Bash(node -e \"console.log(''Valid JSON:'', JSON.parse(require(''fs'').readFileSync(''./tsconfig.json'', ''utf8'')));\")",
       "Bash(dir D:BilalBilalBilal DataHackathonhackathon-01srcutils*.ts)",
       "Bash(dir \"D:\\Bilal\\Bilal\\Bilal Data\\Hackathon\\hackathon-01\\src\\utils\" /s)",
+<<<<<<< Updated upstream
       "Bash(npm run build)"
+=======
+      "Bash(npm run build)",
+      "Bash(\".venv\\Scripts\\python.exe\":*)",
+      "Bash(\".venv\\Scripts\\python.exe\" -c:*)",
+      "Bash(bash:*)",
+      "Bash(uv run python:*)",
+      "Bash(python:*)",
+      "Bash(timeout 10 uvicorn:*)",
+      "Bash(findstr:*)",
+      "Bash(curl:*)",
+      "Bash(powershell -Command \"Start-Sleep -Seconds 50; curl.exe -s -X POST http://localhost:8000/chat -H ''Content-Type: application/json'' -d ''{\"\"query\"\": \"\"hi\"\", \"\"session_id\"\": \"\"550e8400-e29b-41d4-a716-446655440000\"\"}''\")",
+      "Bash(curl -X POST http://localhost:8000/chat/stream -H \"Content-Type: application/json\" -H \"Accept: text/event-stream\" -H \"Origin: http://localhost:3000\" -d \"{\"\"query\"\":\"\"What is ROS 2?\"\", \"\"mode\"\":\"\"general\"\", \"\"session_id\"\":\"\"test-session-123\"\"}\")",
+      "Bash(curl -X POST http://localhost:8000/chat/stream -H \"Content-Type: application/json\" -H \"Accept: text/event-stream\" -H \"Origin: http://localhost:3000\" -d \"{\"\"query\"\":\"\"What is ROS 2?\"\", \"\"mode\"\":\"\"general\"\", \"\"session_id\"\":\"\"12345678-1234-1234-1234-123456789012\"\"}\")",
+      "Bash(cat \"D:\\Bilal\\Bilal\\Bilal Data\\Hackathon\\hackathon-01\\backend\\.env\")",
+      "Bash(curl -X GET http://localhost:8000/conversations/12345678-1234-1234-1234-123456789012 -H \"Content-Type: application/json\" -H \"Origin: http://localhost:3000\")"
+>>>>>>> Stashed changes
     ],
     "deny": [],
     "ask": []
