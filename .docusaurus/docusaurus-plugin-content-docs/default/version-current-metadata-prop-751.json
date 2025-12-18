@@ -381,6 +381,11 @@
     ]
   },
   "docs": {
+    "chat-assistant": {
+      "id": "chat-assistant",
+      "title": "AI Chat Assistant",
+      "description": "How to use the AI-powered documentation assistant"
+    },
     "index": {
       "id": "index",
       "title": "ROS 2 Robotics Education",

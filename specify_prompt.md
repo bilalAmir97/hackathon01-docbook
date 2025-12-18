@@ -17,11 +17,8 @@ Success criteria
 - Responses include source citations (chapter/lesson references) from retrieved content  
 
 Constraints  
-- Tech stack: OpenAI Agents SDK (with Gemini API via OpenAI-compatible endpoint), FastAPI, Qdrant Cloud Free Tier, Neon Serverless Postgres  
-- Project structure: Follow backend/ architecture with the exact files:  
-  main.py, embeddings.py, vector_store.py, db.py, routes.py, chat.py, ingest.py, source.py  
+- Tech stack: OpenAI Agents SDK (with Gemini API via OpenAI-compatible endpoint), FastAPI, Qdrant Cloud Free Tier, Neon Serverless Postgres   
 - API key management: Store GEMINI_API_KEY in .env file, never commit to version control  
-- Embedding model: Gemini text embedding model (via Gemini API) or text-embedding-3-small equivalent  
 - Database schema: User sessions, conversation history, and metadata in Neon Postgres; vector embeddings and payloads in Qdrant  
 - Free tier limits: Qdrant Cloud Free (1 GB storage), Neon Serverless Postgres Free tier  
 
@@ -30,7 +27,7 @@ Technical implementation requirements
 - Implement chunking strategy for markdown content: 500–1000 tokens per chunk with 150–200 token overlap; preserve headings and code blocks  
 - Use OpenAI Agents SDK Runner with AsyncOpenAI client pointing to Gemini OpenAI-compatible endpoint (https://generativelanguage.googleapis.com/v1beta/openai/)  
 - Vector store operations in Qdrant:  
-  - Initialize collection with correct dimension (Gemini embedding size = 768 or 1536 depending on model)  
+  - Initialize collection with correct dimension 
   - Upsert points with metadata payload (chapter, lesson, slug, heading, code_block flag)  
   - Similarity search with metadata filtering and score threshold  
 - CORS configuration allowing only the Docusaurus domain(s)  

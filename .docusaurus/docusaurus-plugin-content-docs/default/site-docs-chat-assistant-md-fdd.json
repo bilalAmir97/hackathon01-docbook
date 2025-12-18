@@ -1,0 +1,20 @@
+{
+  "id": "chat-assistant",
+  "title": "AI Chat Assistant",
+  "description": "How to use the AI-powered documentation assistant",
+  "source": "@site/docs/chat-assistant.md",
+  "sourceDirName": ".",
+  "slug": "/chat-assistant",
+  "permalink": "/docs/chat-assistant",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/chat-assistant.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 99,
+  "frontMatter": {
+    "sidebar_position": 99,
+    "title": "AI Chat Assistant",
+    "description": "How to use the AI-powered documentation assistant"
+  }
+}

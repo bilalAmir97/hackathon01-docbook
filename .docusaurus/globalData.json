@@ -11,6 +11,10 @@
           "mainDocId": "index",
           "docs": [
             {
+              "id": "chat-assistant",
+              "path": "/docs/chat-assistant"
+            },
+            {
               "id": "index",
               "path": "/docs/",
               "sidebar": "tutorialSidebar"

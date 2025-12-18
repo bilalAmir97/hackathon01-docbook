@@ -11,9 +11,6 @@
       "Bash(node -e \"console.log(''Valid JSON:'', JSON.parse(require(''fs'').readFileSync(''./tsconfig.json'', ''utf8'')));\")",
       "Bash(dir D:BilalBilalBilal DataHackathonhackathon-01srcutils*.ts)",
       "Bash(dir \"D:\\Bilal\\Bilal\\Bilal Data\\Hackathon\\hackathon-01\\src\\utils\" /s)",
-<<<<<<< Updated upstream
-      "Bash(npm run build)"
-=======
       "Bash(npm run build)",
       "Bash(\".venv\\Scripts\\python.exe\":*)",
       "Bash(\".venv\\Scripts\\python.exe\" -c:*)",
@@ -28,7 +25,6 @@
       "Bash(curl -X POST http://localhost:8000/chat/stream -H \"Content-Type: application/json\" -H \"Accept: text/event-stream\" -H \"Origin: http://localhost:3000\" -d \"{\"\"query\"\":\"\"What is ROS 2?\"\", \"\"mode\"\":\"\"general\"\", \"\"session_id\"\":\"\"12345678-1234-1234-1234-123456789012\"\"}\")",
       "Bash(cat \"D:\\Bilal\\Bilal\\Bilal Data\\Hackathon\\hackathon-01\\backend\\.env\")",
       "Bash(curl -X GET http://localhost:8000/conversations/12345678-1234-1234-1234-123456789012 -H \"Content-Type: application/json\" -H \"Origin: http://localhost:3000\")"
->>>>>>> Stashed changes
     ],
     "deny": [],
     "ask": []

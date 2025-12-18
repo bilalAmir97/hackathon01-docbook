@@ -52,6 +52,9 @@ export default {
     }
   ],
   "themes": [],
+  "customFields": {
+    "apiUrl": "http://localhost:8000"
+  },
   "themeConfig": {
     "image": "img/docusaurus-social-card.jpg",
     "metadata": [
@@ -461,7 +464,6 @@ export default {
   "staticDirectories": [
     "static"
   ],
-  "customFields": {},
   "plugins": [],
   "scripts": [],
   "headTags": [],
