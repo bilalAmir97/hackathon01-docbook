@@ -10,6 +10,7 @@ from __future__ import annotations
 # CRITICAL: Apply Pydantic patch BEFORE any OpenAI SDK imports
 import pydantic_patch  # noqa: F401
 
+import asyncio
 import os
 from typing import Annotated, Any
 
@@ -74,7 +75,7 @@ def get_model() -> LitellmModel:
     """Get configured Gemini model via LiteLLM.
 
     Returns:
-        LitellmModel configured for Gemini
+        LitellmModel configured for Gemini with rate limit handling
 
     Raises:
         ValueError: If GEMINI_API_KEY is not set
@@ -83,12 +84,64 @@ def get_model() -> LitellmModel:
     if not api_key:
         raise ValueError("GEMINI_API_KEY environment variable not set")
 
-    model_name = os.environ.get("GEMINI_MODEL", "gemini/gemini-2.0-flash")
+    # Use gemini-1.5-flash as fallback model (higher rate limits)
+    model_name = os.environ.get("GEMINI_MODEL", "gemini/gemini-1.5-flash")
 
     return LitellmModel(
         model=model_name,
         api_key=api_key,
     )
+
+
+# =============================================================================
+# Rate Limit Retry Logic
+# =============================================================================
+
+MAX_RETRIES = 3
+RETRY_DELAYS = [5, 15, 30]  # Exponential backoff delays in seconds
+
+
+async def run_with_retry(coro_func, *args, **kwargs):
+    """Run a coroutine with retry logic for rate limit errors.
+
+    Args:
+        coro_func: Async function to call
+        *args, **kwargs: Arguments to pass to the function
+
+    Returns:
+        Result from the coroutine
+
+    Raises:
+        Last exception if all retries fail
+    """
+    last_exception = None
+
+    for attempt in range(MAX_RETRIES):
+        try:
+            return await coro_func(*args, **kwargs)
+        except Exception as e:
+            error_str = str(e).lower()
+            # Check if it's a rate limit error
+            if "429" in error_str or "rate" in error_str or "quota" in error_str:
+                last_exception = e
+                if attempt < MAX_RETRIES - 1:
+                    delay = RETRY_DELAYS[attempt]
+                    import structlog
+                    logger = structlog.get_logger()
+                    logger.warning(
+                        "rate_limit_retry",
+                        attempt=attempt + 1,
+                        max_retries=MAX_RETRIES,
+                        delay_seconds=delay,
+                        error=str(e)[:200],
+                    )
+                    await asyncio.sleep(delay)
+                    continue
+            # Not a rate limit error, raise immediately
+            raise e
+
+    # All retries exhausted
+    raise last_exception
 
 
 # =============================================================================
@@ -217,8 +270,11 @@ async def run_agent(
         )
         sources = []
 
-    # Run the agent
-    result = await Runner.run(agent, input=query)
+    # Run the agent with retry logic for rate limits
+    async def _run():
+        return await Runner.run(agent, input=query)
+
+    result = await run_with_retry(_run)
 
     # Extract sources from tool calls (general mode)
     if mode == "general":
@@ -284,14 +340,41 @@ async def run_agent_streamed(
         )
         sources = []
 
-    # Run with streaming
-    result = Runner.run_streamed(agent, input=query)
+    # Run with streaming and retry logic for rate limits
+    last_exception = None
+    for attempt in range(MAX_RETRIES):
+        try:
+            result = Runner.run_streamed(agent, input=query)
 
-    # Stream events
-    async for event in result.stream_events():
-        if event.type == "raw_response_event":
-            if isinstance(event.data, ResponseTextDeltaEvent):
-                yield {"type": "chunk", "content": event.data.delta}
+            # Stream events
+            async for event in result.stream_events():
+                if event.type == "raw_response_event":
+                    if isinstance(event.data, ResponseTextDeltaEvent):
+                        yield {"type": "chunk", "content": event.data.delta}
+
+            # If we got here without error, break the retry loop
+            break
+
+        except Exception as e:
+            error_str = str(e).lower()
+            if "429" in error_str or "rate" in error_str or "quota" in error_str:
+                last_exception = e
+                if attempt < MAX_RETRIES - 1:
+                    delay = RETRY_DELAYS[attempt]
+                    import structlog
+                    logger = structlog.get_logger()
+                    logger.warning(
+                        "rate_limit_retry_stream",
+                        attempt=attempt + 1,
+                        max_retries=MAX_RETRIES,
+                        delay_seconds=delay,
+                    )
+                    await asyncio.sleep(delay)
+                    continue
+            raise e
+    else:
+        if last_exception:
+            raise last_exception
 
     # Extract sources after completion
     if mode == "general":
