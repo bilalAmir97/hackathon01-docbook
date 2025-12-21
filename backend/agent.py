@@ -84,8 +84,9 @@ def get_model() -> LitellmModel:
     if not api_key:
         raise ValueError("GEMINI_API_KEY environment variable not set")
 
-    # Use gemini-1.5-flash as fallback model (higher rate limits)
-    model_name = os.environ.get("GEMINI_MODEL", "gemini/gemini-1.5-flash")
+    # Use gemini-2.5-flash as default (stable, good rate limits)
+    # Options: gemini/gemini-3.0-flash (latest), gemini/gemini-2.5-flash (stable)
+    model_name = os.environ.get("GEMINI_MODEL", "gemini/gemini-2.5-flash")
 
     return LitellmModel(
         model=model_name,
