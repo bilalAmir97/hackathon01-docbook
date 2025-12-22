@@ -99,55 +99,26 @@ function CitationItem({ citation, index }: CitationItemProps): JSX.Element {
   const [isExpanded, setIsExpanded] = useState(false);
   const relevanceLevel = getRelevanceLevel(citation.relevanceScore);
 
-  // Check if this is a user selection (not a real URL)
-  const isUserSelection = citation.sourceUrl === 'selected_text';
-
   // Determine if this is an internal or external link
   const isInternalLink =
-    !isUserSelection &&
-    (citation.sourceUrl.startsWith('/') ||
-      citation.sourceUrl.includes(window.location.hostname));
-
-  const handleClick = (e: React.MouseEvent) => {
-    // Prevent navigation for user selection sources
-    if (isUserSelection) {
-      e.preventDefault();
-      return;
-    }
-    // For internal links, use SPA navigation if available
-    if (isInternalLink && window.location) {
-      // Let the default anchor behavior handle it
-      // Docusaurus will intercept internal links
-    }
-  };
+    citation.sourceUrl.startsWith('/') ||
+    citation.sourceUrl.includes(window.location.hostname);
 
   return (
     <div className={styles.citationItem} data-relevance={relevanceLevel}>
       <div className={styles.citationHeader}>
         <span className={styles.citationIndex}>[{index + 1}]</span>
-        {isUserSelection ? (
-          // For user selection, render as non-clickable text
-          <span className={styles.citationLink} style={{ cursor: 'default' }}>
-            <LinkIcon />
-            <span className={styles.citationTitle}>
-              {citation.pageTitle || 'User Selection'}
-            </span>
+        <a
+          href={citation.sourceUrl}
+          className={styles.citationLink}
+          target={isInternalLink ? undefined : '_blank'}
+          rel={isInternalLink ? undefined : 'noopener noreferrer'}
+        >
+          <LinkIcon />
+          <span className={styles.citationTitle}>
+            {citation.pageTitle || 'Source'}
           </span>
-        ) : (
-          // For real sources, render as clickable link
-          <a
-            href={citation.sourceUrl}
-            onClick={handleClick}
-            className={styles.citationLink}
-            target={isInternalLink ? undefined : '_blank'}
-            rel={isInternalLink ? undefined : 'noopener noreferrer'}
-          >
-            <LinkIcon />
-            <span className={styles.citationTitle}>
-              {citation.pageTitle || 'Source'}
-            </span>
-          </a>
-        )}
+        </a>
         <span
           className={styles.citationRelevance}
           title={`Relevance: ${formatRelevance(citation.relevanceScore)}`}
@@ -204,8 +175,19 @@ export function CitationList({
     return null;
   }
 
+  // Filter out "selected_text" sources - user already knows they selected text
+  // Only show real documentation sources
+  const realCitations = citations.filter(
+    (c) => c.sourceUrl !== 'selected_text'
+  );
+
+  // Don't render if no real citations remain
+  if (realCitations.length === 0) {
+    return null;
+  }
+
   // Sort by relevance score
-  const sortedCitations = [...citations].sort(
+  const sortedCitations = [...realCitations].sort(
     (a, b) => b.relevanceScore - a.relevanceScore
   );
 
@@ -220,7 +202,7 @@ export function CitationList({
       <div className={styles.citationListHeader}>
         <span className={styles.citationListTitle}>Sources</span>
         <span className={styles.citationListCount}>
-          {citations.length} {citations.length === 1 ? 'source' : 'sources'}
+          {realCitations.length} {realCitations.length === 1 ? 'source' : 'sources'}
         </span>
       </div>
 
