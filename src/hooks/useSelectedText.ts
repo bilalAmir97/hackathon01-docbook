@@ -136,9 +136,26 @@ export function useSelectedText(
     window.getSelection()?.removeAllRanges();
   }, []);
 
+  // Check if an element is inside a chat component
+  const isInsideChatElement = useCallback((element: Element | null): boolean => {
+    if (!element) return false;
+    return !!(
+      element.closest('[data-chat-element]') ||
+      element.closest('[class*="chatWidget"]') ||
+      element.closest('[class*="chatPanel"]') ||
+      element.closest('[class*="selectionTooltip"]')
+    );
+  }, []);
+
   // Handle selection change with debouncing
-  const handleSelectionChange = useCallback(() => {
+  const handleSelectionChange = useCallback((event?: Event) => {
     if (!opts.enabled) return;
+
+    // Don't process selection changes if the event originated from within chat elements
+    // This prevents clearing the selectedText when clicking on the chat input
+    if (event?.target && isInsideChatElement(event.target as Element)) {
+      return;
+    }
 
     // Clear any pending timeout
     if (timeoutRef.current) {
@@ -150,6 +167,11 @@ export function useSelectedText(
 
       // No selection or empty selection
       if (!selection || selection.isCollapsed) {
+        // Don't clear if we're inside a chat element (preserve selected text context)
+        const activeElement = document.activeElement;
+        if (activeElement && isInsideChatElement(activeElement)) {
+          return;
+        }
         setSelectedText(null);
         return;
       }
@@ -176,20 +198,16 @@ export function useSelectedText(
         isActive: true,
       });
     }, opts.debounceMs);
-  }, [opts.enabled, opts.containerSelector, opts.maxLength, opts.minLength, opts.debounceMs]);
+  }, [opts.enabled, opts.containerSelector, opts.maxLength, opts.minLength, opts.debounceMs, isInsideChatElement]);
 
   // Handle click outside to clear selection
   const handleClick = useCallback(
     (event: MouseEvent) => {
       if (!selectedText?.isActive) return;
 
-      // Don't clear if clicking on the tooltip or chat elements
+      // Don't clear if clicking on chat elements
       const target = event.target as Element;
-      if (
-        target.closest('.chat-selection-tooltip') ||
-        target.closest('.chat-widget') ||
-        target.closest('[data-chat-element]')
-      ) {
+      if (isInsideChatElement(target)) {
         return;
       }
 
@@ -208,7 +226,7 @@ export function useSelectedText(
         }
       }, 50);
     },
-    [selectedText?.isActive]
+    [selectedText?.isActive, isInsideChatElement]
   );
 
   // Set up event listeners
