@@ -4,7 +4,7 @@
  */
 
 import React, { useState, useEffect, useCallback, useRef } from 'react';
-import type { Citation } from '../../types/chat';
+import { createPortal } from 'react-dom';
 import styles from './chat.module.css';
 
 /**
@@ -74,6 +74,16 @@ function SourceIcon(): JSX.Element {
 }
 
 /**
+ * Check if element is within an assistant message body
+ */
+function isInAssistantMessage(element: Element | null): boolean {
+  if (!element) return false;
+  // Check for data-message-body="assistant" attribute we added to message bodies
+  const messageBody = element.closest('[data-message-body="assistant"]');
+  return messageBody !== null;
+}
+
+/**
  * ResponseSelectionTooltip component
  * Shows action buttons when text is selected within AI responses
  */
@@ -87,11 +97,11 @@ export function ResponseSelectionTooltip({
   const [isVisible, setIsVisible] = useState(false);
   const tooltipRef = useRef<HTMLDivElement>(null);
 
-  // Handle text selection within the container
+  // Handle text selection within assistant messages
   const handleSelectionChange = useCallback(() => {
     const sel = window.getSelection();
 
-    if (!sel || sel.isCollapsed || !containerRef.current) {
+    if (!sel || sel.isCollapsed) {
       setIsVisible(false);
       setTimeout(() => setSelection(null), 200);
       return;
@@ -103,14 +113,15 @@ export function ResponseSelectionTooltip({
       return;
     }
 
-    // Check if selection is within the container (assistant message body)
+    // Check if selection is within an assistant message body
     const range = sel.getRangeAt(0);
     const container = range.commonAncestorContainer;
     const element = container.nodeType === Node.TEXT_NODE
       ? container.parentElement
       : container as Element;
 
-    if (!element || !containerRef.current.contains(element)) {
+    // Only show tooltip for selections within assistant message bodies
+    if (!isInAssistantMessage(element)) {
       setIsVisible(false);
       return;
     }
@@ -118,7 +129,7 @@ export function ResponseSelectionTooltip({
     const rect = range.getBoundingClientRect();
     setSelection({ text, rect });
     requestAnimationFrame(() => setIsVisible(true));
-  }, [containerRef]);
+  }, []);
 
   // Set up event listeners
   useEffect(() => {
@@ -172,7 +183,8 @@ export function ResponseSelectionTooltip({
     top = selection.rect.bottom + padding;
   }
 
-  return (
+  // Use portal to render tooltip at body level (avoids overflow/stacking issues)
+  const tooltipContent = (
     <div
       ref={tooltipRef}
       className={`${styles.responseSelectionTooltip} ${isVisible ? styles.responseSelectionTooltipVisible : ''}`}
@@ -206,6 +218,13 @@ export function ResponseSelectionTooltip({
       )}
     </div>
   );
+
+  // Render via portal to document body
+  if (typeof document !== 'undefined') {
+    return createPortal(tooltipContent, document.body);
+  }
+
+  return tooltipContent;
 }
 
 export default ResponseSelectionTooltip;
