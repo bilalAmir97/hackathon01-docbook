@@ -40,14 +40,15 @@ function ChatIcon(): JSX.Element {
 
 /**
  * Calculate tooltip position from selection rect
+ * Uses fixed positioning (no scroll offset needed)
  */
 function calculatePosition(rect: DOMRect): { top: number; left: number } {
   const padding = 8;
   const tooltipHeight = 40;
 
-  // Position above the selection
-  let top = rect.top - tooltipHeight - padding + window.scrollY;
-  let left = rect.left + rect.width / 2 + window.scrollX;
+  // Position above the selection (fixed positioning - no scroll offset)
+  let top = rect.top - tooltipHeight - padding;
+  let left = rect.left + rect.width / 2;
 
   // Keep within viewport horizontally
   const tooltipWidth = 150; // Approximate width
@@ -62,7 +63,7 @@ function calculatePosition(rect: DOMRect): { top: number; left: number } {
 
   // If tooltip would be above viewport, show below selection
   if (top < padding) {
-    top = rect.bottom + padding + window.scrollY;
+    top = rect.bottom + padding;
   }
 
   return { top, left };

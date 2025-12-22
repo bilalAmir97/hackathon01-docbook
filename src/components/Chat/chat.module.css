@@ -726,7 +726,7 @@
    Selection Tooltip
    ============================================ */
 .selectionTooltip {
-  position: absolute;
+  position: fixed;
   z-index: 10000;
   transform: translateX(-50%);
   opacity: 0;
