@@ -4,7 +4,7 @@
  * Wrapped in error boundary for graceful error handling
  */
 
-import React, { useCallback, useState, useRef, useEffect } from 'react';
+import React, { useCallback } from 'react';
 import { useChatContext } from '../../contexts/ChatContext';
 import { MessageList } from './MessageList';
 import { MessageInput } from './MessageInput';
@@ -101,16 +101,10 @@ export function ChatPanel({ className = '' }: ChatPanelProps): JSX.Element {
     setSelectedText,
   } = useChatContext();
 
-  // State for follow-up citation from AI response selection
-  const [followUpCitation, setFollowUpCitation] = useState<string | null>(null);
-  const inputRef = useRef<HTMLTextAreaElement>(null);
-
   // Handle message send
   const handleSend = useCallback(
     (content: string) => {
       sendMessage(content);
-      // Clear follow-up citation after sending
-      setFollowUpCitation(null);
     },
     [sendMessage]
   );
@@ -120,20 +114,6 @@ export function ChatPanel({ className = '' }: ChatPanelProps): JSX.Element {
     setSelectedText(null);
   }, [setSelectedText]);
 
-  // Handle clear follow-up citation
-  const handleClearFollowUpCitation = useCallback(() => {
-    setFollowUpCitation(null);
-  }, []);
-
-  // Handle "Add to Follow-Up" from response selection
-  const handleAddToFollowUp = useCallback((text: string) => {
-    setFollowUpCitation(text);
-    // Focus the input field
-    setTimeout(() => {
-      inputRef.current?.focus();
-    }, 100);
-  }, []);
-
   // Handle clear messages with confirmation
   const handleClearMessages = useCallback(() => {
     if (messages.length > 0) {
@@ -142,7 +122,6 @@ export function ChatPanel({ className = '' }: ChatPanelProps): JSX.Element {
       );
       if (confirmed) {
         clearMessages();
-        setFollowUpCitation(null);
       }
     }
   }, [messages.length, clearMessages]);
@@ -206,23 +185,16 @@ export function ChatPanel({ className = '' }: ChatPanelProps): JSX.Element {
       >
         {/* Messages */}
         <div className={styles.chatPanelBody}>
-          <MessageList
-            messages={messages}
-            isLoading={isLoading}
-            onAddToFollowUp={handleAddToFollowUp}
-          />
+          <MessageList messages={messages} isLoading={isLoading} />
         </div>
 
         {/* Input */}
         <footer className={styles.chatPanelFooter}>
           <MessageInput
-            ref={inputRef}
             onSend={handleSend}
             disabled={isLoading}
             selectedText={selectedText}
             onClearSelectedText={handleClearSelectedText}
-            followUpCitation={followUpCitation}
-            onClearFollowUpCitation={handleClearFollowUpCitation}
             autoFocus={isOpen}
           />
         </footer>

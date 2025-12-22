@@ -3,11 +3,9 @@
  * Handles user/assistant message differentiation and auto-scroll
  */
 
-import React, { useEffect, useRef, useState, useCallback } from 'react';
-import type { Message, Citation } from '../../types/chat';
+import React, { useEffect, useRef } from 'react';
+import type { Message } from '../../types/chat';
 import { CitationList } from './CitationList';
-import { ResponseSelectionTooltip } from './ResponseSelectionTooltip';
-import { SourcesSidebar } from './SourcesSidebar';
 import styles from './chat.module.css';
 
 /**
@@ -18,8 +16,6 @@ interface MessageListProps {
   messages: Message[];
   /** Whether a response is being loaded */
   isLoading?: boolean;
-  /** Callback when user wants to add text to follow-up */
-  onAddToFollowUp?: (text: string) => void;
 }
 
 /**
@@ -27,8 +23,6 @@ interface MessageListProps {
  */
 interface MessageItemProps {
   message: Message;
-  /** Ref to attach to the message body for selection detection */
-  bodyRef?: React.RefObject<HTMLDivElement>;
 }
 
 /**
@@ -126,7 +120,7 @@ function formatContent(content: string): JSX.Element {
 /**
  * Individual message item component
  */
-function MessageItem({ message, bodyRef }: MessageItemProps): JSX.Element {
+function MessageItem({ message }: MessageItemProps): JSX.Element {
   const isUser = message.role === 'user';
   const isStreaming = message.status === 'streaming';
   const isError = message.status === 'error';
@@ -150,11 +144,7 @@ function MessageItem({ message, bodyRef }: MessageItemProps): JSX.Element {
           )}
         </div>
 
-        <div
-          ref={!isUser ? bodyRef : undefined}
-          className={styles.messageBody}
-          data-message-body={!isUser ? 'assistant' : 'user'}
-        >
+        <div className={styles.messageBody}>
           {isError ? (
             <div className={styles.messageError}>
               <span className={styles.messageErrorIcon}>!</span>
@@ -220,112 +210,50 @@ function EmptyState(): JSX.Element {
 export function MessageList({
   messages,
   isLoading = false,
-  onAddToFollowUp,
 }: MessageListProps): JSX.Element {
   const listRef = useRef<HTMLDivElement>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
-  const messageBodyRef = useRef<HTMLDivElement>(null);
-
-  // State for sources sidebar
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [sidebarSources, setSidebarSources] = useState<Citation[]>([]);
-  const [sidebarSelectedText, setSidebarSelectedText] = useState<string>('');
-
-  // Get all sources from assistant messages
-  const allSources = messages
-    .filter((m) => m.role === 'assistant' && m.sources)
-    .flatMap((m) => m.sources || []);
 
   // Auto-scroll to bottom when new messages arrive
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages, isLoading]);
 
-  // Handle "Add to Follow-Up" action
-  const handleAddToFollowUp = useCallback(
-    (text: string) => {
-      onAddToFollowUp?.(text);
-    },
-    [onAddToFollowUp]
-  );
-
-  // Handle "Check Sources" action
-  const handleCheckSources = useCallback(
-    (text: string) => {
-      setSidebarSelectedText(text);
-      setSidebarSources(allSources);
-      setSidebarOpen(true);
-    },
-    [allSources]
-  );
-
-  // Close sidebar
-  const handleCloseSidebar = useCallback(() => {
-    setSidebarOpen(false);
-  }, []);
-
   if (messages.length === 0) {
     return <EmptyState />;
   }
 
   return (
-    <>
-      <div
-        ref={listRef}
-        className={styles.messageList}
-        role="log"
-        aria-live="polite"
-        aria-label="Chat messages"
-      >
-        {messages.map((message, index) => (
-          <MessageItem
-            key={message.id}
-            message={message}
-            bodyRef={
-              message.role === 'assistant' &&
-              index === messages.length - 1
-                ? messageBodyRef
-                : undefined
-            }
-          />
-        ))}
+    <div
+      ref={listRef}
+      className={styles.messageList}
+      role="log"
+      aria-live="polite"
+      aria-label="Chat messages"
+    >
+      {messages.map((message) => (
+        <MessageItem key={message.id} message={message} />
+      ))}
 
-        {/* Loading indicator when waiting for response */}
-        {isLoading &&
-          messages.length > 0 &&
-          messages[messages.length - 1].role === 'user' && (
-            <div className={`${styles.messageItem} ${styles.messageAssistant}`}>
-              <div className={styles.messageAvatar}>
-                <AssistantIcon />
-              </div>
-              <div className={styles.messageContent}>
-                <div className={styles.messageBody}>
-                  <TypingIndicator />
-                </div>
+      {/* Loading indicator when waiting for response */}
+      {isLoading &&
+        messages.length > 0 &&
+        messages[messages.length - 1].role === 'user' && (
+          <div className={`${styles.messageItem} ${styles.messageAssistant}`}>
+            <div className={styles.messageAvatar}>
+              <AssistantIcon />
+            </div>
+            <div className={styles.messageContent}>
+              <div className={styles.messageBody}>
+                <TypingIndicator />
               </div>
             </div>
-          )}
+          </div>
+        )}
 
-        {/* Scroll anchor */}
-        <div ref={bottomRef} />
-      </div>
-
-      {/* Response selection tooltip */}
-      <ResponseSelectionTooltip
-        containerRef={listRef}
-        hasSources={allSources.length > 0}
-        onAddToFollowUp={handleAddToFollowUp}
-        onCheckSources={handleCheckSources}
-      />
-
-      {/* Sources sidebar */}
-      <SourcesSidebar
-        isOpen={sidebarOpen}
-        onClose={handleCloseSidebar}
-        sources={sidebarSources}
-        selectedText={sidebarSelectedText}
-      />
-    </>
+      {/* Scroll anchor */}
+      <div ref={bottomRef} />
+    </div>
   );
 }
 
