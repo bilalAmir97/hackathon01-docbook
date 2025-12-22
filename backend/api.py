@@ -306,7 +306,7 @@ async def chat(request: ChatRequest) -> ChatResponse:
             metadata=ResponseMetadata(
                 query_time_ms=round(elapsed_ms, 2),
                 chunks_retrieved=len(sources),
-                model=os.environ.get("GEMINI_MODEL", "gemini-2.0-flash"),
+                model=os.environ.get("OPEN_ROUTER_MODEL", "google/gemini-2.0-flash-001"),
             ),
         )
 
@@ -405,7 +405,7 @@ async def chat_stream(request: ChatRequest) -> StreamingResponse:
                     metadata=ResponseMetadata(
                         query_time_ms=round(elapsed_ms, 2),
                         chunks_retrieved=len(sources),
-                        model=os.environ.get("GEMINI_MODEL", "gemini-2.0-flash"),
+                        model=os.environ.get("OPEN_ROUTER_MODEL", "google/gemini-2.0-flash-001"),
                     )
                 ).model_dump()
             )
@@ -498,14 +498,14 @@ async def health() -> HealthResponse:
         services["cohere"] = ServiceStatus(status="down", message=str(e))
         overall = "degraded" if overall == "healthy" else overall
 
-    # Check Gemini API key (basic check - no API call)
-    gemini_key = os.environ.get("GEMINI_API_KEY")
-    if gemini_key:
-        services["gemini"] = ServiceStatus(status="up", message="API key configured")
+    # Check OpenRouter API key (basic check - no API call)
+    openrouter_key = os.environ.get("OPEN_ROUTER_API_KEY")
+    if openrouter_key:
+        services["openrouter"] = ServiceStatus(status="up", message="API key configured")
     else:
-        services["gemini"] = ServiceStatus(
+        services["openrouter"] = ServiceStatus(
             status="down",
-            message="GEMINI_API_KEY not configured",
+            message="OPEN_ROUTER_API_KEY not configured",
         )
         overall = "degraded" if overall == "healthy" else overall
 

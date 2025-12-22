@@ -1,8 +1,8 @@
-"""RAG Agent using OpenAI Agents SDK with Gemini backend.
+"""RAG Agent using OpenAI Agents SDK with OpenRouter backend.
 
 This module provides the agent configuration and execution logic for
 the RAG Agent API. It integrates with the Spec-2 retrieval pipeline
-and uses Gemini for LLM generation via LiteLLM.
+and uses OpenRouter for LLM generation via LiteLLM.
 """
 
 from __future__ import annotations
@@ -27,7 +27,7 @@ from agents.extensions.models.litellm_model import LitellmModel
 from models import RetrievalRequest
 from retrieval import retrieve
 
-# Disable OpenAI tracing (not supported with Gemini backend)
+# Disable OpenAI tracing (not needed with OpenRouter backend)
 set_tracing_disabled(disabled=True)
 
 
@@ -72,25 +72,29 @@ Answer the user's question based ONLY on the text above.
 
 
 def get_model() -> LitellmModel:
-    """Get configured Gemini model via LiteLLM.
+    """Get configured OpenRouter model via LiteLLM.
 
     Returns:
-        LitellmModel configured for Gemini with rate limit handling
+        LitellmModel configured for OpenRouter with rate limit handling
 
     Raises:
-        ValueError: If GEMINI_API_KEY is not set
+        ValueError: If OPEN_ROUTER_API_KEY is not set
     """
-    api_key = os.environ.get("GEMINI_API_KEY")
+    api_key = os.environ.get("OPEN_ROUTER_API_KEY")
     if not api_key:
-        raise ValueError("GEMINI_API_KEY environment variable not set")
+        raise ValueError("OPEN_ROUTER_API_KEY environment variable not set")
 
-    # Use gemini-2.5-flash as default (stable, good rate limits)
-    # Options: gemini/gemini-3.0-flash (latest), gemini/gemini-2.5-flash (stable)
-    model_name = os.environ.get("GEMINI_MODEL", "gemini/gemini-2.5-flash")
+    # Use OpenRouter model from environment
+    model_name = os.environ.get("OPEN_ROUTER_MODEL", "google/gemini-2.0-flash-001")
+
+    # Prefix with openrouter/ for LiteLLM routing
+    if not model_name.startswith("openrouter/"):
+        model_name = f"openrouter/{model_name}"
 
     return LitellmModel(
         model=model_name,
         api_key=api_key,
+        base_url="https://openrouter.ai/api/v1",
     )
 
 
