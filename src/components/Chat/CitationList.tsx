@@ -99,12 +99,21 @@ function CitationItem({ citation, index }: CitationItemProps): JSX.Element {
   const [isExpanded, setIsExpanded] = useState(false);
   const relevanceLevel = getRelevanceLevel(citation.relevanceScore);
 
+  // Check if this is a user selection (not a real URL)
+  const isUserSelection = citation.sourceUrl === 'selected_text';
+
   // Determine if this is an internal or external link
   const isInternalLink =
-    citation.sourceUrl.startsWith('/') ||
-    citation.sourceUrl.includes(window.location.hostname);
+    !isUserSelection &&
+    (citation.sourceUrl.startsWith('/') ||
+      citation.sourceUrl.includes(window.location.hostname));
 
   const handleClick = (e: React.MouseEvent) => {
+    // Prevent navigation for user selection sources
+    if (isUserSelection) {
+      e.preventDefault();
+      return;
+    }
     // For internal links, use SPA navigation if available
     if (isInternalLink && window.location) {
       // Let the default anchor behavior handle it
@@ -116,18 +125,29 @@ function CitationItem({ citation, index }: CitationItemProps): JSX.Element {
     <div className={styles.citationItem} data-relevance={relevanceLevel}>
       <div className={styles.citationHeader}>
         <span className={styles.citationIndex}>[{index + 1}]</span>
-        <a
-          href={citation.sourceUrl}
-          onClick={handleClick}
-          className={styles.citationLink}
-          target={isInternalLink ? undefined : '_blank'}
-          rel={isInternalLink ? undefined : 'noopener noreferrer'}
-        >
-          <LinkIcon />
-          <span className={styles.citationTitle}>
-            {citation.pageTitle || 'Source'}
+        {isUserSelection ? (
+          // For user selection, render as non-clickable text
+          <span className={styles.citationLink} style={{ cursor: 'default' }}>
+            <LinkIcon />
+            <span className={styles.citationTitle}>
+              {citation.pageTitle || 'User Selection'}
+            </span>
           </span>
-        </a>
+        ) : (
+          // For real sources, render as clickable link
+          <a
+            href={citation.sourceUrl}
+            onClick={handleClick}
+            className={styles.citationLink}
+            target={isInternalLink ? undefined : '_blank'}
+            rel={isInternalLink ? undefined : 'noopener noreferrer'}
+          >
+            <LinkIcon />
+            <span className={styles.citationTitle}>
+              {citation.pageTitle || 'Source'}
+            </span>
+          </a>
+        )}
         <span
           className={styles.citationRelevance}
           title={`Relevance: ${formatRelevance(citation.relevanceScore)}`}
