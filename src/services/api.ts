@@ -12,9 +12,11 @@ import type {
   Message,
 } from '../types/chat';
 
-// Default configuration
+// Default configuration - use localhost in development, production URL otherwise
 const DEFAULT_CONFIG: ApiConfig = {
-  baseUrl: 'https://bilalamir97-rag-deployment.hf.space',
+  baseUrl: typeof window !== 'undefined' && window.location.hostname === 'localhost'
+    ? 'http://localhost:8000'
+    : 'https://bilalamir97-rag-deployment.hf.space',
   timeout: 30000,
 };
 
@@ -34,6 +36,20 @@ function getApiUrl(): string {
 }
 
 /**
+ * Transform snake_case keys to camelCase for Citation objects
+ * Backend uses snake_case, frontend uses camelCase
+ */
+function transformCitation(raw: Record<string, unknown>): Citation {
+  return {
+    sourceUrl: (raw.source_url as string) || '',
+    pageTitle: (raw.page_title as string) || '',
+    sectionHeading: (raw.section_heading as string) || '',
+    chunkText: (raw.chunk_text as string) || '',
+    relevanceScore: typeof raw.relevance_score === 'number' ? raw.relevance_score : 0,
+  };
+}
+
+/**
  * Parse a single SSE line into a StreamEvent
  */
 function parseSSELine(line: string): StreamEvent | null {
@@ -47,7 +63,14 @@ function parseSSELine(line: string): StreamEvent | null {
   }
 
   try {
-    return JSON.parse(data) as StreamEvent;
+    const parsed = JSON.parse(data);
+
+    // Transform sources if present (snake_case -> camelCase)
+    if (parsed.type === 'sources' && Array.isArray(parsed.sources)) {
+      parsed.sources = parsed.sources.map(transformCitation);
+    }
+
+    return parsed as StreamEvent;
   } catch {
     console.warn('Failed to parse SSE data:', data);
     return null;
@@ -272,15 +295,16 @@ export function getErrorMessage(error: ChatError): string {
 }
 
 /**
- * Response from GET /conversations/{session_id}
+ * Raw response from GET /conversations/{session_id}
+ * Backend uses snake_case for all fields
  */
-interface ConversationsResponse {
+interface ConversationsResponseRaw {
   session_id: string;
   messages: Array<{
     id: string;
     role: 'user' | 'assistant';
     content: string;
-    sources: Citation[] | null;
+    sources: Array<Record<string, unknown>> | null;
     mode: 'general' | 'selected_text';
     created_at: string;
   }>;
@@ -318,14 +342,14 @@ export async function loadConversationHistory(
       return [];
     }
 
-    const data: ConversationsResponse = await response.json();
+    const data: ConversationsResponseRaw = await response.json();
 
-    // Transform API response to Message format
+    // Transform API response to Message format (with snake_case -> camelCase for sources)
     return data.messages.map((msg) => ({
       id: msg.id,
       role: msg.role,
       content: msg.content,
-      sources: msg.sources || undefined,
+      sources: msg.sources ? msg.sources.map(transformCitation) : undefined,
       mode: msg.mode,
       status: 'complete' as const,
       createdAt: new Date(msg.created_at),
