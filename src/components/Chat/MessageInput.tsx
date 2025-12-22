@@ -3,7 +3,7 @@
  * Supports Enter key submission and displays selected text badge
  */
 
-import React, { useState, useRef, useCallback, useEffect } from 'react';
+import React, { useState, useRef, useCallback, useEffect, forwardRef } from 'react';
 import type { SelectedTextState } from '../../types/chat';
 import { SelectedTextBadge } from './SelectedTextBadge';
 import styles from './chat.module.css';
@@ -22,6 +22,10 @@ interface MessageInputProps {
   selectedText?: SelectedTextState | null;
   /** Callback to clear selected text */
   onClearSelectedText?: () => void;
+  /** Follow-up citation from AI response selection */
+  followUpCitation?: string | null;
+  /** Callback to clear follow-up citation */
+  onClearFollowUpCitation?: () => void;
   /** Auto-focus the input */
   autoFocus?: boolean;
 }
@@ -49,6 +53,23 @@ function SendIcon(): JSX.Element {
 }
 
 /**
+ * Quote icon for follow-up citation
+ */
+function QuoteIcon(): JSX.Element {
+  return (
+    <svg
+      width="12"
+      height="12"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      aria-hidden="true"
+    >
+      <path d="M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z" />
+    </svg>
+  );
+}
+
+/**
  * Message input component with selected text support
  *
  * @example
@@ -61,16 +82,23 @@ function SendIcon(): JSX.Element {
  * />
  * ```
  */
-export function MessageInput({
-  onSend,
-  disabled = false,
-  placeholder = 'Ask a question...',
-  selectedText,
-  onClearSelectedText,
-  autoFocus = false,
-}: MessageInputProps): JSX.Element {
+export const MessageInput = forwardRef<HTMLTextAreaElement, MessageInputProps>(
+  function MessageInput(
+    {
+      onSend,
+      disabled = false,
+      placeholder = 'Ask a question...',
+      selectedText,
+      onClearSelectedText,
+      followUpCitation,
+      onClearFollowUpCitation,
+      autoFocus = false,
+    },
+    ref
+  ) {
   const [value, setValue] = useState('');
-  const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const internalRef = useRef<HTMLTextAreaElement>(null);
+  const textareaRef = (ref as React.RefObject<HTMLTextAreaElement>) || internalRef;
 
   // Focus input when autoFocus is true
   useEffect(() => {
@@ -130,12 +158,45 @@ export function MessageInput({
   );
 
   const hasSelectedText = selectedText?.isActive && selectedText.text;
+  const hasFollowUpCitation = followUpCitation && followUpCitation.length > 0;
   const canSend = value.trim().length > 0 && !disabled;
+
+  // Determine placeholder based on context
+  const getPlaceholder = () => {
+    if (hasFollowUpCitation) return 'Ask a follow-up question...';
+    if (hasSelectedText) return 'Ask about the selected text...';
+    return placeholder;
+  };
 
   return (
     <form onSubmit={handleSubmit} className={styles.messageInputForm}>
+      {/* Follow-up citation badge */}
+      {hasFollowUpCitation && (
+        <div className={styles.followUpCitation}>
+          <div className={styles.followUpCitationHeader}>
+            <QuoteIcon />
+            <span>Follow-up on:</span>
+            {onClearFollowUpCitation && (
+              <button
+                type="button"
+                onClick={onClearFollowUpCitation}
+                className={styles.followUpCitationClear}
+                aria-label="Clear citation"
+              >
+                ×
+              </button>
+            )}
+          </div>
+          <blockquote className={styles.followUpCitationText}>
+            "{followUpCitation.length > 100
+              ? followUpCitation.slice(0, 100) + '...'
+              : followUpCitation}"
+          </blockquote>
+        </div>
+      )}
+
       {/* Selected text badge */}
-      {hasSelectedText && (
+      {hasSelectedText && !hasFollowUpCitation && (
         <SelectedTextBadge
           text={selectedText.text}
           onClear={onClearSelectedText}
@@ -148,14 +209,18 @@ export function MessageInput({
           value={value}
           onChange={handleChange}
           onKeyDown={handleKeyDown}
-          placeholder={
-            hasSelectedText ? 'Ask about the selected text...' : placeholder
-          }
+          placeholder={getPlaceholder()}
           disabled={disabled}
           className={styles.messageInputTextarea}
           rows={1}
           aria-label="Message input"
-          aria-describedby={hasSelectedText ? 'selected-text-context' : undefined}
+          aria-describedby={
+            hasFollowUpCitation
+              ? 'follow-up-citation'
+              : hasSelectedText
+                ? 'selected-text-context'
+                : undefined
+          }
         />
 
         <button
@@ -174,6 +239,7 @@ export function MessageInput({
       </div>
     </form>
   );
-}
+  }
+);
 
 export default MessageInput;
