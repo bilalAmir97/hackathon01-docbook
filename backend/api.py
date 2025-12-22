@@ -291,9 +291,8 @@ async def chat(request: ChatRequest) -> ChatResponse:
             filters=request.filters,
         )
 
-        # Validate citations (only keep sources that were actually retrieved)
-        if request.mode == "general" and sources:
-            sources = validate_citations(sources, sources)
+        # The sources variable already contains the chunks retrieved by the agent's search_documentation tool
+        # No additional validation needed since these are the actual retrieved chunks
 
         # Calculate elapsed time
         elapsed_ms = (time.perf_counter() - start_time) * 1000
