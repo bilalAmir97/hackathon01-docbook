@@ -315,15 +315,26 @@ USER QUESTION: {query}
 
 INSTRUCTIONS - Answer using ONLY the context above:
 1. Start with a simple, direct explanation (1-2 sentences)
-2. Use an analogy or comparison to make it relatable (e.g., "Think of it like...")
+2. MUST include a relatable everyday analogy using "Think of it like..." or "It's like..."
+   - Use familiar comparisons: smartphones, kitchen appliances, post office, library, restaurant, traffic, etc.
+   - Make sure EVERYONE can relate to the analogy, not just tech people
 3. Keep it brief - focus on the core concept only
 4. Add ONE inline citation [Source: page_title]
 5. End with a short follow-up question to engage learning
 
-EXAMPLE FORMAT:
-"[Topic] is [simple explanation] [Source: X]. Think of it like [everyday analogy that makes it easy to understand].
+GOOD ANALOGY EXAMPLES:
+- "Think of it like a post office that delivers messages between different departments"
+- "It's like a kitchen where each chef (node) has a specific job, and they coordinate to make a meal"
+- "Imagine it as a group chat where different team members share updates"
 
-[Short engaging question]?"
+BAD ANALOGY EXAMPLES (too technical/abstract):
+- "Like a translator and traffic controller for cities"
+- "Similar to a distributed computing framework"
+
+RESPONSE FORMAT:
+"[Topic] is [simple explanation] [Source: X]. [Relatable everyday analogy using familiar objects/situations everyone knows].
+
+[Engaging question]?"
 
 Now answer the user's question following this format."""
         else:
@@ -444,15 +455,26 @@ USER QUESTION: {query}
 
 INSTRUCTIONS - Answer using ONLY the context above:
 1. Start with a simple, direct explanation (1-2 sentences)
-2. Use an analogy or comparison to make it relatable (e.g., "Think of it like...")
+2. MUST include a relatable everyday analogy using "Think of it like..." or "It's like..."
+   - Use familiar comparisons: smartphones, kitchen appliances, post office, library, restaurant, traffic, etc.
+   - Make sure EVERYONE can relate to the analogy, not just tech people
 3. Keep it brief - focus on the core concept only
 4. Add ONE inline citation [Source: page_title]
 5. End with a short follow-up question to engage learning
 
-EXAMPLE FORMAT:
-"[Topic] is [simple explanation] [Source: X]. Think of it like [everyday analogy that makes it easy to understand].
+GOOD ANALOGY EXAMPLES:
+- "Think of it like a post office that delivers messages between different departments"
+- "It's like a kitchen where each chef (node) has a specific job, and they coordinate to make a meal"
+- "Imagine it as a group chat where different team members share updates"
 
-[Short engaging question]?"
+BAD ANALOGY EXAMPLES (too technical/abstract):
+- "Like a translator and traffic controller for cities"
+- "Similar to a distributed computing framework"
+
+RESPONSE FORMAT:
+"[Topic] is [simple explanation] [Source: X]. [Relatable everyday analogy using familiar objects/situations everyone knows].
+
+[Engaging question]?"
 
 Now answer the user's question following this format."""
         else:
