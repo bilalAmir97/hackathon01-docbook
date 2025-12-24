@@ -22,13 +22,13 @@ class RetrievalRequest:
 
     Attributes:
         query: Natural language query (1-2000 chars)
-        top_k: Number of results to return (1-100, default 5)
+        top_k: Number of results to return (1-100, default 10)
         score_threshold: Minimum similarity score (0.0-1.0, optional)
         filters: Metadata filters (source_url, page_title, section_heading)
     """
 
     query: str
-    top_k: int = 5
+    top_k: int = 10
     score_threshold: float | None = None
     filters: dict[str, str | list[str]] | None = None
 

@@ -37,15 +37,21 @@ set_tracing_disabled(disabled=True)
 
 GENERAL_SYSTEM_PROMPT = """You are a helpful assistant for the Physical AI & Humanoid Robotics textbook.
 
+MANDATORY WORKFLOW:
+1. FIRST: Call search_documentation tool with the user's question
+2. WAIT for the search results to be returned
+3. THEN: Answer ONLY based on the returned chunks
+4. Include [Source: page_title] citations for all facts
+
 CRITICAL RULES:
-1. ONLY use information from the search_documentation tool results
-2. NEVER make claims not supported by retrieved content
-3. ALWAYS cite sources for factual claims using [Source: page_title]
-4. If information is not found, say "I couldn't find information about that in the documentation"
+- You MUST call search_documentation before answering ANY question
+- NEVER answer from your own knowledge - ONLY use retrieved chunks
+- If search returns no results, say "I couldn't find information about that in the documentation"
+- ALWAYS cite sources using [Source: page_title] format
 
 FORMAT:
-- Answer clearly and concisely
-- Include inline citations for factual claims
+- Answer clearly and concisely based on retrieved content
+- Include inline citations for all factual claims
 - If multiple sources support a claim, cite the most relevant one
 """
 
@@ -153,7 +159,7 @@ async def run_with_retry(coro_func, *args, **kwargs):
 @function_tool
 def search_documentation(
     query: Annotated[str, "Search query for relevant documentation"],
-    top_k: Annotated[int, "Number of results to retrieve (1-20)"] = 5,
+    top_k: Annotated[int, "Number of results to retrieve (1-20)"] = 10,
 ) -> list[dict[str, Any]]:
     """Search the Physical AI & Humanoid Robotics documentation.
 
@@ -219,7 +225,7 @@ async def run_agent(
     query: str,
     mode: str,
     selected_text: str | None = None,
-    top_k: int = 5,
+    top_k: int = 10,
     score_threshold: float | None = None,
     filters: dict[str, str | list[str]] | None = None,
 ) -> tuple[str, list[dict[str, Any]]]:
@@ -262,24 +268,62 @@ async def run_agent(
             }
         ]
     else:
-        # General mode with retrieval tool
+        # General mode: manually retrieve chunks BEFORE agent execution
+        # This ensures chunks are always retrieved (Gemini doesn't reliably call tools)
+        request = RetrievalRequest(
+            query=query,
+            top_k=top_k,
+            score_threshold=score_threshold,
+            filters=filters,
+        )
+        retrieval_result = retrieve(request)
+
+        # Format sources for response
+        sources = [
+            {
+                "source_url": chunk.source_url,
+                "page_title": chunk.page_title,
+                "section_heading": chunk.section_heading or "Introduction",
+                "chunk_text": chunk.chunk_text,
+                "relevance_score": round(chunk.score, 4),
+            }
+            for chunk in retrieval_result.results
+        ]
+
+        # Build context from retrieved chunks
+        if sources:
+            context = "\n\n".join([
+                f"[Source: {s['page_title']}]\n{s['chunk_text']}"
+                for s in sources
+            ])
+            enhanced_prompt = f"""{GENERAL_SYSTEM_PROMPT}
+
+RETRIEVED CONTEXT:
+{context}
+
+USER QUESTION: {query}
+
+Answer the question using ONLY the context above. Include [Source: page_title] citations."""
+        else:
+            enhanced_prompt = f"""{GENERAL_SYSTEM_PROMPT}
+
+No relevant documentation found for this query.
+
+USER QUESTION: {query}"""
+
+        # Create agent WITHOUT tools (context is already provided)
         agent = Agent(
             name="RAG Assistant",
-            instructions=GENERAL_SYSTEM_PROMPT,
-            tools=[search_documentation],
+            instructions=enhanced_prompt,
+            tools=[],  # No tools needed - context is pre-retrieved
             model=get_model(),
         )
-        sources = []
 
     # Run the agent with retry logic for rate limits
     async def _run():
         return await Runner.run(agent, input=query)
 
     result = await run_with_retry(_run)
-
-    # Extract sources from tool calls (general mode)
-    if mode == "general":
-        sources = extract_sources_from_result(result)
 
     return result.final_output, sources
 
@@ -288,7 +332,7 @@ async def run_agent_streamed(
     query: str,
     mode: str,
     selected_text: str | None = None,
-    top_k: int = 5,
+    top_k: int = 10,
     score_threshold: float | None = None,
     filters: dict[str, str | list[str]] | None = None,
 ):
@@ -333,13 +377,56 @@ async def run_agent_streamed(
             }
         ]
     else:
+        # General mode: manually retrieve chunks BEFORE agent execution
+        # This ensures chunks are always retrieved (Gemini doesn't reliably call tools)
+        request = RetrievalRequest(
+            query=query,
+            top_k=top_k,
+            score_threshold=score_threshold,
+            filters=filters,
+        )
+        retrieval_result = retrieve(request)
+
+        # Format sources for response
+        sources = [
+            {
+                "source_url": chunk.source_url,
+                "page_title": chunk.page_title,
+                "section_heading": chunk.section_heading or "Introduction",
+                "chunk_text": chunk.chunk_text,
+                "relevance_score": round(chunk.score, 4),
+            }
+            for chunk in retrieval_result.results
+        ]
+
+        # Build context from retrieved chunks
+        if sources:
+            context = "\n\n".join([
+                f"[Source: {s['page_title']}]\n{s['chunk_text']}"
+                for s in sources
+            ])
+            enhanced_prompt = f"""{GENERAL_SYSTEM_PROMPT}
+
+RETRIEVED CONTEXT:
+{context}
+
+USER QUESTION: {query}
+
+Answer the question using ONLY the context above. Include [Source: page_title] citations."""
+        else:
+            enhanced_prompt = f"""{GENERAL_SYSTEM_PROMPT}
+
+No relevant documentation found for this query.
+
+USER QUESTION: {query}"""
+
+        # Create agent WITHOUT tools (context is already provided)
         agent = Agent(
             name="RAG Assistant",
-            instructions=GENERAL_SYSTEM_PROMPT,
-            tools=[search_documentation],
+            instructions=enhanced_prompt,
+            tools=[],  # No tools needed - context is pre-retrieved
             model=get_model(),
         )
-        sources = []
 
     # Run with streaming and retry logic for rate limits
     last_exception = None
@@ -377,11 +464,7 @@ async def run_agent_streamed(
         if last_exception:
             raise last_exception
 
-    # Extract sources after completion
-    if mode == "general":
-        sources = extract_sources_from_result(result)
-
-    # Yield sources
+    # Yield sources (already retrieved above)
     yield {"type": "sources", "sources": sources}
 
 
