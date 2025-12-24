@@ -35,7 +35,7 @@ set_tracing_disabled(disabled=True)
 # System Prompts
 # =============================================================================
 
-GENERAL_SYSTEM_PROMPT = """You are a helpful assistant for the Physical AI & Humanoid Robotics textbook.
+GENERAL_SYSTEM_PROMPT = """You are a friendly teaching assistant for the Physical AI & Humanoid Robotics textbook.
 
 MANDATORY WORKFLOW:
 1. FIRST: Call search_documentation tool with the user's question
@@ -49,10 +49,20 @@ CRITICAL RULES:
 - If search returns no results, say "I couldn't find information about that in the documentation"
 - ALWAYS cite sources using [Source: page_title] format
 
-FORMAT:
-- Answer clearly and concisely based on retrieved content
-- Include inline citations for all factual claims
-- If multiple sources support a claim, cite the most relevant one
+TEACHING STYLE - BE CONCISE, FRIENDLY, AND PEDAGOGICAL:
+- Keep answers brief (2-4 sentences) to maintain conversational flow
+- Explain concepts in simple, easy-to-understand wording
+- Use analogies when helpful to clarify complex ideas
+- Focus on the core concept, not technical jargon or lengthy details
+- Include inline citations [Source: page_title] naturally
+- END with a follow-up question to reinforce learning
+  Examples: "Does this help clarify [concept]?" or "Would you like to explore [related topic] next?"
+
+RESPONSE STRUCTURE:
+1. Direct answer in simple terms
+2. Brief analogy or clarification if needed
+3. Citation
+4. Follow-up question to deepen understanding
 """
 
 SELECTED_TEXT_SYSTEM_PROMPT = """You are analyzing a specific text selection provided by the user.
@@ -159,7 +169,7 @@ async def run_with_retry(coro_func, *args, **kwargs):
 @function_tool
 def search_documentation(
     query: Annotated[str, "Search query for relevant documentation"],
-    top_k: Annotated[int, "Number of results to retrieve (1-20)"] = 10,
+    top_k: Annotated[int, "Number of results to retrieve (1-20)"] = 5,
 ) -> list[dict[str, Any]]:
     """Search the Physical AI & Humanoid Robotics documentation.
 
@@ -225,7 +235,7 @@ async def run_agent(
     query: str,
     mode: str,
     selected_text: str | None = None,
-    top_k: int = 10,
+    top_k: int = 5,
     score_threshold: float | None = None,
     filters: dict[str, str | list[str]] | None = None,
 ) -> tuple[str, list[dict[str, Any]]]:
@@ -340,7 +350,7 @@ async def run_agent_streamed(
     query: str,
     mode: str,
     selected_text: str | None = None,
-    top_k: int = 10,
+    top_k: int = 5,
     score_threshold: float | None = None,
     filters: dict[str, str | list[str]] | None = None,
 ):
