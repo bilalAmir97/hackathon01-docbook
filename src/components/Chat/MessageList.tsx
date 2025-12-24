@@ -154,10 +154,10 @@ function MessageItem({ message }: MessageItemProps): JSX.Element {
             formatContent(message.content)
           )}
 
-          {/* Show typing indicator for streaming messages with no content yet */}
-          {isStreaming && !message.content && <TypingIndicator />}
+          {/* Show typing indicator for pending/thinking and streaming messages with no content yet */}
+          {(message.status === 'pending' || (isStreaming && !message.content)) && <TypingIndicator />}
 
-          {/* Show cursor for streaming messages */}
+          {/* Show cursor for streaming messages with content */}
           {isStreaming && message.content && (
             <span className={styles.streamingCursor} aria-hidden="true" />
           )}
