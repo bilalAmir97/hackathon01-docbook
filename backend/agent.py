@@ -291,7 +291,7 @@ async def run_agent(
         ]
 
         # Build context from retrieved chunks
-        if sources:
+        if sources and sources[0]['relevance_score'] > 0.3:  # Only use if reasonably relevant
             context = "\n\n".join([
                 f"[Source: {s['page_title']}]\n{s['chunk_text']}"
                 for s in sources
@@ -305,11 +305,19 @@ USER QUESTION: {query}
 
 Answer the question using ONLY the context above. Include [Source: page_title] citations."""
         else:
-            enhanced_prompt = f"""{GENERAL_SYSTEM_PROMPT}
+            # No relevant chunks or low relevance - handle conversational queries
+            enhanced_prompt = f"""You are a helpful assistant for the Physical AI & Humanoid Robotics textbook.
 
-No relevant documentation found for this query.
+The user asked: "{query}"
 
-USER QUESTION: {query}"""
+This question is not related to the Physical AI & Humanoid Robotics documentation, or no relevant information was found.
+
+RESPONSE GUIDELINES:
+- If this is a greeting (hi, hello, how are you): Respond warmly and mention you're here to help with questions about Physical AI & Humanoid Robotics.
+- If this is a general question unrelated to the textbook: Politely explain you specialize in Physical AI & Humanoid Robotics and suggest asking related questions.
+- If this seems like a textbook question but nothing was found: Say "I couldn't find information about that in the Physical AI & Humanoid Robotics documentation. Could you rephrase your question or ask about a different topic?"
+
+Keep responses brief and friendly."""
 
         # Create agent WITHOUT tools (context is already provided)
         agent = Agent(
@@ -400,7 +408,7 @@ async def run_agent_streamed(
         ]
 
         # Build context from retrieved chunks
-        if sources:
+        if sources and sources[0]['relevance_score'] > 0.3:  # Only use if reasonably relevant
             context = "\n\n".join([
                 f"[Source: {s['page_title']}]\n{s['chunk_text']}"
                 for s in sources
@@ -414,11 +422,19 @@ USER QUESTION: {query}
 
 Answer the question using ONLY the context above. Include [Source: page_title] citations."""
         else:
-            enhanced_prompt = f"""{GENERAL_SYSTEM_PROMPT}
+            # No relevant chunks or low relevance - handle conversational queries
+            enhanced_prompt = f"""You are a helpful assistant for the Physical AI & Humanoid Robotics textbook.
 
-No relevant documentation found for this query.
+The user asked: "{query}"
 
-USER QUESTION: {query}"""
+This question is not related to the Physical AI & Humanoid Robotics documentation, or no relevant information was found.
+
+RESPONSE GUIDELINES:
+- If this is a greeting (hi, hello, how are you): Respond warmly and mention you're here to help with questions about Physical AI & Humanoid Robotics.
+- If this is a general question unrelated to the textbook: Politely explain you specialize in Physical AI & Humanoid Robotics and suggest asking related questions.
+- If this seems like a textbook question but nothing was found: Say "I couldn't find information about that in the Physical AI & Humanoid Robotics documentation. Could you rephrase your question or ask about a different topic?"
+
+Keep responses brief and friendly."""
 
         # Create agent WITHOUT tools (context is already provided)
         agent = Agent(
