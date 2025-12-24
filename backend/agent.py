@@ -306,14 +306,26 @@ async def run_agent(
                 f"[Source: {s['page_title']}]\n{s['chunk_text']}"
                 for s in sources
             ])
-            enhanced_prompt = f"""{GENERAL_SYSTEM_PROMPT}
+            enhanced_prompt = f"""You are a friendly teaching assistant for Physical AI & Humanoid Robotics.
 
 RETRIEVED CONTEXT:
 {context}
 
 USER QUESTION: {query}
 
-Answer the question using ONLY the context above. Include [Source: page_title] citations."""
+INSTRUCTIONS - Answer using ONLY the context above:
+1. Start with a simple, direct explanation (1-2 sentences)
+2. Use an analogy or comparison to make it relatable (e.g., "Think of it like...")
+3. Keep it brief - focus on the core concept only
+4. Add ONE inline citation [Source: page_title]
+5. End with a short follow-up question to engage learning
+
+EXAMPLE FORMAT:
+"[Topic] is [simple explanation] [Source: X]. Think of it like [everyday analogy that makes it easy to understand].
+
+[Short engaging question]?"
+
+Now answer the user's question following this format."""
         else:
             # No relevant chunks or low relevance - handle conversational queries
             enhanced_prompt = f"""You are a helpful assistant for the Physical AI & Humanoid Robotics textbook.
@@ -423,14 +435,26 @@ async def run_agent_streamed(
                 f"[Source: {s['page_title']}]\n{s['chunk_text']}"
                 for s in sources
             ])
-            enhanced_prompt = f"""{GENERAL_SYSTEM_PROMPT}
+            enhanced_prompt = f"""You are a friendly teaching assistant for Physical AI & Humanoid Robotics.
 
 RETRIEVED CONTEXT:
 {context}
 
 USER QUESTION: {query}
 
-Answer the question using ONLY the context above. Include [Source: page_title] citations."""
+INSTRUCTIONS - Answer using ONLY the context above:
+1. Start with a simple, direct explanation (1-2 sentences)
+2. Use an analogy or comparison to make it relatable (e.g., "Think of it like...")
+3. Keep it brief - focus on the core concept only
+4. Add ONE inline citation [Source: page_title]
+5. End with a short follow-up question to engage learning
+
+EXAMPLE FORMAT:
+"[Topic] is [simple explanation] [Source: X]. Think of it like [everyday analogy that makes it easy to understand].
+
+[Short engaging question]?"
+
+Now answer the user's question following this format."""
         else:
             # No relevant chunks or low relevance - handle conversational queries
             enhanced_prompt = f"""You are a helpful assistant for the Physical AI & Humanoid Robotics textbook.
